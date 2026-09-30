@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sterling Loss Assessors | Fire &amp; Flood Insurance Claims</title>
+  <meta name="description" content="Independent UK loss assessors helping homeowners and businesses manage fire and flood insurance claims from start to finish.">
+  <style>
+    :root {
+      --navy: #0f2742;
+      --navy-dark: #0a1c30;
+      --accent: #e8792b;
+      --accent-dark: #c9631c;
+      --text: #1f2933;
+      --muted: #5b6776;
+      --bg: #ffffff;
+      --bg-soft: #f4f7fa;
+      --border: #e2e8ef;
+      --radius: 12px;
+      --shadow: 0 10px 30px rgba(15, 39, 66, 0.08);
+      --max: 1140px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+
+    .container {
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .btn:hover { background: var(--accent-dark); transform: translateY(-2px); }
+    .btn:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+
+    /* ---------- Header ---------- */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--navy);
+    }
+    .logo-mark {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: var(--navy);
+      color: #fff;
+      font-size: 1rem;
+    }
+    .logo span.sub {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .nav ul {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+    }
+    .nav a {
+      text-decoration: none;
+      font-weight: 500;
+      color: var(--text);
+      transition: color 0.2s ease;
+    }
+    .nav a:hover { color: var(--accent); }
+    .nav .btn { padding: 10px 20px; color: #fff; }
+    .nav .btn:hover { color: #fff; }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: 0;
+      padding: 8px;
+      cursor: pointer;
+    }
+    .menu-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      margin: 5px 0;
+      background: var(--navy);
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+    .menu-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .menu-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      position: relative;
+      color: #fff;
+      background:
+        radial-gradient(circle at 85% 20%, rgba(232, 121, 43, 0.35), transparent 45%),
+        radial-gradient(circle at 10% 90%, rgba(56, 132, 214, 0.35), transparent 50%),
+        linear-gradient(135deg, var(--navy) 0%, var(--navy-dark) 100%);
+      padding: 120px 0 130px;
+      overflow: hidden;
+    }
+    .hero-content { max-width: 720px; }
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      margin-bottom: 22px;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      line-height: 1.15;
+      margin: 0 0 20px;
+      letter-spacing: -0.02em;
+    }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero p {
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+      color: rgba(255, 255, 255, 0.85);
+      margin: 0 0 34px;
+      max-width: 600px;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 20px;
+    }
+    .hero-phone {
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    }
+    .hero-trust {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 28px;
+      margin-top: 44px;
+      padding: 0;
+      list-style: none;
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.85);
+    }
+    .hero-trust li::before {
+      content: "✓";
+      color: var(--accent);
+      font-weight: 700;
+      margin-right: 8px;
+    }
+
+    /* ---------- Sections ---------- */
+    section { scroll-margin-top: 72px; }
+    .section { padding: 96px 0; }
+    .section-head {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 56px;
+    }
+    .section-head .label {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .section-head h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+      color: var(--navy);
+      margin: 10px 0 14px;
+      letter-spacing: -0.01em;
+    }
+    .section-head p { color: var(--muted); margin: 0; }
+
+    /* ---------- How we help ---------- */
+    .help { background: var(--bg-soft); }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px 30px;
+      box-shadow: var(--shadow);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(15, 39, 66, 0.12);
+    }
+    .card-icon {
+      display: grid;
+      place-items: center;
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background: rgba(232, 121, 43, 0.12);
+      margin-bottom: 22px;
+    }
+    .card-icon svg { width: 28px; height: 28px; stroke: var(--accent); }
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.25rem;
+      color: var(--navy);
+    }
+    .card p { margin: 0; color: var(--muted); }
+
+    /* ---------- Contact ---------- */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .contact-info h3 {
+      color: var(--navy);
+      font-size: 1.4rem;
+      margin: 0 0 12px;
+    }
+    .contact-info > p { color: var(--muted); margin: 0 0 28px; }
+    .contact-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 18px;
+    }
+    .contact-list li {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .contact-list .ic {
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--navy);
+    }
+    .contact-list .ic svg { width: 20px; height: 20px; stroke: #fff; }
+    .contact-list strong { display: block; color: var(--navy); }
+    .contact-list a, .contact-list span { color: var(--muted); text-decoration: none; }
+    .contact-list a:hover { color: var(--accent); }
+
+    .contact-form {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .field { margin-bottom: 18px; }
+    .field label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      color: var(--navy);
+    }
+    .field input, .field select, .field textarea {
+      width: 100%;
+      padding: 12px 14px;
+      font: inherit;
+      color: var(--text);
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(232, 121, 43, 0.18);
+    }
+    .field textarea { min-height: 120px; resize: vertical; }
+    .contact-form .btn { border: 0; cursor: pointer; font-size: 1rem; width: 100%; }
+    .form-note { font-size: 0.85rem; color: var(--muted); margin: 14px 0 0; text-align: center; }
+    .form-success {
+      display: none;
+      padding: 14px;
+      margin-top: 14px;
+      border-radius: 8px;
+      background: #e7f6ec;
+      color: #1d6b3a;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    /* ---------- Footer ---------- */
+    .site-footer {
+      background: var(--navy-dark);
+      color: rgba(255, 255, 255, 0.7);
+      padding: 28px 0;
+      font-size: 0.9rem;
+    }
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 900px) {
+      .cards { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle { display: block; }
+      .nav {
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border-bottom: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        display: none;
+      }
+      .nav.open { display: block; }
+      .nav ul {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 10px 20px 20px;
+      }
+      .nav li a:not(.btn) {
+        display: block;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .nav li .btn { display: block; text-align: center; margin-top: 16px; padding: 14px; }
+
+      .hero { padding: 80px 0 90px; }
+      .section { padding: 72px 0; }
+      .section-head { margin-bottom: 40px; }
+      .form-row { grid-template-columns: 1fr; gap: 0; }
+      .contact-form { padding: 26px 20px; }
+    }
+
+    @media (max-width: 420px) {
+      .logo span.sub { display: none; }
+      .hero-actions .btn { width: 100%; text-align: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#home" class="logo" aria-label="Sterling Loss Assessors home">
+        <span class="logo-mark" aria-hidden="true">SL</span>
+        <span>Sterling Loss Assessors<span class="sub">Fire &amp; Flood Claims</span></span>
+      </a>
+
+      <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="main-nav" aria-label="Main">
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#help">How we help</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#contact" class="btn">Get in touch</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Welcome / Hero -->
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero-content">
+          <span class="eyebrow">Independent UK Loss Assessors</span>
+          <h1>Fire or flood damage? <em>We fight your corner.</em></h1>
+          <p>We work for you, not the insurer. From the first call to the final settlement, our experts manage your home or business insurance claim so you can focus on getting back to normal.</p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn">Get in touch</a>
+            <a href="tel:08000000000" class="hero-phone">Or call 0800 000 0000</a>
+          </div>
+          <ul class="hero-trust">
+            <li>Free initial assessment</li>
+            <li>No win, no fee</li>
+            <li>24/7 emergency response</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- How we help -->
+    <section class="section help" id="help">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">How we help</span>
+          <h2>Expert support when you need it most</h2>
+          <p>Dealing with a major loss is stressful. We take the pressure off and make sure you receive the full settlement you're entitled to.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2c1 3 4 5 4 9a4 4 0 0 1-8 0c0-2 1-3 1-3s-3 1-3 5a6 6 0 0 0 12 0c0-6-6-8-6-11z"/>
+              </svg>
+            </div>
+            <h3>Fire damage claims</h3>
+            <p>We assess fire, smoke and soot damage in detail, document every loss and present a thorough claim to your insurer on your behalf.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2.7 6.3 9.5a7 7 0 1 0 11.4 0z"/>
+              </svg>
+            </div>
+            <h3>Flood &amp; water damage</h3>
+            <p>From burst pipes to river flooding, we coordinate drying, reinstatement and alternative accommodation, and negotiate a fair settlement.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <path d="m9 12 2 2 4-4"/>
+              </svg>
+            </div>
+            <h3>Claim management</h3>
+            <p>We handle the paperwork, meetings and negotiations with loss adjusters, keeping you informed at every step until your claim is settled.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-head">
+          <span class="label">Contact us</span>
+          <h2>Talk to an assessor today</h2>
+          <p>Tell us what's happened and we'll get back to you quickly with a free, no-obligation assessment.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h3>We're here to help</h3>
+            <p>For emergencies, call us any time, day or night. We cover homes and businesses across the UK.</p>
+            <ul class="contact-list">
+              <li>
+                <span class="ic" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+                </span>
+                <div><strong>Phone (24/7)</strong><a href="tel:08000000000">0800 000 0000</a></div>
+              </li>
+              <li>
+                <span class="ic" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+                </span>
+                <div><strong>Email</strong><a href="mailto:hello@example.co.uk">hello@example.co.uk</a></div>
+              </li>
+              <li>
+                <span class="ic" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </span>
+                <div><strong>Office</strong><span>123 Example Street, London, AB1 2CD</span></div>
+              </li>
+              <li>
+                <span class="ic" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                </span>
+                <div><strong>Office hours</strong><span>Mon–Fri 8am–6pm · Emergency line 24/7</span></div>
+              </li>
+            </ul>
+          </div>
+
+          <form class="contact-form" id="contact-form" novalidate>
+            <div class="form-row">
+              <div class="field">
+                <label for="name">Full name</label>
+                <input type="text" id="name" name="name" autocomplete="name" required>
+              </div>
+              <div class="field">
+                <label for="phone">Phone</label>
+                <input type="tel" id="phone" name="phone" autocomplete="tel" required>
+              </div>
+            </div>
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" autocomplete="email" required>
+            </div>
+            <div class="field">
+              <label for="type">Type of claim</label>
+              <select id="type" name="type">
+                <option>Fire damage – home</option>
+                <option>Fire damage – business</option>
+                <option>Flood / water damage – home</option>
+                <option>Flood / water damage – business</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="message">What happened?</label>
+              <textarea id="message" name="message" placeholder="Briefly describe the damage and when it happened"></textarea>
+            </div>
+            <button type="submit" class="btn">Send enquiry</button>
+            <p class="form-note">We'll respond within one working day. Emergencies: please call us.</p>
+            <div class="form-success" id="form-success" role="status">Thank you — we'll be in touch shortly.</div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>&copy; <span id="year">2026</span> Sterling Loss Assessors. All rights reserved.</span>
+      <span>Independent loss assessors working on behalf of policyholders.</span>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.getElementById('main-nav');
+    toggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open);
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      nav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open menu');
+    }));
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Contact form (front-end only: connect to a form service or backend to receive enquiries)
+    const form = document.getElementById('contact-form');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      document.getElementById('form-success').style.display = 'block';
+      form.reset();
+    });
+  </script>
+</body>
+</html>
