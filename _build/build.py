@@ -870,17 +870,19 @@ def about():
         </ul>"""
     team = [
         ("NC", "Nic Castleton", "Managing Director",
-         "Your specialist loss assessor will ensure your claim is processed as quickly as possible, with everything in place ready for the moment liability is accepted."),
+         "\"Your specialist loss assessor will ensure your claim is processed as quickly as possible, with everything in place ready for the moment liability is accepted.\""),
         ("NH", "Nigel Hennerley", "Loss Assessor",
-         "You will have peace of mind knowing your loss assessor will guide you through the entire claims process."),
+         "\"You will have peace of mind knowing your loss assessor will guide you through the entire claims process.\""),
         ("AM", "Andrew MacInnes", "Loss Assessor",
-         "Every client is assigned a dedicated loss assessor. Their experience will ensure your claim is run smoothly and efficiently."),
+         "\"Every client is assigned a dedicated loss assessor. Their experience will ensure your claim is run smoothly and efficiently.\""),
+        ("NM", "Neil Munnerley", "Loss Assessor",
+         "One of our dedicated loss assessors, managing claims for homeowners, landlords and businesses from first visit to final settlement."),
     ]
     team_html = '\n'.join(f"""          <article class="card member">
             <span class="avatar" aria-hidden="true">{i}</span>
             <h3>{n}</h3>
             <p class="role">{r}</p>
-            <p>"{q}"</p>
+            <p>{q}</p>
           </article>""" for i, n, r, q in team)
     offices = [("Head office", "Arco House, 86 Woburn Drive, Hale, Near Altrincham, Cheshire WA15 8NE"),
                ("Birmingham", "Edgbaston, Birmingham"),
@@ -928,7 +930,7 @@ def about():
           <h2>Your dedicated loss assessors</h2>
           <p>Every client has their own loss assessor, backed by our legal specialists and our forensic and consequential loss accountants.</p>
         </div>
-        <div class="grid-3">
+        <div class="grid-4 team-grid">
 {team_html}
         </div>
       </div>
