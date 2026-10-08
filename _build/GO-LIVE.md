@@ -39,6 +39,7 @@ The site is built for `https://independentclaimsconsultants.com` (no `www`), whi
 | `/contact/` | Start your claim |
 | `/loss-assessors-surrey/` | Southern office (Cobham) location page |
 | `/loss-assessors-elmbridge/`, `/loss-assessors-guildford/`, `/loss-assessors-woking/`, `/loss-assessors-epsom-leatherhead/`, `/loss-assessors-london/` | Local area pages for the Southern office |
+| `/loss-assessors-sussex/`, `/loss-assessors-kent/`, `/loss-assessors-hampshire/`, `/loss-assessors-essex/`, `/loss-assessors-berkshire/` | County pages for the Southern office |
 | `/loss-assessors-manchester/` | Head office (Hale) location page |
 | `/404.html` | Page not found |
 | `/sitemap.xml`, `/robots.txt` | For search engines |

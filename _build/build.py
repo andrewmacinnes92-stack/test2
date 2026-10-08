@@ -630,10 +630,11 @@ def home():
              ("manchester-street", "A busy street in Manchester city centre", "Manchester and the North West",
               "Our head office in Hale covers Greater Manchester, Cheshire, the North West and beyond.",
               "manchester.html", "Loss assessors in Manchester")]
+    county_links = " · ".join(f'<a href="{t["key"]}">{t["place"]}</a>' for t in TOWNS if not t.get("in_surrey", True))
     areas_html = '\n'.join(f"""          <article class="card has-img">
             {img(n, a, kind="card", cls="card-img")}
             <h3>{t}</h3>
-            <p>{p}</p>
+            <p>{p}</p>{f'{chr(10)}            <p class="small county-links">{county_links}</p>' if n == "surrey-shere" else ""}
             {arrow_link(href, lt)}
           </article>""" for n, a, t, p, href, lt in areas)
 
@@ -2101,7 +2102,8 @@ def surrey():
           </article>""" for i, t, p, href in claims)
 
     areas_html = ''.join(f'<li><a href="{TOWN_LINKS[a]}">{a}</a></li>' if a in TOWN_LINKS else f'<li>{a}</li>' for a in SURREY_AREAS)
-    regions_html = ''.join(f'<li><a href="london.html">{a}</a></li>' if a == "London" else f'<li>{a}</li>' for a in SOUTH_REGIONS if a != "Surrey")
+    region_pages = {t["place"]: t["key"] for t in TOWNS if not t.get("in_surrey", True)}
+    regions_html = ''.join(f'<li><a href="{region_pages[a]}">{a}</a></li>' if a in region_pages else f'<li>{a}</li>' for a in SOUTH_REGIONS if a != "Surrey")
     faqs = SURREY_FAQS + [faq_lookup(q) for q in ["When should I contact a loss assessor?", "How much do you charge?"]]
     maps = "https://www.google.com/maps/search/?api=1&query=" + "The+Coach+House+3+Brooklands+Close+Cobham+KT11+2DR"
 
@@ -2239,7 +2241,7 @@ def surrey():
 # ---------------------------------------------------------------- local area pages (Southern office)
 
 def town_page(t):
-    in_surrey = t["key"] != "london.html"
+    in_surrey = t.get("in_surrey", True)
     claims_html = '\n'.join(f"""          <article class="card">
             {ic(i, "card-icon")}
             <h3>{h}</h3>
