@@ -9,7 +9,12 @@ base.css / components.css / site.js), then run:
 import html
 import json
 import re
+import sys
 from pathlib import Path
+from urllib.parse import quote
+
+sys.path.insert(0, str(Path(__file__).parent))
+from services import SERVICE_PAGES, CARD, QUICK  # noqa: E402
 
 HERE = Path(__file__).parent
 ROOT = HERE.parent
@@ -33,12 +38,11 @@ ROUTES = {
     "contact.html": "contact/",
     "surrey.html": "loss-assessors-surrey/",
 }
+ROUTES.update({s["key"]: s["route"] for s in SERVICE_PAGES})
 
 # Old addresses (the previous WordPress site and earlier versions of this one) -> new page.
 REDIRECTS = {
     "contact-2/": "contact/",
-    "commercial-claims/": "claims/#businesses",
-    "domestic-insurance-claim/": "claims/#homeowners",
     "sample-page/": "",
     "services2/": "",
     "services3/": "",
@@ -340,12 +344,12 @@ FOOTER = f"""  <footer class="site-footer">
           <h3>Claims</h3>
           <ul>
             <li><a href="surrey.html">Loss assessors in Surrey</a></li>
-            <li><a href="claims.html#homeowners">Homeowners</a></li>
-            <li><a href="claims.html#businesses">Businesses</a></li>
-            <li><a href="claims.html#landlords">Landlords</a></li>
-            <li><a href="claims.html#fire">Fire claims</a></li>
-            <li><a href="claims.html#flood">Flood claims</a></li>
-            <li><a href="claims.html#business-interruption">Business interruption</a></li>
+            <li><a href="home-claims.html">Homeowners</a></li>
+            <li><a href="commercial.html">Businesses</a></li>
+            <li><a href="landlords.html">Landlords</a></li>
+            <li><a href="fire.html">Fire claims</a></li>
+            <li><a href="flood.html">Flood claims</a></li>
+            <li><a href="bi.html">Business interruption</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -421,22 +425,25 @@ def localise_links(doc, prefix):
     return re.sub(r'(?<=["(,\s])assets/', prefix + "assets/", doc)
 
 
-def breadcrumbs(filename, label):
-    crumbs = f"""<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="index.html">Home</a></li><li aria-current="page">{label}</li></ol></nav>
+def breadcrumbs(filename, label, parent=None):
+    trail = [("index.html", "Home")] + ([parent] if parent else [])
+    links = "".join(f'<li><a href="{f}">{n}</a></li>' for f, n in trail)
+    crumbs = f"""<nav class="crumbs" aria-label="Breadcrumb"><ol>{links}<li aria-current="page">{label}</li></ol></nav>
           """
+    items = trail + [(filename, label)]
     data = {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         "itemListElement": [
-            {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/"},
-            {"@type": "ListItem", "position": 2, "name": label, "item": SITE + "/" + ROUTES[filename]},
+            {"@type": "ListItem", "position": i + 1, "name": n, "item": SITE + "/" + ROUTES[f]}
+            for i, (f, n) in enumerate(items)
         ],
     }
     return crumbs, data
 
 
 def page(filename, title, description, main, page_css="", schema=None, callbar=True, crumb=None,
-         prefix=None, indexable=True):
+         prefix=None, indexable=True, crumb_parent=None):
     route = ROUTES.get(filename, filename)
     prefix = link_prefix(route) if prefix is None else prefix
     url = SITE + "/" + route
@@ -444,7 +451,7 @@ def page(filename, title, description, main, page_css="", schema=None, callbar=T
     js = (HERE / "site.js").read_text().rstrip("\n")
     schemas = [s for s in (schema if isinstance(schema, list) else [schema]) if s]
     if crumb:
-        crumb_html, crumb_data = breadcrumbs(filename, crumb)
+        crumb_html, crumb_data = breadcrumbs(filename, crumb, crumb_parent)
         main = main.replace('<p class="pill">', crumb_html + '<p class="pill">', 1)
         schemas.append(crumb_data)
     schema_tag = "".join('\n  <script type="application/ld+json">\n' + json.dumps(s, indent=2, ensure_ascii=False)
@@ -544,11 +551,11 @@ def home():
     }
     audiences = [
         ("home", "Homeowners", "We get you back into your home as quickly as possible, arranging emergency help and somewhere to stay while it's put right.",
-         ["Buildings and contents claims", "Alternative accommodation", "Drying, repairs and reinstatement"], "claims.html#homeowners", "Homeowner claims"),
+         ["Buildings and contents claims", "Alternative accommodation", "Drying, repairs and reinstatement"], "home-claims.html", "Homeowner claims"),
         ("building", "Businesses", "We protect your cash flow and get you trading again, with forensic accountants calculating your business interruption loss.",
-         ["Commercial fire and flood", "Business interruption", "Stock and machinery"], "claims.html#businesses", "Business claims"),
+         ["Commercial fire and flood", "Business interruption", "Stock and machinery"], "commercial.html", "Business claims"),
         ("key", "Landlords", "We deal with the insurer and the repairs, and claim for the rent you lose while the property can't be let.",
-         ["Loss of rent", "Multi-tenancy properties", "Reinstatement and repairs"], "claims.html#landlords", "Landlord claims"),
+         ["Loss of rent", "Multi-tenancy properties", "Reinstatement and repairs"], "landlords.html", "Landlord claims"),
     ]
     aud_html = '\n'.join(f"""          <article class="card has-img">
             {img(*audience_imgs[t], kind="card", cls="card-img")}
@@ -566,7 +573,8 @@ def home():
              ("subsidence", "Subsidence", "Cracking and ground movement", "subsidence"),
              ("impact", "Impact damage", "Vehicles and other impacts", "impact"),
              ("briefcase", "Business interruption", "Lost income while you recover", "business-interruption")]
-    tiles_html = '\n'.join(f'          <a class="tile" href="claims.html#{a}">{ic(i)}<strong>{t}</strong><span>{d}</span></a>'
+    tile_pages = {"fire": "fire.html", "flood": "flood.html", "escape-of-water": "escape.html", "business-interruption": "bi.html"}
+    tiles_html = '\n'.join(f'          <a class="tile" href="{tile_pages.get(a, "claims.html#" + a)}">{ic(i)}<strong>{t}</strong><span>{d}</span></a>'
                            for i, t, d, a in tiles)
 
     reasons = [
@@ -865,6 +873,9 @@ def claims():
         "landlords": ("landlord-flats", "Red-brick Victorian mansion block of flats in London"),
     }
 
+    hub_pages = {"homeowners": "home-claims.html", "businesses": "commercial.html", "landlords": "landlords.html"}
+    hub_labels = {"homeowners": "Home insurance claims", "businesses": "Commercial claims", "landlords": "Landlord claims"}
+
     def block(id_, eyebrow, title, text, items, who, soft=False):
         return f"""
     <section class="section{' section-soft' if soft else ''}" id="{id_}">
@@ -875,7 +886,7 @@ def claims():
             <h2>{title}</h2>
             <p>{text}</p>
           </div>
-          {arrow_link("contact.html?who=" + who, "Start a " + who.lower() + " claim")}
+          <p class="block-links">{arrow_link(hub_pages[id_], hub_labels[id_])}{arrow_link("contact.html?who=" + who, "Start a " + who.lower() + " claim")}</p>
           {img(*block_imgs[id_], kind="card", cls="block-img")}
         </div>
         <div class="mini-grid">
@@ -902,10 +913,11 @@ def claims():
         ("business-interruption", "trend", "Business interruption",
          "Business interruption claims are rarely simple, and the way insurers present them can make them more complex. Our forensic and consequential loss accountants accurately calculate your loss, protecting your business while the building is restored."),
     ]
+    type_pages = {"fire": "fire.html", "flood": "flood.html", "escape-of-water": "escape.html", "business-interruption": "bi.html"}
     types_html = '\n'.join(f"""          <article class="card type-card" id="{a}">
             {ic(i)}
             <h3>{t}</h3>
-            <p>{p}</p>
+            <p>{p}</p>{chr(10) + "            " + arrow_link(type_pages[a], "Find out more") if a in type_pages else ""}
           </article>""" for a, i, t, p in types)
 
     main = page_hero(
@@ -1438,6 +1450,163 @@ def contact():
     @media (max-width: 768px) { body { padding-bottom: 0; } }""", callbar=False, crumb="Contact")
 
 
+# ---------------------------------------------------------------- claim-type and audience pages
+
+def contact_link(who=None, claim=None):
+    params = []
+    if who:
+        params.append("who=" + quote(who))
+    if claim:
+        params.append("claim=" + quote(claim))
+    return "contact.html" + ("?" + "&amp;".join(params) if params else "")
+
+
+def service_page(s):
+    quick = "\n        <ul class=\"creds\">" + "".join(
+        f"<li><strong>{a}</strong><span>{b}</span></li>" for a, b in QUICK) + "</ul>"
+    start = contact_link(s.get("who"), s.get("claim"))
+    intro = "\n".join(f"            <p>{p}</p>" for p in s["intro"])
+    help_html = mini_grid(s["help"])
+    covers = "\n".join(f"            <li><div><strong>{a}</strong><span>{b}</span></div></li>" for a, b in s["covers"])
+    cases = "\n".join(f"""          <article class="card">
+            <p class="case-meta">{CASES[i][0]}</p>
+            <h3>{CASES[i][1]}</h3>
+            <p>{CASES[i][2]}</p>
+          </article>""" for i in s["cases"])
+    related = "\n".join(
+        f'          <a class="tile" href="{k}">{ic(CARD[k][0])}<strong>{CARD[k][1]}</strong><span>{CARD[k][2]}</span></a>'
+        for k in s["related"])
+    advice = ""
+    if s.get("advice"):
+        href, text = s["advice"]
+        advice = f'\n        <p class="note">{svg("info")}<span><strong>Need help right now?</strong> <a href="{href}">{text}</a>.</span></p>'
+
+    main = page_hero(s["pill"], s["h1"], s["lead"], quick, image=s["image"])
+    main += f"""
+
+    <section class="section">
+      <div class="container split top">
+        <div>
+          <div class="section-head">
+            <span class="eyebrow">Independent loss assessors</span>
+            <h2>{s["intro_head"]}</h2>
+          </div>
+          <div class="prose">
+{intro}
+          </div>
+        </div>
+        <aside class="side-card">
+          <h3>Talk to a loss assessor</h3>
+          <p style="margin-bottom: 18px; color: var(--muted);">Get a free, no-obligation assessment of your claim. No win, no fee.</p>
+          <a href="{start}" class="btn btn-primary" style="width: 100%;">Start your claim {svg("arrow")}</a>
+          <ul class="contact-list" style="margin-top: 20px;">
+            <li>{ic("phone")}<a href="{TEL}"><strong>{PHONE}</strong><span>Monday to Friday, 9am to 5pm</span></a></li>
+            <li>{ic("mail")}<a href="mailto:{EMAIL}"><strong>Email us</strong><span>We'll get back to you</span></a></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">How we help</span>
+          <h2>{s["help_head"]}</h2>
+        </div>
+        <div class="mini-grid three">
+{help_html}
+        </div>{advice}
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container split top">
+        <div>
+          <div class="section-head">
+            <span class="eyebrow">Your claim</span>
+            <h2>{s["covers_head"]}</h2>
+            <p>{s["covers_intro"]}</p>
+          </div>
+          {arrow_link(start, "Start your claim")}
+        </div>
+        <ul class="checklist ticklist">
+{covers}
+        </ul>
+      </div>
+    </section>"""
+    if cases:
+        main += f"""
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Recent cases</span>
+          <h2>How we've helped clients</h2>
+        </div>
+        <div class="grid-2">
+{cases}
+        </div>
+      </div>
+    </section>"""
+    main += f"""
+
+    <section class="section{'' if cases else ' section-soft'}">
+      <div class="container split top">
+        <div>
+          <div class="section-head">
+            <span class="eyebrow">FAQs</span>
+            <h2>Common questions</h2>
+          </div>
+          {arrow_link("faq.html", "See all FAQs")}
+        </div>
+        <div class="faq">
+{faq_items(s["faqs"])}
+        </div>
+      </div>
+    </section>
+
+    <section class="section{' section-soft' if cases else ''}">
+      <div class="container">
+        <div class="head-row">
+          <div class="section-head">
+            <span class="eyebrow">Related claims</span>
+            <h2>Other ways we can help</h2>
+          </div>
+          {arrow_link("claims.html", "All claims we handle")}
+        </div>
+        <div class="grid-4">
+{related}
+        </div>
+      </div>
+    </section>
+{cta()}"""
+
+    schema = [
+        {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "serviceType": s["service_type"],
+            "name": s["crumb"],
+            "description": s["desc"],
+            "url": SITE + "/" + s["route"],
+            "areaServed": {"@type": "Country", "name": "United Kingdom"},
+            "provider": {"@type": "ProfessionalService", "name": "Independent Claims Consultants",
+                         "url": SITE + "/", "telephone": "+44 161 904 7800"},
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {"@type": "Question", "name": q,
+                 "acceptedAnswer": {"@type": "Answer", "text": re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", a)).strip()}}
+                for q, a in s["faqs"]
+            ],
+        },
+    ]
+    page(s["key"], s["title"], s["desc"], main, schema=schema, crumb=s["crumb"],
+         crumb_parent=("claims.html", "Claims we handle"))
+
+
 # ---------------------------------------------------------------- Surrey (Southern office)
 
 SURREY_AREAS = [
@@ -1469,12 +1638,12 @@ def surrey():
           </article>""" for i, n, r, q in team)
 
     claims = [
-        ("flood", "Flood", "Parts of Surrey lie close to the Thames, the Wey and the Mole, and homes near these rivers have flooded in wet winters such as 2013–14. We manage flood claims from drying out to final settlement.", "claims.html#flood"),
-        ("droplet", "Escape of water", "Burst pipes and leaks are among the most common home insurance claims, and older properties can hide damage under floors and behind walls. We make sure all of it is found and claimed for.", "claims.html#escape-of-water"),
-        ("fire", "Fire and smoke", "From kitchen fires to serious house fires, we guide you through every decision and make sure smoke and soot damage is fully included in your claim.", "claims.html#fire"),
+        ("flood", "Flood", "Parts of Surrey lie close to the Thames, the Wey and the Mole, and homes near these rivers have flooded in wet winters such as 2013–14. We manage flood claims from drying out to final settlement.", "flood.html"),
+        ("droplet", "Escape of water", "Burst pipes and leaks are among the most common home insurance claims, and older properties can hide damage under floors and behind walls. We make sure all of it is found and claimed for.", "escape.html"),
+        ("fire", "Fire and smoke", "From kitchen fires to serious house fires, we guide you through every decision and make sure smoke and soot damage is fully included in your claim.", "fire.html"),
         ("storm", "Storm damage", "High winds and falling trees can damage roofs, walls and contents. We arrange emergency works and present a complete claim for the damage.", "claims.html#storm"),
-        ("briefcase", "Business interruption", "For Surrey businesses, our forensic and consequential loss accountants calculate your lost income while your premises are restored.", "claims.html#business-interruption"),
-        ("key", "Landlord claims", "If a let property is damaged, we handle the claim and the reinstatement, and claim for the rent you lose while it can't be let.", "claims.html#landlords"),
+        ("briefcase", "Business interruption", "For Surrey businesses, our forensic and consequential loss accountants calculate your lost income while your premises are restored.", "bi.html"),
+        ("key", "Landlord claims", "If a let property is damaged, we handle the claim and the reinstatement, and claim for the rent you lose while it can't be let.", "landlords.html"),
     ]
     claims_html = '\n'.join(f"""          <article class="card">
             {ic(i, "card-icon")}
@@ -1685,6 +1854,8 @@ if __name__ == "__main__":
     faq()
     contact()
     surrey()
+    for s in SERVICE_PAGES:
+        service_page(s)
     not_found()
     redirect_stubs()
     sitemap_and_robots()

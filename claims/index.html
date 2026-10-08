@@ -1135,6 +1135,17 @@
     }
     .note a { color: var(--accent); }
 
+    /* ---------- Claim pages ---------- */
+    .mini-grid.three { grid-template-columns: repeat(3, 1fr); }
+    .checklist.ticklist li::before {
+      content: "";
+      background: var(--tint) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230f766e' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / 14px no-repeat;
+    }
+    .note a { font-weight: 600; }
+    @media (max-width: 960px) { .mini-grid.three { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 768px) { .mini-grid.three { grid-template-columns: 1fr; } }
+    .block-links { display: flex; flex-wrap: wrap; gap: 12px 28px; }
+
     .skip {
       position: absolute;
       top: -100px;
@@ -1220,7 +1231,7 @@
             <h2>Getting you back home</h2>
             <p>The aftermath of a fire, flood or break-in can have a huge emotional impact on you and your family, and dealing with an insurance claim on top is a lot to ask. Your dedicated loss assessor takes it on for you.</p>
           </div>
-          <a class="link-arrow" href="../contact/?who=Homeowner">Start a homeowner claim <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+          <p class="block-links"><a class="link-arrow" href="../domestic-insurance-claim/">Home insurance claims <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a><a class="link-arrow" href="../contact/?who=Homeowner">Start a homeowner claim <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></p>
           <img class="block-img" src="../assets/img/homes-terrace-480.webp" srcset="../assets/img/homes-terrace-480.webp 480w, ../assets/img/homes-terrace-800.webp 800w" sizes="(max-width: 960px) 100vw, 380px" width="800" height="500" loading="lazy" decoding="async" alt="Victorian terraced houses on a street in Oxford">
         </div>
         <div class="mini-grid">
@@ -1241,7 +1252,7 @@
             <h2>Keeping your business trading</h2>
             <p>Damage to your premises can put your whole business at risk. Insurers won't pay until they're satisfied they're liable and that you've met your policy conditions, and delays can hit cash flow hard. We take control of the claim so you can focus on your customers.</p>
           </div>
-          <a class="link-arrow" href="../contact/?who=Business">Start a business claim <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+          <p class="block-links"><a class="link-arrow" href="../commercial-claims/">Commercial claims <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a><a class="link-arrow" href="../contact/?who=Business">Start a business claim <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></p>
           <img class="block-img" src="../assets/img/business-stock-480.webp" srcset="../assets/img/business-stock-480.webp 480w, ../assets/img/business-stock-800.webp 800w" sizes="(max-width: 960px) 100vw, 380px" width="800" height="500" loading="lazy" decoding="async" alt="Warehouse interior with goods on shelving">
         </div>
         <div class="mini-grid">
@@ -1262,7 +1273,7 @@
             <h2>Protecting your rental income</h2>
             <p>When a let property is damaged, you're dealing with tenants, lost rent and your insurer all at once. We handle the claim and the reinstatement so the property can be lived in again.</p>
           </div>
-          <a class="link-arrow" href="../contact/?who=Landlord">Start a landlord claim <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+          <p class="block-links"><a class="link-arrow" href="../landlord-insurance-claims/">Landlord claims <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a><a class="link-arrow" href="../contact/?who=Landlord">Start a landlord claim <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></p>
           <img class="block-img" src="../assets/img/landlord-flats-480.webp" srcset="../assets/img/landlord-flats-480.webp 480w, ../assets/img/landlord-flats-800.webp 800w" sizes="(max-width: 960px) 100vw, 380px" width="800" height="500" loading="lazy" decoding="async" alt="Red-brick Victorian mansion block of flats in London">
         </div>
         <div class="mini-grid">
@@ -1285,16 +1296,19 @@
             <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2c1 3 4 5 4 9a4 4 0 0 1-8 0c0-2 1-3 1-3s-3 1-3 5a6 6 0 0 0 12 0c0-6-6-8-6-11z"/></svg></span>
             <h3>Fire and smoke</h3>
             <p>After a fire you'll face a number of critical decisions, and each one affects the outcome of your claim. We guide you through the whole fire claims process, from securing the building to restoring it, so you understand your options at every stage.</p>
+            <a class="link-arrow" href="../fire-damage-claims/">Find out more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
           </article>
           <article class="card type-card" id="flood">
             <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0M2 12c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0M2 18c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0"/></svg></span>
             <h3>Flood</h3>
             <p>A flood means a complicated claim, contractors to engage and oversee, and an insurer to negotiate with. We manage all of it, and make sure your property is thoroughly dried and sanitised by an experienced restoration company.</p>
+            <a class="link-arrow" href="../flood-damage-claims/">Find out more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
           </article>
           <article class="card type-card" id="escape-of-water">
             <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.7 6.3 9.5a7 7 0 1 0 11.4 0z"/></svg></span>
             <h3>Escape of water</h3>
             <p>Burst pipes, leaks and water ingress can cause damage that isn't always visible straight away. We make sure the full extent of the damage is found and included in your claim.</p>
+            <a class="link-arrow" href="../escape-of-water-claims/">Find out more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
           </article>
           <article class="card type-card" id="storm">
             <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 16.9A5 5 0 0 0 18 7h-1.3A8 8 0 1 0 4 15.3"/><path d="m13 11-4 6h6l-4 6"/></svg></span>
@@ -1320,6 +1334,7 @@
             <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 7-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></svg></span>
             <h3>Business interruption</h3>
             <p>Business interruption claims are rarely simple, and the way insurers present them can make them more complex. Our forensic and consequential loss accountants accurately calculate your loss, protecting your business while the building is restored.</p>
+            <a class="link-arrow" href="../business-interruption-claims/">Find out more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
           </article>
         </div>
       </div>
@@ -1385,12 +1400,12 @@
           <h3>Claims</h3>
           <ul>
             <li><a href="../loss-assessors-surrey/">Loss assessors in Surrey</a></li>
-            <li><a href="../claims/#homeowners">Homeowners</a></li>
-            <li><a href="../claims/#businesses">Businesses</a></li>
-            <li><a href="../claims/#landlords">Landlords</a></li>
-            <li><a href="../claims/#fire">Fire claims</a></li>
-            <li><a href="../claims/#flood">Flood claims</a></li>
-            <li><a href="../claims/#business-interruption">Business interruption</a></li>
+            <li><a href="../domestic-insurance-claim/">Homeowners</a></li>
+            <li><a href="../commercial-claims/">Businesses</a></li>
+            <li><a href="../landlord-insurance-claims/">Landlords</a></li>
+            <li><a href="../fire-damage-claims/">Fire claims</a></li>
+            <li><a href="../flood-damage-claims/">Flood claims</a></li>
+            <li><a href="../business-interruption-claims/">Business interruption</a></li>
           </ul>
         </div>
         <div class="footer-col">

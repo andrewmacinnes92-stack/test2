@@ -1151,6 +1151,17 @@
     }
     .note a { color: var(--accent); }
 
+    /* ---------- Claim pages ---------- */
+    .mini-grid.three { grid-template-columns: repeat(3, 1fr); }
+    .checklist.ticklist li::before {
+      content: "";
+      background: var(--tint) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230f766e' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / 14px no-repeat;
+    }
+    .note a { font-weight: 600; }
+    @media (max-width: 960px) { .mini-grid.three { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 768px) { .mini-grid.three { grid-template-columns: 1fr; } }
+    .block-links { display: flex; flex-wrap: wrap; gap: 12px 28px; }
+
     .skip {
       position: absolute;
       top: -100px;
@@ -1297,21 +1308,21 @@
             <h3>Homeowners</h3>
             <p>We get you back into your home as quickly as possible, arranging emergency help and somewhere to stay while it's put right.</p>
             <ul class="ticks"><li>Buildings and contents claims</li><li>Alternative accommodation</li><li>Drying, repairs and reinstatement</li></ul>
-            <a class="link-arrow" href="claims/#homeowners">Homeowner claims <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+            <a class="link-arrow" href="domestic-insurance-claim/">Homeowner claims <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
           </article>
           <article class="card has-img">
             <img class="card-img" src="assets/img/business-warehouse-480.webp" srcset="assets/img/business-warehouse-480.webp 480w, assets/img/business-warehouse-800.webp 800w" sizes="(max-width: 960px) 100vw, 380px" width="800" height="500" loading="lazy" decoding="async" alt="Aisle of a warehouse with stock on tall orange racking">
             <h3>Businesses</h3>
             <p>We protect your cash flow and get you trading again, with forensic accountants calculating your business interruption loss.</p>
             <ul class="ticks"><li>Commercial fire and flood</li><li>Business interruption</li><li>Stock and machinery</li></ul>
-            <a class="link-arrow" href="claims/#businesses">Business claims <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+            <a class="link-arrow" href="commercial-claims/">Business claims <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
           </article>
           <article class="card has-img">
             <img class="card-img" src="assets/img/landlord-flats-480.webp" srcset="assets/img/landlord-flats-480.webp 480w, assets/img/landlord-flats-800.webp 800w" sizes="(max-width: 960px) 100vw, 380px" width="800" height="500" loading="lazy" decoding="async" alt="Red-brick Victorian mansion block of flats in London">
             <h3>Landlords</h3>
             <p>We deal with the insurer and the repairs, and claim for the rent you lose while the property can't be let.</p>
             <ul class="ticks"><li>Loss of rent</li><li>Multi-tenancy properties</li><li>Reinstatement and repairs</li></ul>
-            <a class="link-arrow" href="claims/#landlords">Landlord claims <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+            <a class="link-arrow" href="landlord-insurance-claims/">Landlord claims <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
           </article>
         </div>
       </div>
@@ -1327,14 +1338,14 @@
           <a class="link-arrow" href="claims/#types">All claim types <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
         </div>
         <div class="grid-4">
-          <a class="tile" href="claims/#fire"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2c1 3 4 5 4 9a4 4 0 0 1-8 0c0-2 1-3 1-3s-3 1-3 5a6 6 0 0 0 12 0c0-6-6-8-6-11z"/></svg></span><strong>Fire and smoke</strong><span>Homes, factories and multi-occupancy buildings</span></a>
-          <a class="tile" href="claims/#flood"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0M2 12c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0M2 18c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0"/></svg></span><strong>Flood</strong><span>Damage from rising or flowing water</span></a>
-          <a class="tile" href="claims/#escape-of-water"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.7 6.3 9.5a7 7 0 1 0 11.4 0z"/></svg></span><strong>Escape of water</strong><span>Burst pipes, leaks and water ingress</span></a>
+          <a class="tile" href="fire-damage-claims/"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2c1 3 4 5 4 9a4 4 0 0 1-8 0c0-2 1-3 1-3s-3 1-3 5a6 6 0 0 0 12 0c0-6-6-8-6-11z"/></svg></span><strong>Fire and smoke</strong><span>Homes, factories and multi-occupancy buildings</span></a>
+          <a class="tile" href="flood-damage-claims/"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0M2 12c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0M2 18c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0"/></svg></span><strong>Flood</strong><span>Damage from rising or flowing water</span></a>
+          <a class="tile" href="escape-of-water-claims/"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.7 6.3 9.5a7 7 0 1 0 11.4 0z"/></svg></span><strong>Escape of water</strong><span>Burst pipes, leaks and water ingress</span></a>
           <a class="tile" href="claims/#storm"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 16.9A5 5 0 0 0 18 7h-1.3A8 8 0 1 0 4 15.3"/><path d="m13 11-4 6h6l-4 6"/></svg></span><strong>Storm damage</strong><span>Roofs, walls and contents</span></a>
           <a class="tile" href="claims/#theft"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><strong>Theft and burglary</strong><span>Stolen property and break-in damage</span></a>
           <a class="tile" href="claims/#subsidence"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V21H3z"/><path d="m12 21-1.5-4 2-3-1.5-3"/></svg></span><strong>Subsidence</strong><span>Cracking and ground movement</span></a>
           <a class="tile" href="claims/#impact"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></span><strong>Impact damage</strong><span>Vehicles and other impacts</span></a>
-          <a class="tile" href="claims/#business-interruption"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg></span><strong>Business interruption</strong><span>Lost income while you recover</span></a>
+          <a class="tile" href="business-interruption-claims/"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg></span><strong>Business interruption</strong><span>Lost income while you recover</span></a>
         </div>
       </div>
     </section>
@@ -1571,12 +1582,12 @@
           <h3>Claims</h3>
           <ul>
             <li><a href="loss-assessors-surrey/">Loss assessors in Surrey</a></li>
-            <li><a href="claims/#homeowners">Homeowners</a></li>
-            <li><a href="claims/#businesses">Businesses</a></li>
-            <li><a href="claims/#landlords">Landlords</a></li>
-            <li><a href="claims/#fire">Fire claims</a></li>
-            <li><a href="claims/#flood">Flood claims</a></li>
-            <li><a href="claims/#business-interruption">Business interruption</a></li>
+            <li><a href="domestic-insurance-claim/">Homeowners</a></li>
+            <li><a href="commercial-claims/">Businesses</a></li>
+            <li><a href="landlord-insurance-claims/">Landlords</a></li>
+            <li><a href="fire-damage-claims/">Fire claims</a></li>
+            <li><a href="flood-damage-claims/">Flood claims</a></li>
+            <li><a href="business-interruption-claims/">Business interruption</a></li>
           </ul>
         </div>
         <div class="footer-col">

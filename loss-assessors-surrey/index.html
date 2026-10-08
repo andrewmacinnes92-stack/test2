@@ -1230,6 +1230,17 @@
     }
     .note a { color: var(--accent); }
 
+    /* ---------- Claim pages ---------- */
+    .mini-grid.three { grid-template-columns: repeat(3, 1fr); }
+    .checklist.ticklist li::before {
+      content: "";
+      background: var(--tint) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230f766e' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / 14px no-repeat;
+    }
+    .note a { font-weight: 600; }
+    @media (max-width: 960px) { .mini-grid.three { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 768px) { .mini-grid.three { grid-template-columns: 1fr; } }
+    .block-links { display: flex; flex-wrap: wrap; gap: 12px 28px; }
+
     .skip {
       position: absolute;
       top: -100px;
@@ -1360,19 +1371,19 @@
             <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0M2 12c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0M2 18c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0"/></svg></span>
             <h3>Flood</h3>
             <p>Parts of Surrey lie close to the Thames, the Wey and the Mole, and homes near these rivers have flooded in wet winters such as 2013–14. We manage flood claims from drying out to final settlement.</p>
-            <a class="link-arrow" href="../claims/#flood">Find out more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+            <a class="link-arrow" href="../flood-damage-claims/">Find out more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
           </article>
           <article class="card">
             <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.7 6.3 9.5a7 7 0 1 0 11.4 0z"/></svg></span>
             <h3>Escape of water</h3>
             <p>Burst pipes and leaks are among the most common home insurance claims, and older properties can hide damage under floors and behind walls. We make sure all of it is found and claimed for.</p>
-            <a class="link-arrow" href="../claims/#escape-of-water">Find out more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+            <a class="link-arrow" href="../escape-of-water-claims/">Find out more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
           </article>
           <article class="card">
             <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2c1 3 4 5 4 9a4 4 0 0 1-8 0c0-2 1-3 1-3s-3 1-3 5a6 6 0 0 0 12 0c0-6-6-8-6-11z"/></svg></span>
             <h3>Fire and smoke</h3>
             <p>From kitchen fires to serious house fires, we guide you through every decision and make sure smoke and soot damage is fully included in your claim.</p>
-            <a class="link-arrow" href="../claims/#fire">Find out more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+            <a class="link-arrow" href="../fire-damage-claims/">Find out more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
           </article>
           <article class="card">
             <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 16.9A5 5 0 0 0 18 7h-1.3A8 8 0 1 0 4 15.3"/><path d="m13 11-4 6h6l-4 6"/></svg></span>
@@ -1384,13 +1395,13 @@
             <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg></span>
             <h3>Business interruption</h3>
             <p>For Surrey businesses, our forensic and consequential loss accountants calculate your lost income while your premises are restored.</p>
-            <a class="link-arrow" href="../claims/#business-interruption">Find out more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+            <a class="link-arrow" href="../business-interruption-claims/">Find out more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
           </article>
           <article class="card">
             <span class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7.5" cy="15.5" r="4.5"/><path d="m10.7 12.3 9.3-9.3M17 6l3 3M14 9l2 2"/></svg></span>
             <h3>Landlord claims</h3>
             <p>If a let property is damaged, we handle the claim and the reinstatement, and claim for the rent you lose while it can't be let.</p>
-            <a class="link-arrow" href="../claims/#landlords">Find out more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+            <a class="link-arrow" href="../landlord-insurance-claims/">Find out more <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
           </article>
         </div>
       </div>
@@ -1488,12 +1499,12 @@
           <h3>Claims</h3>
           <ul>
             <li><a href="../loss-assessors-surrey/">Loss assessors in Surrey</a></li>
-            <li><a href="../claims/#homeowners">Homeowners</a></li>
-            <li><a href="../claims/#businesses">Businesses</a></li>
-            <li><a href="../claims/#landlords">Landlords</a></li>
-            <li><a href="../claims/#fire">Fire claims</a></li>
-            <li><a href="../claims/#flood">Flood claims</a></li>
-            <li><a href="../claims/#business-interruption">Business interruption</a></li>
+            <li><a href="../domestic-insurance-claim/">Homeowners</a></li>
+            <li><a href="../commercial-claims/">Businesses</a></li>
+            <li><a href="../landlord-insurance-claims/">Landlords</a></li>
+            <li><a href="../fire-damage-claims/">Fire claims</a></li>
+            <li><a href="../flood-damage-claims/">Flood claims</a></li>
+            <li><a href="../business-interruption-claims/">Business interruption</a></li>
           </ul>
         </div>
         <div class="footer-col">
