@@ -625,7 +625,20 @@
     }
     .member .avatar { width: 56px; height: 56px; margin-bottom: 20px; font-size: 1.05rem; }
     .member h3 { margin-bottom: 2px; }
-    .card p.role { margin-bottom: 16px; color: var(--accent); font-size: 0.9rem; font-weight: 600; }
+    .card p.role { margin-bottom: 10px; color: var(--accent); font-size: 0.9rem; font-weight: 600; }
+    .card p.office {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 16px;
+      padding: 4px 10px 4px 8px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--ink);
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .card p.office svg { width: 14px; height: 14px; stroke: var(--accent); }
     .creds {
       display: grid;
       grid-template-columns: repeat(3, 1fr);

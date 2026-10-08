@@ -884,21 +884,26 @@ def about():
           <li><strong>UK offices</strong><span>Cobham (Surrey), Hale (Manchester) and Edgbaston (Birmingham)</span></li>
         </ul>"""
     team = [
-        ("NC", "Nic Castleton", "Managing Director",
+        ("NC", "Nic Castleton", "Managing Director", "Head office, Hale",
          "\"Your specialist loss assessor will ensure your claim is processed as quickly as possible, with everything in place ready for the moment liability is accepted.\""),
-        ("NH", "Nigel Hennerley", "Loss Assessor",
-         "\"You will have peace of mind knowing your loss assessor will guide you through the entire claims process.\""),
-        ("AM", "Andrew MacInnes", "Loss Assessor",
+        ("AM", "Andrew MacInnes", "Loss Assessor", "Southern office, Cobham",
          "\"Every client is assigned a dedicated loss assessor. Their experience will ensure your claim is run smoothly and efficiently.\""),
-        ("NM", "Neil Munnerley", "Loss Assessor",
+        ("NM", "Neil Munnerley", "Loss Assessor", "Southern office, Cobham",
          "One of our dedicated loss assessors, managing claims for homeowners, landlords and businesses from first visit to final settlement."),
+        ("NH", "Nigel Hennerley", "Loss Assessor", "Head office, Hale",
+         "\"You will have peace of mind knowing your loss assessor will guide you through the entire claims process.\""),
+        ("RY", "Ralph Yarwood-Smith", "Technician", "Edgbaston, Birmingham",
+         "One of our technicians, supporting our loss assessors on claims from our Edgbaston office."),
+        ("MP", "Mark Pepper", "Technician", "Edgbaston, Birmingham",
+         "One of our technicians, supporting our loss assessors on claims from our Edgbaston office."),
     ]
     team_html = '\n'.join(f"""          <article class="card member">
             <span class="avatar" aria-hidden="true">{i}</span>
             <h3>{n}</h3>
             <p class="role">{r}</p>
+            <p class="office">{svg("pin")}{o}</p>
             <p>{q}</p>
-          </article>""" for i, n, r, q in team)
+          </article>""" for i, n, r, o, q in team)
     offices = [("Southern office", SOUTH_OFFICE),
                ("Head office", HEAD_OFFICE),
                ("Birmingham", "Edgbaston, Birmingham")]
@@ -943,9 +948,9 @@ def about():
         <div class="section-head">
           <span class="eyebrow">Our team</span>
           <h2>Your dedicated loss assessors</h2>
-          <p>Every client has their own loss assessor, backed by our legal specialists and our forensic and consequential loss accountants.</p>
+          <p>Every client has their own loss assessor, backed by our technicians, legal specialists and forensic and consequential loss accountants.</p>
         </div>
-        <div class="grid-4 team-grid">
+        <div class="grid-3 team-grid">
 {team_html}
         </div>
       </div>
