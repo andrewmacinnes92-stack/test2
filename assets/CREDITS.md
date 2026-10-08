@@ -17,6 +17,7 @@ All photos are from Pexels and the video is from Mixkit. Both licences allow fre
 | `img/fire-crew-*` | https://www.pexels.com/photo/firefighters-standing-in-front-of-flame-9376150/ |
 | `img/fire-hose-*` | https://www.pexels.com/photo/fire-firefighter-firefighters-fireman-1243903/ |
 | `img/water-damage-*` | https://www.pexels.com/photo/water-in-abandoned-room-18302377/ |
+| `img/manchester-street-*` | https://www.pexels.com/photo/street-photography-of-manchester-city-uk-12335384/ |
 | `img/surrey-shere-*` | https://www.pexels.com/photo/vintage-houses-in-town-in-uk-13764558/ |
 | `img/repairs-plaster-*` | https://www.pexels.com/photo/crop-man-preparing-wall-for-painting-5691622/ |
 | `img/theft-lock-*` | https://www.pexels.com/photo/deadlock-with-key-on-hole-279810/ |
