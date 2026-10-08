@@ -19,7 +19,6 @@ TEL = "tel:01619047800"
 EMAIL = "nic@independentclaimsconsultants.co.uk"
 SOUTH_OFFICE = "The Coach House, 3 Brooklands Close, Cobham, Surrey KT11 2DR"
 HEAD_OFFICE = "Arco House, 86 Woburn Drive, Hale, Altrincham, Cheshire WA15 8NE"
-ESSEX_OFFICE = "First Floor, Eltime House, Hall Road, Maldon, Essex CM9 4NF"
 
 # The live address of the site. Canonical links, the sitemap and social previews use it.
 SITE = "https://independentclaimsconsultants.com"
@@ -366,7 +365,6 @@ FOOTER = f"""  <footer class="site-footer">
             <li><a href="mailto:{EMAIL}">{EMAIL}</a></li>
             <li><span><strong>Southern office:</strong> {SOUTH_OFFICE}</span></li>
             <li><span><strong>Head office:</strong> {HEAD_OFFICE}</span></li>
-            <li><span><strong>Essex office:</strong> {ESSEX_OFFICE}</span></li>
             <li><span>Monday to Friday, 9am to 5pm</span></li>
           </ul>
         </div>
@@ -711,7 +709,7 @@ def home():
         <ul>
           <li><span class="stat-num"><span data-count="30">30</span><span class="unit">+</span></span><span class="t">years managing insurance claims</span></li>
           <li><span class="stat-num"><span data-count="100">100</span><span class="unit">+</span></span><span class="t">years of family history in loss assessment</span></li>
-          <li><span class="stat-num"><span data-count="3">3</span></span><span class="t">UK offices: Cobham, Hale and Maldon</span></li>
+          <li><span class="stat-num"><span data-count="2">2</span></span><span class="t">UK offices: Cobham, Surrey and Hale, Cheshire</span></li>
           <li><span class="stat-num">4<span class="unit">–</span>6</span><span class="t">weeks to settle a typical straightforward claim</span></li>
         </ul>
       </div>
@@ -978,7 +976,7 @@ def about():
         <ul class="creds">
           <li><strong>IPLA members</strong><span>Institute of Public Loss Assessors</span></li>
           <li><strong>FCA regulated</strong><span>Reg No 308042</span></li>
-          <li><strong>UK offices</strong><span>Cobham (Surrey), Hale (Manchester) and Maldon (Essex)</span></li>
+          <li><strong>UK offices</strong><span>Cobham (Surrey) and Hale (Manchester)</span></li>
         </ul>"""
     team = [
         ("NC", "Nic Castleton", "Managing Director", "Head office, Hale",
@@ -989,21 +987,20 @@ def about():
          "One of our dedicated loss assessors, managing claims for homeowners, landlords and businesses from first visit to final settlement."),
         ("NH", "Nigel Hennerley", "Loss Assessor", "Head office, Hale",
          "\"You will have peace of mind knowing your loss assessor will guide you through the entire claims process.\""),
-        ("RY", "Ralph Yarwood-Smith", "Technician", "Maldon, Essex",
-         "One of our technicians, supporting our loss assessors on claims from our Maldon office in Essex."),
-        ("MP", "Mark Pepper", "Technician", "Maldon, Essex",
-         "One of our technicians, supporting our loss assessors on claims from our Maldon office in Essex."),
+        ("RY", "Ralph Yarwood-Smith", "Technician", None,
+         "One of our technicians, supporting our loss assessors on claims."),
+        ("MP", "Mark Pepper", "Technician", None,
+         "One of our technicians, supporting our loss assessors on claims."),
     ]
     team_html = '\n'.join(f"""          <article class="card member">
             <span class="avatar" aria-hidden="true">{i}</span>
             <h3>{n}</h3>
             <p class="role">{r}</p>
-            <p class="office">{svg("pin")}{o}</p>
+            {f'<p class="office">{svg("pin")}{o}</p>' if o else ''}
             <p>{q}</p>
           </article>""" for i, n, r, o, q in team)
     offices = [("Southern office", SOUTH_OFFICE),
-               ("Head office", HEAD_OFFICE),
-               ("Essex office", ESSEX_OFFICE)]
+               ("Head office", HEAD_OFFICE)]
     offices_html = '\n'.join(f"""          <article class="card">
             {ic("pin")}
             <h3 style="margin-top: 18px;">{t}</h3>
@@ -1079,9 +1076,9 @@ def about():
         <div class="section-head">
           <span class="eyebrow">Our offices</span>
           <h2>Covering the whole of the UK</h2>
-          <p>We help clients across the country from our offices in Surrey, the North West and Essex.</p>
+          <p>We help clients across the country from our offices in Surrey and the North West.</p>
         </div>
-        <div class="grid-3">
+        <div class="grid-2">
 {offices_html}
         </div>
       </div>
@@ -1430,7 +1427,6 @@ def contact():
             <ul class="contact-list">
               <li>{ic("pin")}<div><strong>Cobham, Surrey</strong><span>Southern office</span></div></li>
               <li>{ic("pin")}<div><strong>Hale, Manchester</strong><span>Head office</span></div></li>
-              <li>{ic("pin")}<div><strong>Maldon, Essex</strong><span>Essex office</span></div></li>
             </ul>
           </div>
         </aside>
@@ -1513,7 +1509,7 @@ def surrey():
           <div class="prose">
             <p>When a fire, flood or escape of water damages your property, your insurer appoints a loss adjuster to assess the claim on its behalf. Our loss assessors work for you instead, preparing and negotiating your claim so you receive everything you're entitled to.</p>
             <p>Being based in Cobham means your loss assessor is close at hand to inspect the damage, meet your insurer's loss adjuster at the property and keep an eye on the repairs as they progress.</p>
-            <p>Our Southern office is part of Independent Claims Consultants, which has managed insurance claims for more than 30 years, with our head office in Hale and a further office in Maldon, Essex.</p>
+            <p>Our Southern office is part of Independent Claims Consultants, which has managed insurance claims for more than 30 years, with our head office in Hale, Cheshire.</p>
           </div>
         </div>
         <aside class="side-card">
