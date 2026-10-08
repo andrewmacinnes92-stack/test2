@@ -4,7 +4,8 @@ The site is built for `https://independentclaimsconsultants.com` (no `www`), whi
 
 ## 1. Before switching
 
-- Pick a host. Netlify or Cloudflare Pages (both free) read the `_redirects` file and send proper permanent (301) redirects for the old addresses. GitHub Pages can host the site too, using the HTML redirect pages that are generated as a fallback.
+- **The site is going on the existing HostGator hosting: follow `_build/HOSTGATOR.md`.** The `.htaccess` file handles HTTPS, the www redirect and the old WordPress addresses.
+- (Alternative) Pick a host. Netlify or Cloudflare Pages (both free) read the `_redirects` file and send proper permanent (301) redirects for the old addresses. GitHub Pages can host the site too, using the HTML redirect pages that are generated as a fallback.
 - Rebuild: `python3 _build/build.py`
 
 ## 2. On the day
