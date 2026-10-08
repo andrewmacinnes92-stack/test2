@@ -10,10 +10,10 @@ All photos are from Pexels and the video is from Mixkit. Both licences allow fre
 | `img/business-warehouse-*` | https://www.pexels.com/photo/warehouse-with-stock-on-metal-shelves-4483773/ |
 | `img/business-stock-*` | https://www.pexels.com/photo/shelves-in-a-warehouse-4481327/ |
 | `img/inspector-*` | https://www.pexels.com/photo/a-man-checking-the-window-8293642/ |
-| `img/adviser-couple-*` | https://www.pexels.com/photo/people-having-conversation-8439647/ |
-| `img/adviser-couple-2-*` | https://www.pexels.com/photo/a-man-talking-to-the-elderly-couple-8439648/ |
-| `img/agent-documents-*` | https://www.pexels.com/photo/a-couple-talking-to-an-insurance-agent-7731318/ |
-| `img/couple-documents-*` | https://www.pexels.com/photo/a-couple-having-conversation-while-looking-at-the-documents-6963071/ |
+| `img/adviser-woman-*` | https://www.pexels.com/photo/a-woman-explaining-to-her-client-7734579/ |
+| `img/phone-woman-*` | https://www.pexels.com/photo/woman-on-the-telephone-8691834/ |
+| `img/policy-woman-*` | https://www.pexels.com/photo/a-woman-smiling-and-holding-an-insurance-contract-7734599/ |
+| `img/homeowner-woman-*` | https://www.pexels.com/photo/cheerful-woman-smiling-while-sitting-at-table-with-laptop-4467687/ |
 | `img/fire-damage-*` | https://www.pexels.com/photo/pensive-man-sitting-in-a-living-room-of-burnt-house-12027310/ |
 | `img/water-damage-*` | https://www.pexels.com/photo/water-in-abandoned-room-18302377/ |
 | `img/surrey-shere-*` | https://www.pexels.com/photo/vintage-houses-in-town-in-uk-13764558/ |
