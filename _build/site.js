@@ -21,10 +21,10 @@
     // Print buttons on the advice page
     document.querySelectorAll('[data-print]').forEach(btn => btn.addEventListener('click', () => window.print()));
 
-    // Step-by-step claim form (contact page). Sends by opening the visitor's email app.
+    // Step-by-step claim form (contact page). Sends through FormSubmit; falls back to the visitor's email app.
     const form = document.getElementById('claim-form');
     if (form) {
-      const EMAIL = 'nic@independentclaimsconsultants.co.uk';
+      const EMAIL = form.dataset.email;
       const panels = [...form.querySelectorAll('.panel')];
       const progress = [...form.querySelectorAll('.wizard-progress li')];
 
@@ -106,11 +106,34 @@
           if (!validate(panels[n])) { show(n); return; }
         }
         const subject = `Claim enquiry: ${value('claim')} (${value('who')})`;
-        const body = rows().map(([k, v]) => `${k}: ${v}`).join('\n');
-        window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        panels.forEach(p => p.classList.remove('current'));
-        document.getElementById('sent').classList.add('current');
-        form.querySelector('.wizard-progress').hidden = true;
+        const done = () => {
+          panels.forEach(p => p.classList.remove('current'));
+          const sent = document.getElementById('sent');
+          sent.classList.add('current');
+          form.querySelector('.wizard-progress').hidden = true;
+          sent.querySelector('h2').focus({ preventScroll: true });
+        };
+        if (value('_honey')) { done(); return; }
+        const btn = form.querySelector('[data-send]');
+        const label = btn.innerHTML;
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
+        const data = Object.fromEntries(rows());
+        Object.assign(data, { _subject: subject, _cc: form.dataset.cc, _replyto: value('email'), _template: 'table', _captcha: 'false' });
+        fetch(form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(data),
+        })
+          .then(r => r.json().then(j => { if (!r.ok || String(j.success) !== 'true') throw new Error(j.message || 'Send failed'); }))
+          .then(done)
+          .catch(() => {
+            btn.disabled = false;
+            btn.innerHTML = label;
+            document.getElementById('send-error').hidden = false;
+            const body = rows().map(([k, v]) => `${k}: ${v}`).join('\n');
+            window.location.href = `mailto:${EMAIL}?cc=${encodeURIComponent(form.dataset.cc)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+          });
       });
 
       // Pre-fill answers passed from the homepage quick-start form
@@ -123,7 +146,13 @@
       const claim = params.get('claim');
       if (claim && [...form.elements.claim.options].some(o => o.value === claim)) form.elements.claim.value = claim;
 
-      show(0, false);
+      if (params.get('sent')) {
+        panels.forEach(p => p.classList.remove('current'));
+        document.getElementById('sent').classList.add('current');
+        form.querySelector('.wizard-progress').hidden = true;
+      } else {
+        show(0, false);
+      }
     }
 
     // Gentle fade-in as sections scroll into view

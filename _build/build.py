@@ -24,6 +24,11 @@ ROOT = HERE.parent
 PHONE = "0161 904 7800"
 TEL = "tel:01619047800"
 EMAIL = "nic@independentclaimsconsultants.co.uk"
+# Claim form enquiries are sent by FormSubmit (formsubmit.co) to FORM_TO, with a copy to FORM_CC.
+# FORM_TO is the address that approves (activates) the form with FormSubmit.
+FORM_TO = "andy@independentclaimsconsultants.com"
+FORM_CC = EMAIL
+FORM_ENDPOINT = "https://formsubmit.co/" + FORM_TO
 SOUTH_OFFICE = "The Coach House, 3 Brooklands Close, Cobham, Surrey KT11 2DR"
 HEAD_OFFICE = "Arco House, 86 Woburn Drive, Hale, Altrincham, Cheshire WA15 8NE"
 
@@ -1743,7 +1748,12 @@ def contact():
 
     <section class="section" style="padding-top: 0;">
       <div class="container contact-layout">
-        <form class="form-card" id="claim-form" action="mailto:{EMAIL}?subject=Claim%20enquiry" method="post" enctype="text/plain" novalidate>
+        <form class="form-card" id="claim-form" action="{FORM_ENDPOINT}" method="post" novalidate data-email="{FORM_TO}" data-cc="{FORM_CC}">
+          <input type="hidden" name="_cc" value="{FORM_CC}">
+          <input type="hidden" name="_subject" value="New claim enquiry from the website">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_next" value="{SITE}/contact/?sent=1">
+          <div class="visually-hidden" aria-hidden="true"><label for="c-honey">Leave this empty</label><input type="text" id="c-honey" name="_honey" tabindex="-1" autocomplete="off"></div>
           <ol class="wizard-progress">
             <li>About your claim</li>
             <li>Your details</li>
@@ -1822,20 +1832,21 @@ def contact():
 
           <div class="panel">
             <h2 tabindex="-1">Check and send</h2>
-            <p>Check your details, then press send. This opens your email app with your enquiry ready to go.</p>
+            <p>Check your details, then press send. Your enquiry goes straight to our team.</p>
             <dl class="summary" id="summary"></dl>
             <div class="wizard-nav">
               <button type="button" class="btn btn-ghost" data-back>Back</button>
-              <button type="submit" class="btn btn-primary">Send enquiry {svg("arrow")}</button>
+              <button type="submit" class="btn btn-primary" data-send>Send enquiry {svg("arrow")}</button>
             </div>
-            <p class="form-note">Or call us on {PHONE}, Monday to Friday, 9am to 5pm.</p>
+            <p class="form-error" id="send-error" role="alert" hidden>Sorry, we couldn't send your enquiry just now. We've opened your email app with it filled in instead, or you can call us on {PHONE}.</p>
+            <p class="form-note">We'll only use your details to respond to your enquiry. Or call us on {PHONE}, Monday to Friday, 9am to 5pm.</p>
           </div>
 
           <div class="panel sent" id="sent">
             {ic("check")}
-            <h2 tabindex="-1">Your email is ready to send</h2>
-            <p>We've opened your email app with your enquiry filled in. Just press send and we'll be in touch.</p>
-            <p>Email app didn't open? Email us at <a href="mailto:{EMAIL}">{EMAIL}</a> or call {PHONE}.</p>
+            <h2 tabindex="-1">Thank you, we've received your enquiry</h2>
+            <p>One of our loss assessors will be in touch soon to talk about your claim.</p>
+            <p>If it's urgent, call us on <a href="{TEL}">{PHONE}</a>, Monday to Friday, 9am to 5pm.</p>
           </div>
         </form>
 

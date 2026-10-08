@@ -821,6 +821,7 @@
     }
 
     .wizard-progress { display: flex; gap: 8px; margin: 0 0 28px; padding: 0; list-style: none; }
+    .wizard-progress[hidden] { display: none; }
     .wizard-progress li { flex: 1; color: var(--muted); font-size: 0.8rem; font-weight: 600; }
     .wizard-progress li::before {
       content: "";
@@ -845,6 +846,7 @@
     .summary dt { color: var(--muted); font-size: 0.9rem; }
     .summary dd { margin: 0; color: var(--ink); font-size: 0.9rem; font-weight: 600; text-align: right; overflow-wrap: anywhere; }
     .form-note { margin-top: 14px; color: var(--muted); font-size: 0.85rem; text-align: center; }
+    .form-error { margin-top: 14px; padding: 12px 14px; border-radius: 10px; background: #fdecec; color: #8a1c1c; font-size: 0.9rem; }
     .sent { text-align: center; padding: 12px 0; }
     .sent .ic { width: 56px; height: 56px; margin: 0 auto 18px; border-radius: 50%; }
     .sent .ic svg { width: 26px; height: 26px; }
@@ -1362,10 +1364,10 @@
     // Print buttons on the advice page
     document.querySelectorAll('[data-print]').forEach(btn => btn.addEventListener('click', () => window.print()));
 
-    // Step-by-step claim form (contact page). Sends by opening the visitor's email app.
+    // Step-by-step claim form (contact page). Sends through FormSubmit; falls back to the visitor's email app.
     const form = document.getElementById('claim-form');
     if (form) {
-      const EMAIL = 'nic@independentclaimsconsultants.co.uk';
+      const EMAIL = form.dataset.email;
       const panels = [...form.querySelectorAll('.panel')];
       const progress = [...form.querySelectorAll('.wizard-progress li')];
 
@@ -1447,11 +1449,34 @@
           if (!validate(panels[n])) { show(n); return; }
         }
         const subject = `Claim enquiry: ${value('claim')} (${value('who')})`;
-        const body = rows().map(([k, v]) => `${k}: ${v}`).join('\n');
-        window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-        panels.forEach(p => p.classList.remove('current'));
-        document.getElementById('sent').classList.add('current');
-        form.querySelector('.wizard-progress').hidden = true;
+        const done = () => {
+          panels.forEach(p => p.classList.remove('current'));
+          const sent = document.getElementById('sent');
+          sent.classList.add('current');
+          form.querySelector('.wizard-progress').hidden = true;
+          sent.querySelector('h2').focus({ preventScroll: true });
+        };
+        if (value('_honey')) { done(); return; }
+        const btn = form.querySelector('[data-send]');
+        const label = btn.innerHTML;
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
+        const data = Object.fromEntries(rows());
+        Object.assign(data, { _subject: subject, _cc: form.dataset.cc, _replyto: value('email'), _template: 'table', _captcha: 'false' });
+        fetch(form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(data),
+        })
+          .then(r => r.json().then(j => { if (!r.ok || String(j.success) !== 'true') throw new Error(j.message || 'Send failed'); }))
+          .then(done)
+          .catch(() => {
+            btn.disabled = false;
+            btn.innerHTML = label;
+            document.getElementById('send-error').hidden = false;
+            const body = rows().map(([k, v]) => `${k}: ${v}`).join('\n');
+            window.location.href = `mailto:${EMAIL}?cc=${encodeURIComponent(form.dataset.cc)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+          });
       });
 
       // Pre-fill answers passed from the homepage quick-start form
@@ -1464,7 +1489,13 @@
       const claim = params.get('claim');
       if (claim && [...form.elements.claim.options].some(o => o.value === claim)) form.elements.claim.value = claim;
 
-      show(0, false);
+      if (params.get('sent')) {
+        panels.forEach(p => p.classList.remove('current'));
+        document.getElementById('sent').classList.add('current');
+        form.querySelector('.wizard-progress').hidden = true;
+      } else {
+        show(0, false);
+      }
     }
 
     // Gentle fade-in as sections scroll into view
