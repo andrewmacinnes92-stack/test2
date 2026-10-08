@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Us | Sterling Loss Assessors</title>
-  <meta name="description" content="Find out who we are and how Sterling Loss Assessors helps UK homeowners and businesses with fire and flood insurance claims.">
+  <title>About Us | Independent Claims Consultants</title>
+  <meta name="description" content="Independent Claims Consultants: family-run UK loss assessors with over 30 years' experience, members of the Institute of Public Loss Assessors and regulated by the FCA.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -108,10 +108,11 @@
       gap: 10px;
       color: var(--ink);
       font-weight: 700;
-      font-size: 1.05rem;
+      font-size: 0.98rem;
       letter-spacing: -0.01em;
       text-decoration: none;
     }
+    .logo-text { display: flex; flex-direction: column; line-height: 1.2; }
     .logo-mark {
       display: grid;
       place-items: center;
@@ -121,7 +122,13 @@
       background: var(--accent);
     }
     .logo-mark svg { width: 18px; height: 18px; stroke: #fff; }
-    .logo .light { font-weight: 500; color: var(--muted); }
+    .logo .light {
+      color: var(--muted);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
 
     .nav ul {
       display: flex;
@@ -335,6 +342,7 @@
     .footer-links a { color: var(--muted); font-size: 0.925rem; text-decoration: none; }
     .footer-links a:hover { color: var(--ink); }
     .copyright { width: 100%; color: var(--muted); font-size: 0.85rem; }
+    .legal { width: 100%; margin-top: -8px; color: #94a3b8; font-size: 0.8rem; line-height: 1.6; }
 
     /* ---------- Responsive ---------- */
     @media (max-width: 960px) {
@@ -369,6 +377,12 @@
     @media (max-width: 480px) {
       .hero-actions .btn, .cta .btn { width: 100%; }
     }
+    @media (max-width: 480px) {
+      .site-header .logo .light { display: none; }
+    }
+    @media (max-width: 400px) {
+      .logo { font-size: 0.9rem; }
+    }
 
     @media (prefers-reduced-motion: reduce) {
       * { transition: none !important; scroll-behavior: auto !important; }
@@ -377,9 +391,27 @@
     .page-hero { padding: 88px 0 96px; }
     .page-hero .hero-copy { max-width: 760px; }
 
+    .creds {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      max-width: 920px;
+      margin: 44px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .creds li {
+      padding: 18px 20px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.85);
+    }
+    .creds strong { display: block; color: var(--ink); font-size: 0.95rem; }
+    .creds span { color: var(--muted); font-size: 0.875rem; }
+
     .split {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
+      grid-template-columns: 1.1fr 0.9fr;
       gap: 64px;
       align-items: center;
     }
@@ -387,29 +419,46 @@
     .prose p { margin-bottom: 18px; color: var(--muted); font-size: 1.05rem; }
     .prose p:last-child { margin-bottom: 0; }
 
-    .compare {
-      padding: 10px;
+    .quote {
+      margin: 0;
+      padding: 36px;
       border: 1px solid var(--line);
       border-radius: 24px;
       background: var(--soft);
     }
-    .compare-title { padding: 14px 18px 12px; color: var(--ink); font-size: 1rem; font-weight: 700; }
-    .compare-item { padding: 20px 22px; border-radius: 16px; }
-    .compare-item.us {
-      border: 1px solid var(--tint-line);
-      background: #fff;
-      box-shadow: 0 12px 28px -16px rgba(15, 23, 42, 0.2);
+    .quote blockquote {
+      margin: 0 0 28px;
+      color: var(--ink);
+      font-size: 1.15rem;
+      font-weight: 500;
+      line-height: 1.6;
     }
-    .compare-item .tag {
-      color: var(--muted);
-      font-size: 0.75rem;
+    .quote blockquote::before {
+      content: "\201C";
+      display: block;
+      height: 36px;
+      color: var(--accent);
+      font-size: 4rem;
       font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      line-height: 1;
     }
-    .compare-item.us .tag { color: var(--accent); }
-    .compare-item h3 { margin: 6px 0 6px; font-size: 1.1rem; }
-    .compare-item p { color: var(--muted); font-size: 0.95rem; }
+    .quote figcaption { display: flex; align-items: center; gap: 14px; }
+    .quote figcaption strong { display: block; color: var(--ink); }
+    .quote figcaption span:not(.avatar) { color: var(--muted); font-size: 0.9rem; }
+
+    .avatar {
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
 
     .steps {
       display: grid;
@@ -439,12 +488,36 @@
     .step h3 { margin-bottom: 8px; font-size: 1.1rem; }
     .step p { color: var(--muted); font-size: 0.95rem; }
 
+    .team { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .member .avatar { width: 56px; height: 56px; margin-bottom: 20px; font-size: 1.05rem; }
+    .member h3 { margin-bottom: 2px; }
+    .member p.role { margin-bottom: 16px; color: var(--accent); font-size: 0.9rem; font-weight: 600; }
+
+    .cases { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .case-meta {
+      margin-bottom: 12px;
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .card.case p.case-meta { color: var(--accent); font-size: 0.78rem; }
+
+    .cta-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+    .btn-outline-light { border-color: rgba(255, 255, 255, 0.3); color: #fff; }
+    .btn-outline-light:hover { border-color: #fff; }
+
     @media (max-width: 960px) {
       .split { grid-template-columns: 1fr; gap: 40px; }
       .steps { grid-template-columns: 1fr 1fr; }
+      .team { grid-template-columns: 1fr; max-width: 560px; }
     }
     @media (max-width: 768px) {
       .page-hero { padding: 56px 0 72px; }
+      .creds { grid-template-columns: 1fr; margin-top: 32px; }
+      .cases { grid-template-columns: 1fr; }
+      .quote { padding: 28px 24px; }
     }
     @media (max-width: 560px) {
       .steps { grid-template-columns: 1fr; }
@@ -455,11 +528,11 @@
 
   <header class="site-header">
     <div class="container header-inner">
-      <a href="index.html" class="logo" aria-label="Sterling Loss Assessors home">
+      <a href="index.html" class="logo" aria-label="Independent Claims Consultants home">
         <span class="logo-mark" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </span>
-        <span>Sterling <span class="light">Loss Assessors</span></span>
+        <span class="logo-text">Independent Claims Consultants<span class="light">Loss Assessors</span></span>
       </a>
 
       <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
@@ -484,118 +557,149 @@
       <div class="container">
         <div class="hero-copy">
           <p class="pill"><span class="dot" aria-hidden="true"></span>About us</p>
-          <h1>On your side when <span>the worst happens.</span></h1>
-          <p class="lead">We're an independent team of loss assessors helping homeowners and businesses across the UK recover from fire and flood, and get the insurance settlement they deserve.</p>
+          <h1>On your side for <span>over 30 years.</span></h1>
+          <p class="lead">Independent Claims Consultants helps homeowners, landlords and businesses across the UK recover from fire, flood and other disasters, and get everything they're entitled to.</p>
         </div>
+        <ul class="creds">
+          <li><strong>IPLA members</strong><span>Institute of Public Loss Assessors</span></li>
+          <li><strong>FCA regulated</strong><span>Reg No 308042</span></li>
+          <li><strong>UK offices</strong><span>Hale (Manchester), Edgbaston (Birmingham) and London</span></li>
+        </ul>
       </div>
     </section>
 
-    <!-- Who we are -->
+    <!-- Our story -->
     <section class="section">
       <div class="container split">
         <div>
           <div class="section-head">
-            <span class="eyebrow">Who we are</span>
-            <h2>Independent experts who work for you</h2>
+            <span class="eyebrow">Our story</span>
+            <h2>A family tradition in loss assessment</h2>
           </div>
           <div class="prose">
-            <p>When your home or business is damaged by fire or flood, your insurer appoints a loss adjuster to assess the claim on its behalf. We represent the other side: you, the policyholder.</p>
-            <p>Our assessors understand buildings, contents, business interruption and the fine print of insurance policies. We prepare a detailed claim, deal with the insurer and its adjuster, and negotiate so nothing you're entitled to is overlooked.</p>
-            <p>Just as importantly, we're a steady point of contact through a stressful time, arranging emergency help, keeping you updated and taking the paperwork off your hands.</p>
+            <p>It's over 100 years since the Castleton family first entered the complex and specialised world of loss assessment. It was at the family's instigation that the Institute of Public Loss Assessors was established, and Nic Castleton's grandfather was chosen as its president.</p>
+            <p>Nic founded Independent Claims Consultants three decades ago. Since then, the firm has helped individuals and businesses recover from a wide range of disasters, with every client assigned a dedicated loss assessor.</p>
+            <p>When you make a claim, your insurer appoints a loss adjuster to work in its interests. We work only in yours, using our expertise to get you the best possible settlement.</p>
           </div>
         </div>
 
-        <aside class="compare" aria-label="Loss adjuster compared with loss assessor">
-          <p class="compare-title">Adjuster or assessor?</p>
-          <div class="compare-item">
-            <span class="tag">Works for the insurer</span>
-            <h3>Loss adjuster</h3>
-            <p>Appointed and paid by the insurance company to assess the claim for them.</p>
-          </div>
-          <div class="compare-item us">
-            <span class="tag">Works for you</span>
-            <h3>Loss assessor (that's us)</h3>
-            <p>Appointed by you to prepare, manage and negotiate your claim in your interest.</p>
-          </div>
-        </aside>
+        <figure class="quote">
+          <blockquote>Since establishing Independent Claims Consultants three decades ago, I have never lost sight of the long running tradition of customer care and personal service which is the hallmark of my family's long history in loss assessment.</blockquote>
+          <figcaption>
+            <span class="avatar" aria-hidden="true">NC</span>
+            <div><strong>Nic Castleton</strong><span>Managing Director</span></div>
+          </figcaption>
+        </figure>
       </div>
     </section>
 
-    <!-- How it works -->
+    <!-- How we help -->
     <section class="section section-soft">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">How it works</span>
-          <h2>A clear process from start to finish</h2>
-          <p>We keep things simple so you always know what's happening with your claim.</p>
+          <span class="eyebrow">How we help</span>
+          <h2>We manage every aspect of your claim</h2>
+          <p>The earlier you appoint us, the more we can do. The best time is at the start of your claim, when your insurer appoints its loss adjuster.</p>
         </div>
 
         <ol class="steps">
           <li class="step">
-            <h3>Free assessment</h3>
-            <p>Get in touch and we'll visit to inspect the damage and review your policy, at no cost.</p>
+            <h3>Secure your property</h3>
+            <p>We organise emergency works and arrange alternative accommodation where it's needed.</p>
           </li>
           <li class="step">
-            <h3>Emergency help</h3>
-            <p>We arrange urgent work such as drying, boarding up or temporary accommodation.</p>
+            <h3>Assess the full damage</h3>
+            <p>We identify the full extent of the damage to both your buildings and contents.</p>
           </li>
           <li class="step">
-            <h3>Claim preparation</h3>
-            <p>We document every loss in detail and submit a complete, well-evidenced claim.</p>
+            <h3>Prepare and negotiate</h3>
+            <p>We prepare, present and negotiate your entire claim with your insurer and its loss adjuster.</p>
           </li>
           <li class="step">
-            <h3>Settlement</h3>
-            <p>We negotiate with your insurer and push for a full, fair settlement on your behalf.</p>
+            <h3>Oversee the repairs</h3>
+            <p>We help appoint specialist surveyors and contractors, and supervise their work through to completion.</p>
           </li>
         </ol>
       </div>
     </section>
 
-    <!-- Values -->
+    <!-- Team -->
     <section class="section">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">Our values</span>
-          <h2>What you can expect from us</h2>
+          <span class="eyebrow">Our team</span>
+          <h2>Your dedicated loss assessors</h2>
+          <p>Every client has their own loss assessor, backed by our legal specialists and our forensic and consequential loss accountants.</p>
         </div>
 
-        <div class="cards">
-          <article class="card">
-            <div class="card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <h3>Independent</h3>
-            <p>We don't work for insurers. Our only job is to look after your interests and get your claim right.</p>
+        <div class="team">
+          <article class="card member">
+            <span class="avatar" aria-hidden="true">NC</span>
+            <h3>Nic Castleton</h3>
+            <p class="role">Managing Director</p>
+            <p>"Your specialist loss assessor will ensure your claim is processed as quickly as possible, with everything in place ready for the moment liability is accepted."</p>
           </article>
-
-          <article class="card">
-            <div class="card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            </div>
-            <h3>Honest &amp; clear</h3>
-            <p>Plain English, no jargon, and clear terms agreed up front, so there are no surprises along the way.</p>
+          <article class="card member">
+            <span class="avatar" aria-hidden="true">NH</span>
+            <h3>Nigel Hennerley</h3>
+            <p class="role">Loss Assessor</p>
+            <p>"You will have peace of mind knowing your loss assessor will guide you through the entire claims process."</p>
           </article>
+          <article class="card member">
+            <span class="avatar" aria-hidden="true">AM</span>
+            <h3>Andrew MacInnes</h3>
+            <p class="role">Loss Assessor</p>
+            <p>"Every client is assigned a dedicated loss assessor. Their experience will ensure your claim is run smoothly and efficiently."</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-          <article class="card">
-            <div class="card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1.1L12 21l7.8-7.5 1-1.1a5.5 5.5 0 0 0 0-7.8z"/></svg>
-            </div>
-            <h3>People first</h3>
-            <p>We know how upsetting a fire or flood is. We treat every client with patience, care and respect.</p>
+    <!-- Cases -->
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Recent cases</span>
+          <h2>Results for our clients</h2>
+        </div>
+
+        <div class="cases">
+          <article class="card case">
+            <p class="case-meta">Commercial fire · Wales</p>
+            <h3>Food factory fire</h3>
+            <p>The claim was refused by insurers. We were instructed and obtained an excellent settlement, which enabled the business to continue trading.</p>
+          </article>
+          <article class="card case">
+            <p class="case-meta">Landlord fire · Glasgow</p>
+            <h3>Fire in a multi-tenancy property</h3>
+            <p>The tenants had been left with no help and the landlord was worried about lost rent. With our legal team and associate building company, the claim was soon sorted, the tenants moved back into a refurbished property and the landlord never lost a penny.</p>
+          </article>
+          <article class="card case">
+            <p class="case-meta">Commercial flood · Birmingham</p>
+            <h3>Flood at a retail store</h3>
+            <p>The insurers weren't happy to pay the claim. Once our legal specialists were involved, we quickly and decisively reached an excellent settlement.</p>
+          </article>
+          <article class="card case">
+            <p class="case-meta">Domestic fire · Manchester</p>
+            <h3>House fire</h3>
+            <p>Insurers had asked the homeowners to start clearing up and make a contents list. Once appointed, we moved the family to a hotel while our teams reinstated the property. They were delighted with the results.</p>
           </article>
         </div>
       </div>
     </section>
 
     <!-- Call to action -->
-    <section class="section" style="padding-top: 0;">
+    <section class="section">
       <div class="container">
         <div class="cta">
-          <h2>Need help with a fire or flood claim?</h2>
-          <p>Speak to one of our assessors today for a free, no-obligation assessment.</p>
-          <a href="index.html#contact" class="btn btn-light">Get in touch
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
-          </a>
+          <h2>Get your first consultation free</h2>
+          <p>Call us on 0161 904 7800, Monday to Friday, 9am to 5pm, or send us a message for a free, no-obligation assessment. No win, no fee.</p>
+          <div class="cta-actions">
+            <a href="tel:01619047800" class="btn btn-light">Call 0161 904 7800</a>
+            <a href="index.html#contact" class="btn btn-outline-light">Send a message
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -603,18 +707,19 @@
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <a href="index.html" class="logo" aria-label="Sterling Loss Assessors home">
+      <a href="index.html" class="logo" aria-label="Independent Claims Consultants home">
         <span class="logo-mark" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </span>
-        <span>Sterling <span class="light">Loss Assessors</span></span>
+        <span class="logo-text">Independent Claims Consultants<span class="light">Loss Assessors</span></span>
       </a>
       <ul class="footer-links">
         <li><a href="index.html#help">How we help</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="index.html#contact">Contact</a></li>
       </ul>
-      <p class="copyright">&copy; <span id="year">2026</span> Sterling Loss Assessors. Independent loss assessors working on behalf of policyholders.</p>
+      <p class="copyright">&copy; <span id="year">2026</span> Independent Claims Consultants. Members of the Institute of Public Loss Assessors.</p>
+      <p class="legal">Independent Claims Consultants is the trading name of Insurance Claims Centre UK Limited, a company registered in England No. 3932119. Regulated by the Financial Conduct Authority, FCA Reg No 308042. Registered office: Arco House, 86 Woburn Drive, Hale, Near Altrincham, Cheshire WA15 8NE.</p>
     </div>
   </footer>
 
