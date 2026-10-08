@@ -573,7 +573,7 @@ def home():
              ("subsidence", "Subsidence", "Cracking and ground movement", "subsidence"),
              ("impact", "Impact damage", "Vehicles and other impacts", "impact"),
              ("briefcase", "Business interruption", "Lost income while you recover", "business-interruption")]
-    tile_pages = {"fire": "fire.html", "flood": "flood.html", "escape-of-water": "escape.html", "business-interruption": "bi.html"}
+    tile_pages = {"fire": "fire.html", "flood": "flood.html", "escape-of-water": "escape.html", "business-interruption": "bi.html", "storm": "storm.html", "theft": "theft.html", "subsidence": "subsidence.html", "impact": "impact.html"}
     tiles_html = '\n'.join(f'          <a class="tile" href="{tile_pages.get(a, "claims.html#" + a)}">{ic(i)}<strong>{t}</strong><span>{d}</span></a>'
                            for i, t, d, a in tiles)
 
@@ -913,7 +913,7 @@ def claims():
         ("business-interruption", "trend", "Business interruption",
          "Business interruption claims are rarely simple, and the way insurers present them can make them more complex. Our forensic and consequential loss accountants accurately calculate your loss, protecting your business while the building is restored."),
     ]
-    type_pages = {"fire": "fire.html", "flood": "flood.html", "escape-of-water": "escape.html", "business-interruption": "bi.html"}
+    type_pages = {"fire": "fire.html", "flood": "flood.html", "escape-of-water": "escape.html", "business-interruption": "bi.html", "storm": "storm.html", "theft": "theft.html", "subsidence": "subsidence.html", "impact": "impact.html"}
     types_html = '\n'.join(f"""          <article class="card type-card" id="{a}">
             {ic(i)}
             <h3>{t}</h3>
@@ -1641,7 +1641,7 @@ def surrey():
         ("flood", "Flood", "Parts of Surrey lie close to the Thames, the Wey and the Mole, and homes near these rivers have flooded in wet winters such as 2013–14. We manage flood claims from drying out to final settlement.", "flood.html"),
         ("droplet", "Escape of water", "Burst pipes and leaks are among the most common home insurance claims, and older properties can hide damage under floors and behind walls. We make sure all of it is found and claimed for.", "escape.html"),
         ("fire", "Fire and smoke", "From kitchen fires to serious house fires, we guide you through every decision and make sure smoke and soot damage is fully included in your claim.", "fire.html"),
-        ("storm", "Storm damage", "High winds and falling trees can damage roofs, walls and contents. We arrange emergency works and present a complete claim for the damage.", "claims.html#storm"),
+        ("storm", "Storm damage", "High winds and falling trees can damage roofs, walls and contents. We arrange emergency works and present a complete claim for the damage.", "storm.html"),
         ("briefcase", "Business interruption", "For Surrey businesses, our forensic and consequential loss accountants calculate your lost income while your premises are restored.", "bi.html"),
         ("key", "Landlord claims", "If a let property is damaged, we handle the claim and the reinstatement, and claim for the rent you lose while it can't be let.", "landlords.html"),
     ]
