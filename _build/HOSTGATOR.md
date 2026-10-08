@@ -60,15 +60,15 @@ Open these in your browser. Use a private window so you don't see a cached copy.
 
 ## Step 6: Switch on the enquiry form (one time only)
 
-The claim form sends through FormSubmit, a free service. Enquiries go to nic@independentclaimsconsultants.co.uk, with a copy to andy@independentclaimsconsultants.com.
+The claim form sends through FormSubmit, a free service. Enquiries go to andy@independentclaimsconsultants.com, with a copy to nic@independentclaimsconsultants.co.uk.
 
 1. Go to https://independentclaimsconsultants.com/contact/ and send a test enquiry with your own details.
-2. Nic will receive an email from FormSubmit asking to **activate** the form. Click the button in that email. Check the spam folder if it doesn't arrive.
+2. Andy will receive an email from FormSubmit asking to **activate** the form. Click the button in that email. Check the spam folder if it doesn't arrive.
 3. Send a second test enquiry. This one should arrive in both inboxes.
 
 Until the activation link is clicked, enquiries aren't delivered, so do this straight after going live.
 
-**Optional:** after activation, FormSubmit emails a random code that can replace Nic's address in the form. This hides the address from spam bots. To use it, change `FORM_ENDPOINT` in `_build/build.py` to `https://formsubmit.co/` followed by the code, rebuild and re-upload.
+**Optional:** after activation, FormSubmit emails a random code that can replace Andy's address in the form. This hides Andy's address from spam bots. To use it, change `FORM_ENDPOINT` in `_build/build.py` to `https://formsubmit.co/` followed by the code, rebuild and re-upload.
 
 ## If something goes wrong
 

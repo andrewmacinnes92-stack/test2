@@ -24,9 +24,11 @@ ROOT = HERE.parent
 PHONE = "0161 904 7800"
 TEL = "tel:01619047800"
 EMAIL = "nic@independentclaimsconsultants.co.uk"
-# Claim form enquiries are sent by FormSubmit (formsubmit.co) to EMAIL, with a copy to FORM_CC.
-FORM_CC = "andy@independentclaimsconsultants.com"
-FORM_ENDPOINT = "https://formsubmit.co/" + EMAIL
+# Claim form enquiries are sent by FormSubmit (formsubmit.co) to FORM_TO, with a copy to FORM_CC.
+# FORM_TO is the address that approves (activates) the form with FormSubmit.
+FORM_TO = "andy@independentclaimsconsultants.com"
+FORM_CC = EMAIL
+FORM_ENDPOINT = "https://formsubmit.co/" + FORM_TO
 SOUTH_OFFICE = "The Coach House, 3 Brooklands Close, Cobham, Surrey KT11 2DR"
 HEAD_OFFICE = "Arco House, 86 Woburn Drive, Hale, Altrincham, Cheshire WA15 8NE"
 
@@ -1746,7 +1748,7 @@ def contact():
 
     <section class="section" style="padding-top: 0;">
       <div class="container contact-layout">
-        <form class="form-card" id="claim-form" action="{FORM_ENDPOINT}" method="post" novalidate data-email="{EMAIL}" data-cc="{FORM_CC}">
+        <form class="form-card" id="claim-form" action="{FORM_ENDPOINT}" method="post" novalidate data-email="{FORM_TO}" data-cc="{FORM_CC}">
           <input type="hidden" name="_cc" value="{FORM_CC}">
           <input type="hidden" name="_subject" value="New claim enquiry from the website">
           <input type="hidden" name="_template" value="table">
