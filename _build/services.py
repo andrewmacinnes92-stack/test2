@@ -25,7 +25,7 @@ SERVICE_PAGES = [
         "pill": "Fire damage claims",
         "h1": "Fire damage <span>insurance claims</span>",
         "lead": "A fire at your home or business is devastating. Our loss assessors take over your fire insurance claim, so you can focus on your family or your business while we fight for your full entitlement.",
-        "image": ("fire-damage", "A man sitting in a fire-damaged living room"),
+        "image": ("fire-crew", "Firefighters in breathing apparatus tackling a large fire"),
         "claim": "Fire or smoke damage",
         "service_type": "Fire damage insurance claims",
         "icon": "fire",
