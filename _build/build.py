@@ -17,6 +17,8 @@ ROOT = HERE.parent
 PHONE = "0161 904 7800"
 TEL = "tel:01619047800"
 EMAIL = "nic@independentclaimsconsultants.co.uk"
+SOUTH_OFFICE = "The Coach House, 3 Brooklands Close, Cobham, Surrey KT11 2DR"
+HEAD_OFFICE = "Arco House, 86 Woburn Drive, Hale, Altrincham, Cheshire WA15 8NE"
 
 ICONS = {
     "fire": '<path d="M12 2c1 3 4 5 4 9a4 4 0 0 1-8 0c0-2 1-3 1-3s-3 1-3 5a6 6 0 0 0 12 0c0-6-6-8-6-11z"/>',
@@ -262,7 +264,7 @@ def header(active):
     return f"""  <a class="skip" href="#main">Skip to content</a>
   <div class="topbar">
     <div class="container topbar-inner">
-      <span>Independent loss assessors<span class="sep">·</span>FCA Reg No 308042<span class="sep">·</span>Members of the IPLA</span>
+      <span>Southern office: Cobham, Surrey<span class="sep">·</span>FCA Reg No 308042<span class="sep">·</span>Members of the IPLA</span>
       <span><a href="{TEL}">Call {PHONE}</a><span class="sep">·</span>Mon to Fri, 9am to 5pm</span>
     </div>
   </div>
@@ -326,7 +328,8 @@ FOOTER = f"""  <footer class="site-footer">
           <ul>
             <li><a href="{TEL}">{PHONE}</a></li>
             <li><a href="mailto:{EMAIL}">{EMAIL}</a></li>
-            <li><span>Arco House, 86 Woburn Drive, Hale, Altrincham, Cheshire WA15 8NE</span></li>
+            <li><span><strong>Southern office:</strong> {SOUTH_OFFICE}</span></li>
+            <li><span><strong>Head office:</strong> {HEAD_OFFICE}</span></li>
             <li><span>Monday to Friday, 9am to 5pm</span></li>
           </ul>
         </div>
@@ -438,7 +441,7 @@ def home():
     trust = [("clock", "Over 30 years", "managing insurance claims"),
              ("award", "IPLA members", "Institute of Public Loss Assessors"),
              ("shieldcheck", "FCA regulated", "Reg No 308042"),
-             ("pin", "UK offices", "Hale, Birmingham and London")]
+             ("pin", "Southern office", "Cobham, Surrey")]
     trust_html = '\n'.join(f'          <li>{ic(i)}<div><strong>{s}</strong><span class="t">{t}</span></div></li>'
                            for i, s, t in trust)
 
@@ -614,7 +617,7 @@ def home():
         <ul>
           <li><span class="stat-num"><span data-count="30">30</span><span class="unit">+</span></span><span class="t">years managing insurance claims</span></li>
           <li><span class="stat-num"><span data-count="100">100</span><span class="unit">+</span></span><span class="t">years of family history in loss assessment</span></li>
-          <li><span class="stat-num"><span data-count="3">3</span></span><span class="t">UK offices: Hale, Birmingham and London</span></li>
+          <li><span class="stat-num"><span data-count="3">3</span></span><span class="t">UK offices: Cobham, Hale and Birmingham</span></li>
           <li><span class="stat-num">4<span class="unit">–</span>6</span><span class="t">weeks to settle a typical straightforward claim</span></li>
         </ul>
       </div>
@@ -704,17 +707,29 @@ def home():
         "email": EMAIL,
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "Arco House, 86 Woburn Drive",
-            "addressLocality": "Hale, Altrincham",
-            "addressRegion": "Cheshire",
-            "postalCode": "WA15 8NE",
+            "streetAddress": "The Coach House, 3 Brooklands Close",
+            "addressLocality": "Cobham",
+            "addressRegion": "Surrey",
+            "postalCode": "KT11 2DR",
             "addressCountry": "GB",
+        },
+        "parentOrganization": {
+            "@type": "Organization",
+            "name": "Independent Claims Consultants (head office)",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Arco House, 86 Woburn Drive",
+                "addressLocality": "Hale, Altrincham",
+                "addressRegion": "Cheshire",
+                "postalCode": "WA15 8NE",
+                "addressCountry": "GB",
+            },
         },
         "openingHours": "Mo-Fr 09:00-17:00",
         "areaServed": "GB",
     }
-    page("index.html", "Independent Claims Consultants | Loss Assessors for Fire &amp; Flood Claims",
-         "Independent Claims Consultants are UK loss assessors with over 30 years' experience, helping homeowners, landlords and businesses with fire, flood and other insurance claims. No win, no fee.",
+    page("index.html", "Loss Assessors in Surrey &amp; the South | Independent Claims Consultants",
+         "Independent loss assessors in Cobham, Surrey, with over 30 years' experience helping homeowners, landlords and businesses with fire, flood and other insurance claims. No win, no fee.",
          main, css, schema)
 
 
@@ -866,27 +881,32 @@ def about():
         <ul class="creds">
           <li><strong>IPLA members</strong><span>Institute of Public Loss Assessors</span></li>
           <li><strong>FCA regulated</strong><span>Reg No 308042</span></li>
-          <li><strong>UK offices</strong><span>Hale (Manchester), Edgbaston (Birmingham) and London</span></li>
+          <li><strong>UK offices</strong><span>Cobham (Surrey), Hale (Manchester) and Edgbaston (Birmingham)</span></li>
         </ul>"""
     team = [
-        ("NC", "Nic Castleton", "Managing Director",
+        ("NC", "Nic Castleton", "Managing Director", "Head office, Hale",
          "\"Your specialist loss assessor will ensure your claim is processed as quickly as possible, with everything in place ready for the moment liability is accepted.\""),
-        ("NH", "Nigel Hennerley", "Loss Assessor",
-         "\"You will have peace of mind knowing your loss assessor will guide you through the entire claims process.\""),
-        ("AM", "Andrew MacInnes", "Loss Assessor",
+        ("AM", "Andrew MacInnes", "Loss Assessor", "Southern office, Cobham",
          "\"Every client is assigned a dedicated loss assessor. Their experience will ensure your claim is run smoothly and efficiently.\""),
-        ("NM", "Neil Munnerley", "Loss Assessor",
+        ("NM", "Neil Munnerley", "Loss Assessor", "Southern office, Cobham",
          "One of our dedicated loss assessors, managing claims for homeowners, landlords and businesses from first visit to final settlement."),
+        ("NH", "Nigel Hennerley", "Loss Assessor", "Head office, Hale",
+         "\"You will have peace of mind knowing your loss assessor will guide you through the entire claims process.\""),
+        ("RY", "Ralph Yarwood-Smith", "Technician", "Edgbaston, Birmingham",
+         "One of our technicians, supporting our loss assessors on claims from our Edgbaston office."),
+        ("MP", "Mark Pepper", "Technician", "Edgbaston, Birmingham",
+         "One of our technicians, supporting our loss assessors on claims from our Edgbaston office."),
     ]
     team_html = '\n'.join(f"""          <article class="card member">
             <span class="avatar" aria-hidden="true">{i}</span>
             <h3>{n}</h3>
             <p class="role">{r}</p>
+            <p class="office">{svg("pin")}{o}</p>
             <p>{q}</p>
-          </article>""" for i, n, r, q in team)
-    offices = [("Head office", "Arco House, 86 Woburn Drive, Hale, Near Altrincham, Cheshire WA15 8NE"),
-               ("Birmingham", "Edgbaston, Birmingham"),
-               ("London", "London")]
+          </article>""" for i, n, r, o, q in team)
+    offices = [("Southern office", SOUTH_OFFICE),
+               ("Head office", HEAD_OFFICE),
+               ("Birmingham", "Edgbaston, Birmingham")]
     offices_html = '\n'.join(f"""          <article class="card">
             {ic("pin")}
             <h3 style="margin-top: 18px;">{t}</h3>
@@ -928,9 +948,9 @@ def about():
         <div class="section-head">
           <span class="eyebrow">Our team</span>
           <h2>Your dedicated loss assessors</h2>
-          <p>Every client has their own loss assessor, backed by our legal specialists and our forensic and consequential loss accountants.</p>
+          <p>Every client has their own loss assessor, backed by our technicians, legal specialists and forensic and consequential loss accountants.</p>
         </div>
-        <div class="grid-4 team-grid">
+        <div class="grid-3 team-grid">
 {team_html}
         </div>
       </div>
@@ -962,7 +982,7 @@ def about():
         <div class="section-head">
           <span class="eyebrow">Our offices</span>
           <h2>Covering the whole of the UK</h2>
-          <p>We help clients across the country from our offices in the North West, the Midlands and London.</p>
+          <p>We help clients across the country from our offices in Surrey, the North West and the Midlands.</p>
         </div>
         <div class="grid-3">
 {offices_html}
@@ -1297,7 +1317,7 @@ def contact():
             <ul class="contact-list">
               <li>{ic("phone")}<a href="{TEL}"><strong>{PHONE}</strong><span>Monday to Friday, 9am to 5pm</span></a></li>
               <li>{ic("mail")}<a href="mailto:{EMAIL}"><strong>{EMAIL}</strong><span>Email us any time</span></a></li>
-              <li>{ic("pin")}<div><strong>Arco House, 86 Woburn Drive</strong><span>Hale, Altrincham, Cheshire WA15 8NE</span></div></li>
+              <li>{ic("pin")}<div><strong>The Coach House, 3 Brooklands Close</strong><span>Cobham, Surrey KT11 2DR</span></div></li>
             </ul>
           </div>
           <div class="side-card">
@@ -1311,16 +1331,16 @@ def contact():
           <div class="side-card">
             <h3>Our offices</h3>
             <ul class="contact-list">
+              <li>{ic("pin")}<div><strong>Cobham, Surrey</strong><span>Southern office</span></div></li>
               <li>{ic("pin")}<div><strong>Hale, Manchester</strong><span>Head office</span></div></li>
               <li>{ic("pin")}<div><strong>Edgbaston, Birmingham</strong></div></li>
-              <li>{ic("pin")}<div><strong>London</strong></div></li>
             </ul>
           </div>
         </aside>
       </div>
     </section>"""
     page("contact.html", "Start Your Claim | Independent Claims Consultants",
-         "Contact Independent Claims Consultants for a free, no-obligation assessment of your insurance claim. Call 0161 904 7800 or start your claim online.",
+         "Contact our Southern office in Cobham, Surrey for a free, no-obligation assessment of your insurance claim. Call 0161 904 7800 or start your claim online.",
          main, page_css="""
     @media (max-width: 768px) { body { padding-bottom: 0; } }""", callbar=False)
 

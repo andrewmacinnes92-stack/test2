@@ -625,7 +625,20 @@
     }
     .member .avatar { width: 56px; height: 56px; margin-bottom: 20px; font-size: 1.05rem; }
     .member h3 { margin-bottom: 2px; }
-    .card p.role { margin-bottom: 16px; color: var(--accent); font-size: 0.9rem; font-weight: 600; }
+    .card p.role { margin-bottom: 10px; color: var(--accent); font-size: 0.9rem; font-weight: 600; }
+    .card p.office {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 16px;
+      padding: 4px 10px 4px 8px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--ink);
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .card p.office svg { width: 14px; height: 14px; stroke: var(--accent); }
     .creds {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -1088,7 +1101,7 @@
   <a class="skip" href="#main">Skip to content</a>
   <div class="topbar">
     <div class="container topbar-inner">
-      <span>Independent loss assessors<span class="sep">·</span>FCA Reg No 308042<span class="sep">·</span>Members of the IPLA</span>
+      <span>Southern office: Cobham, Surrey<span class="sep">·</span>FCA Reg No 308042<span class="sep">·</span>Members of the IPLA</span>
       <span><a href="tel:01619047800">Call 0161 904 7800</a><span class="sep">·</span>Mon to Fri, 9am to 5pm</span>
     </div>
   </div>
@@ -1133,7 +1146,7 @@
         <ul class="creds">
           <li><strong>IPLA members</strong><span>Institute of Public Loss Assessors</span></li>
           <li><strong>FCA regulated</strong><span>Reg No 308042</span></li>
-          <li><strong>UK offices</strong><span>Hale (Manchester), Edgbaston (Birmingham) and London</span></li>
+          <li><strong>UK offices</strong><span>Cobham (Surrey), Hale (Manchester) and Edgbaston (Birmingham)</span></li>
         </ul>
         </div>
       </div>
@@ -1168,32 +1181,50 @@
         <div class="section-head">
           <span class="eyebrow">Our team</span>
           <h2>Your dedicated loss assessors</h2>
-          <p>Every client has their own loss assessor, backed by our legal specialists and our forensic and consequential loss accountants.</p>
+          <p>Every client has their own loss assessor, backed by our technicians, legal specialists and forensic and consequential loss accountants.</p>
         </div>
-        <div class="grid-4 team-grid">
+        <div class="grid-3 team-grid">
           <article class="card member">
             <span class="avatar" aria-hidden="true">NC</span>
             <h3>Nic Castleton</h3>
             <p class="role">Managing Director</p>
+            <p class="office"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Head office, Hale</p>
             <p>"Your specialist loss assessor will ensure your claim is processed as quickly as possible, with everything in place ready for the moment liability is accepted."</p>
-          </article>
-          <article class="card member">
-            <span class="avatar" aria-hidden="true">NH</span>
-            <h3>Nigel Hennerley</h3>
-            <p class="role">Loss Assessor</p>
-            <p>"You will have peace of mind knowing your loss assessor will guide you through the entire claims process."</p>
           </article>
           <article class="card member">
             <span class="avatar" aria-hidden="true">AM</span>
             <h3>Andrew MacInnes</h3>
             <p class="role">Loss Assessor</p>
+            <p class="office"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Southern office, Cobham</p>
             <p>"Every client is assigned a dedicated loss assessor. Their experience will ensure your claim is run smoothly and efficiently."</p>
           </article>
           <article class="card member">
             <span class="avatar" aria-hidden="true">NM</span>
             <h3>Neil Munnerley</h3>
             <p class="role">Loss Assessor</p>
+            <p class="office"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Southern office, Cobham</p>
             <p>One of our dedicated loss assessors, managing claims for homeowners, landlords and businesses from first visit to final settlement.</p>
+          </article>
+          <article class="card member">
+            <span class="avatar" aria-hidden="true">NH</span>
+            <h3>Nigel Hennerley</h3>
+            <p class="role">Loss Assessor</p>
+            <p class="office"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Head office, Hale</p>
+            <p>"You will have peace of mind knowing your loss assessor will guide you through the entire claims process."</p>
+          </article>
+          <article class="card member">
+            <span class="avatar" aria-hidden="true">RY</span>
+            <h3>Ralph Yarwood-Smith</h3>
+            <p class="role">Technician</p>
+            <p class="office"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Edgbaston, Birmingham</p>
+            <p>One of our technicians, supporting our loss assessors on claims from our Edgbaston office.</p>
+          </article>
+          <article class="card member">
+            <span class="avatar" aria-hidden="true">MP</span>
+            <h3>Mark Pepper</h3>
+            <p class="role">Technician</p>
+            <p class="office"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Edgbaston, Birmingham</p>
+            <p>One of our technicians, supporting our loss assessors on claims from our Edgbaston office.</p>
           </article>
         </div>
       </div>
@@ -1225,23 +1256,23 @@
         <div class="section-head">
           <span class="eyebrow">Our offices</span>
           <h2>Covering the whole of the UK</h2>
-          <p>We help clients across the country from our offices in the North West, the Midlands and London.</p>
+          <p>We help clients across the country from our offices in Surrey, the North West and the Midlands.</p>
         </div>
         <div class="grid-3">
           <article class="card">
             <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <h3 style="margin-top: 18px;">Southern office</h3>
+            <p>The Coach House, 3 Brooklands Close, Cobham, Surrey KT11 2DR</p>
+          </article>
+          <article class="card">
+            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
             <h3 style="margin-top: 18px;">Head office</h3>
-            <p>Arco House, 86 Woburn Drive, Hale, Near Altrincham, Cheshire WA15 8NE</p>
+            <p>Arco House, 86 Woburn Drive, Hale, Altrincham, Cheshire WA15 8NE</p>
           </article>
           <article class="card">
             <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
             <h3 style="margin-top: 18px;">Birmingham</h3>
             <p>Edgbaston, Birmingham</p>
-          </article>
-          <article class="card">
-            <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-            <h3 style="margin-top: 18px;">London</h3>
-            <p>London</p>
           </article>
         </div>
       </div>
@@ -1302,7 +1333,8 @@
           <ul>
             <li><a href="tel:01619047800">0161 904 7800</a></li>
             <li><a href="mailto:nic@independentclaimsconsultants.co.uk">nic@independentclaimsconsultants.co.uk</a></li>
-            <li><span>Arco House, 86 Woburn Drive, Hale, Altrincham, Cheshire WA15 8NE</span></li>
+            <li><span><strong>Southern office:</strong> The Coach House, 3 Brooklands Close, Cobham, Surrey KT11 2DR</span></li>
+            <li><span><strong>Head office:</strong> Arco House, 86 Woburn Drive, Hale, Altrincham, Cheshire WA15 8NE</span></li>
             <li><span>Monday to Friday, 9am to 5pm</span></li>
           </ul>
         </div>
