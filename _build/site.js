@@ -190,3 +190,12 @@
         heroVideo.play().catch(() => {});
       }
     }
+
+    // Claims drop-down menu
+    document.querySelectorAll('.has-sub').forEach(item => {
+      const btn = item.querySelector('.sub-toggle');
+      const set = (open) => { item.classList.toggle('open', open); btn.setAttribute('aria-expanded', open); };
+      btn.addEventListener('click', (e) => { e.stopPropagation(); set(!item.classList.contains('open')); });
+      document.addEventListener('click', (e) => { if (!item.contains(e.target)) set(false); });
+      item.addEventListener('keydown', (e) => { if (e.key === 'Escape') { set(false); btn.focus(); } });
+    });

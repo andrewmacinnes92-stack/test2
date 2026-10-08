@@ -14,7 +14,8 @@ from pathlib import Path
 from urllib.parse import quote
 
 sys.path.insert(0, str(Path(__file__).parent))
-from services import SERVICE_PAGES, CARD, QUICK  # noqa: E402
+from services import SERVICE_PAGES, CARD, QUICK
+from guides import GUIDES  # noqa: E402
 
 HERE = Path(__file__).parent
 ROOT = HERE.parent
@@ -175,7 +176,8 @@ FAQS = [
         ("When should I contact a loss assessor?",
          "<p>At the earliest opportunity. The start of your claim is the best time, because that's when your insurer instructs a loss adjuster to act on its behalf, not yours. If you appoint a loss assessor after the adjuster's report has gone in, it can be much harder to challenge.</p>"),
         ("How long will my claim take?",
-         "<p>Every claim is different, so there are no set timescales. A straightforward, non-contentious claim generally takes between four and six weeks to settle. More complex or hard-fought claims can take longer. We don't get paid until you do, so we progress every claim as quickly and forcefully as we can.</p>"),
+         "<p>Every claim is different, so there are no set timescales. A straightforward, non-contentious claim generally takes between four and six weeks to settle. More complex or hard-fought claims can take longer. We don't get paid until you do, so we progress every claim as quickly and forcefully as we can.</p>"
+         "<p><a href=\"a-timeline.html\">Read our guide to how long claims take</a>.</p>"),
         ("What types of claim do you manage?",
          "<p>We handle claims for homeowners, landlords and commercial clients, including fire, flood, escape of water, storm damage, impact damage, theft and subsidence.</p>"
          "<p>We also deal with alternative accommodation and, for commercial clients and landlords, loss of rent, business interruption, and stock and machinery.</p>"),
@@ -190,12 +192,14 @@ FAQS = [
     ("Problems, costs and regulation", [
         ("My insurer has rejected my claim. Can it do that?",
          "<p>In some circumstances, yes. A policy is a contract, and an insurer can deny a claim if it believes you haven't kept to your side of it, the loss isn't covered, or it suspects fraud.</p>"
-         "<p>That doesn't mean the insurer is right. We can represent you professionally and fight for the claim to be accepted and settled.</p>"),
+         "<p>That doesn't mean the insurer is right. We can represent you professionally and fight for the claim to be accepted and settled.</p>"
+         "<p><a href=\"a-rejected.html\">Read our guide to challenging a rejected claim</a>.</p>"),
         ("What if I'm underinsured?",
          "<p>Underinsurance can have a big effect on your claim. It allows the insurer to reduce the settlement severely, and it can even reject the claim for gross underinsurance. It's more common than people think, because many people insure their property for what it's worth rather than what it would cost to rebuild.</p>"
          "<p>If you're worried about underinsurance, speak to us as soon as possible.</p>"),
         ("How much do you charge?",
-         "<p>Your first consultation is free and there's no obligation. We work on a no win, no fee basis, so we don't get paid until you do. Call us and we'll talk you through how our fees work for your claim.</p>"),
+         "<p>Your first consultation is free and there's no obligation. We work on a no win, no fee basis, so we don't get paid until you do. Call us and we'll talk you through how our fees work for your claim.</p>"
+         "<p><a href=\"a-cost.html\">Read more about loss assessor fees</a>.</p>"),
         ("Are you regulated?",
          "<p>Yes. We're regulated by the Financial Conduct Authority (FCA Reg No 308042), and we're members of the Institute of Public Loss Assessors.</p>"),
     ]),
@@ -294,19 +298,35 @@ LOGO = (f'<span class="logo-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fi
 def header(active):
     home_cur = ' aria-current="page"' if active == "index.html" else ''
     items = [f'          <li class="mobile-only"><a href="index.html"{home_cur}>Home</a></li>']
+    claim_keys = {s["key"] for s in SERVICE_PAGES} | {"claims.html"}
     for href, text in NAV:
-        cur = ' aria-current="page"' if href == active else ''
+        cur = ' aria-current="page"' if href == active or (href == "claims.html" and active in claim_keys) else ''
+        if href == "claims.html":
+            who = "".join(f'<li><a href="{k}">{CARD[k][1]}</a></li>' for k in ["home-claims.html", "commercial.html", "landlords.html"])
+            kinds = "".join(f'<li><a href="{k}">{CARD[k][1].replace(" claims", "")}</a></li>'
+                            for k in ["fire.html", "flood.html", "escape.html", "storm.html", "theft.html",
+                                      "subsidence.html", "impact.html", "bi.html"])
+            items.append(f"""          <li class="has-sub">
+            <a href="{href}"{cur}>{text}</a>
+            <button class="sub-toggle" type="button" aria-expanded="false" aria-controls="claims-menu"><span class="visually-hidden">Show claim types</span>{svg("arrow")}</button>
+            <div class="submenu" id="claims-menu">
+              <div><p class="sub-head">Who we help</p><ul>{who}</ul></div>
+              <div class="types"><p class="sub-head">Claim types</p><ul>{kinds}</ul></div>
+              <p class="sub-all"><a href="claims.html">All claims we handle</a></p>
+            </div>
+          </li>""")
+            continue
         items.append(f'          <li><a href="{href}"{cur}>{text}</a></li>')
     items.append(f'          <li class="mobile-only"><a href="{TEL}">Call {PHONE}</a></li>')
     items.append('          <li><a href="contact.html" class="btn btn-primary">Start your claim</a></li>')
     nav = '\n'.join(items)
     return f"""  <a class="skip" href="#main">Skip to content</a>
-  <div class="topbar">
+  <aside class="topbar" aria-label="Contact details">
     <div class="container topbar-inner">
       <span><a href="surrey.html">Southern office: Cobham, Surrey</a><span class="sep">·</span>FCA Reg No 308042<span class="sep">·</span>Members of the IPLA</span>
       <span><a href="{TEL}">Call {PHONE}</a><span class="sep">·</span>Mon to Fri, 9am to 5pm</span>
     </div>
-  </div>
+  </aside>
 
   <header class="site-header">
     <div class="container header-inner">
@@ -382,10 +402,10 @@ FOOTER = f"""  <footer class="site-footer">
     </div>
   </footer>
 <!--CALLBAR-->
-  <div class="callbar">
+  <nav class="callbar" aria-label="Quick contact">
     <a href="{TEL}" class="btn btn-ghost">{svg("phone")} Call us</a>
     <a href="contact.html" class="btn btn-primary">Start your claim</a>
-  </div>"""
+  </nav>"""
 
 EXTRA_CSS = """
     .skip {
@@ -599,6 +619,19 @@ def home():
             <p>{p}</p>
           </article>""" for m, t, p in CASES)
 
+    areas = [("surrey-shere", "Historic timber-framed cottages in a Surrey village", "Surrey and the South East",
+              "Our Southern office in Cobham covers homes and businesses across Surrey, London and the South East.",
+              "surrey.html", "Loss assessors in Surrey"),
+             ("manchester-street", "A busy street in Manchester city centre", "Manchester and the North West",
+              "Our head office in Hale covers Greater Manchester, Cheshire and the North West.",
+              "manchester.html", "Loss assessors in Manchester")]
+    areas_html = '\n'.join(f"""          <article class="card has-img">
+            {img(n, a, kind="card", cls="card-img")}
+            <h3>{t}</h3>
+            <p>{p}</p>
+            {arrow_link(href, lt)}
+          </article>""" for n, a, t, p, href, lt in areas)
+
     faq4 = [faq_lookup(q) for q in ["What is a loss assessor?", "My insurer is sending a loss adjuster. Why do I need you?",
                                      "When should I contact a loss assessor?", "How long will my claim take?"]]
 
@@ -752,7 +785,20 @@ def home():
       </div>
     </section>
 
-    <section class="section">
+    <section class="section" id="areas">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Areas we cover</span>
+          <h2>Local loss assessors, nationwide reach</h2>
+          <p>We visit you at your property, wherever you are in the UK, from our two offices.</p>
+        </div>
+        <div class="grid-2">
+{areas_html}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
       <div class="container split top">
         <div>
           <div class="section-head">
@@ -768,7 +814,7 @@ def home():
       </div>
     </section>
 
-    <section class="section section-soft">
+    <section class="section">
       <div class="container">
         <div class="head-row">
           <div class="section-head">
@@ -1120,6 +1166,14 @@ ARTICLES = {
                   "Who they work for, what they do and why it pays to have your own representation."),
     "a-under.html": ("advice/underinsurance/", "pound", "Underinsurance explained",
                      "How being underinsured can reduce your settlement, and how to check your cover."),
+    "a-rejected.html": ("advice/insurance-claim-rejected/", "scale", "My insurance claim was rejected: what now?",
+                        "Why claims are turned down or reduced, how to challenge the decision and where to complain."),
+    "a-cost.html": ("advice/how-much-does-a-loss-assessor-cost/", "pound", "How much does a loss assessor cost?",
+                    "How loss assessor fees work, what no win, no fee means and when it's worth appointing one."),
+    "a-accommodation.html": ("advice/alternative-accommodation/", "home", "Alternative accommodation after a fire or flood",
+                             "What your policy may pay for if you can't live at home, and how to make sure it's arranged properly."),
+    "a-timeline.html": ("advice/how-long-does-an-insurance-claim-take/", "clock", "How long does an insurance claim take?",
+                        "The stages of a property claim, what slows it down and how to keep yours moving."),
     "a-glossary.html": ("advice/insurance-claim-glossary/", "file", "Insurance claim glossary",
                         "Plain-English definitions of the terms you'll hear during a claim."),
 }
@@ -1542,6 +1596,97 @@ def advice():
       </div>
     </section>""",
         ["a-vs.html", "a-under.html", "a-questions.html"])
+
+
+
+def more_guides():
+    for g in GUIDES:
+        prose = lambda paras: "\n".join(f"            <p>{p}</p>" for p in paras)
+        reasons = "\n".join(f"""          <article class="card">
+            <h3>{t}</h3>
+            <p>{d}</p>
+          </article>""" for t, d in g["reasons"])
+        body = f"""
+
+    <section class="section">
+      <div class="container split top">
+        <div>
+          <div class="section-head">
+            <span class="eyebrow">{g["intro_eyebrow"]}</span>
+            <h2>{g["intro_head"]}</h2>
+          </div>
+          <div class="prose">
+{prose(g["intro"])}
+          </div>
+        </div>
+        <aside class="card">
+          {ic("phone", "card-icon")}
+          <h3>{g["help_head"]}</h3>
+          <div class="prose">
+{prose(g["help"])}
+          </div>
+          <p style="margin-top: 16px;"><a class="btn btn-primary" href="{TEL}">{svg("phone")} Call {PHONE}</a></p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-head">
+          <h2>{g["reasons_head"]}</h2>
+        </div>
+        <div class="grid-3">
+{reasons}
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container split top">
+        <div>
+          <div class="section-head">
+            <span class="eyebrow">Step by step</span>
+            <h2>{g["steps_head"]}</h2>
+            <p>{g["steps_intro"]}</p>
+          </div>
+        </div>
+        <ol class="checklist">
+{checklist(g["steps"])}
+        </ol>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-head">
+          <h2>{g["fos_head"]}</h2>
+        </div>
+        <div class="prose" style="max-width: 760px;">
+{prose(g["fos"])}
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container split top">
+        <div>
+          <div class="section-head">
+            <span class="eyebrow">FAQs</span>
+            <h2>Common questions</h2>
+          </div>
+          {arrow_link("faq.html", "See all FAQs")}
+        </div>
+        <div class="faq">
+{faq_items(g["faqs"])}
+        </div>
+      </div>
+    </section>"""
+        article_page(
+            g["key"], g["title"], g["desc"], g["h1"], g["lead"], body, g["related"], image=g["image"],
+            extra_schema=[{
+                "@context": "https://schema.org", "@type": "FAQPage",
+                "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer",
+                                "text": re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", a)).strip()}} for q, a in g["faqs"]]}])
 
 
 # ---------------------------------------------------------------- FAQ
@@ -2314,6 +2459,7 @@ if __name__ == "__main__":
     claims()
     about()
     advice()
+    more_guides()
     faq()
     contact()
     surrey()
