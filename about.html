@@ -941,6 +941,46 @@
       body { padding: 0; }
     }
 
+    /* ---------- Scroll reveal ---------- */
+    .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1); }
+    .js .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .js .reveal { opacity: 1; transform: none; }
+    }
+    @media print {
+      .js .reveal { opacity: 1; transform: none; }
+    }
+
+    /* ---------- Stats band ---------- */
+    .stats { position: relative; overflow: hidden; padding: 88px 0; background: var(--ink); color: #fff; }
+    .stats::before {
+      content: "";
+      position: absolute;
+      inset: -50% -20% auto auto;
+      width: 70%;
+      height: 200%;
+      background: radial-gradient(closest-side, rgba(20, 184, 166, 0.28), transparent);
+      pointer-events: none;
+    }
+    .stats .container { position: relative; }
+    .stats .eyebrow { color: #5eead4; }
+    .stats h2 { max-width: 640px; margin-bottom: 48px; color: #fff; font-size: clamp(1.8rem, 3.4vw, 2.5rem); }
+    .stats ul { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin: 0; padding: 0; list-style: none; }
+    .stats li { padding: 28px 24px; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 20px; background: rgba(255, 255, 255, 0.04); }
+    .stat-num {
+      display: block;
+      margin-bottom: 8px;
+      color: #fff;
+      font-size: clamp(2.4rem, 4.5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .stat-num .unit { color: #5eead4; }
+    .stats li span.t { color: rgba(255, 255, 255, 0.7); font-size: 0.95rem; }
+    @media (max-width: 960px) { .stats ul { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .stats { padding: 64px 0; } .stats li { padding: 22px 18px; } }
+
     .skip {
       position: absolute;
       top: -100px;
@@ -1317,6 +1357,54 @@
       if (claim && [...form.elements.claim.options].some(o => o.value === claim)) form.elements.claim.value = claim;
 
       show(0, false);
+    }
+
+    // Gentle fade-in as sections scroll into view
+    const motionOK = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if ('IntersectionObserver' in window) {
+      const targets = document.querySelectorAll(
+        'main .section-head, main .card, main a.tile, main .step, main .checklist li, main .faq, main .compare-table, ' +
+        'main .trust li, main .mini, main .cta, main .quote, main .stats li, main .glossary div, main .creds li, main .side-card'
+      );
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          el.classList.add('in');
+          io.unobserve(el);
+          // Hand control back to the element's own hover effects once it has appeared
+          const done = () => { el.classList.remove('reveal', 'in'); el.style.transitionDelay = ''; };
+          el.addEventListener('transitionend', done, { once: true });
+          setTimeout(done, 1600);
+        });
+      }, { rootMargin: '0px 0px -8% 0px' });
+      targets.forEach(el => {
+        const siblings = [...el.parentElement.children].filter(c => c.matches(el.tagName));
+        const i = Math.min(siblings.indexOf(el), 5);
+        el.style.transitionDelay = (i > 0 ? i * 80 : 0) + 'ms';
+        el.classList.add('reveal');
+        io.observe(el);
+      });
+
+      // Count-up numbers in the stats band
+      const counters = document.querySelectorAll('[data-count]');
+      const countIO = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          countIO.unobserve(el);
+          const end = +el.dataset.count;
+          if (!motionOK) { el.textContent = end; return; }
+          const start = performance.now();
+          const tick = (now) => {
+            const t = Math.min((now - start) / 1400, 1);
+            el.textContent = Math.round(end * (1 - Math.pow(1 - t, 3)));
+            if (t < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+        });
+      }, { threshold: 0.6 });
+      counters.forEach(el => countIO.observe(el));
     }
   </script>
 </body>

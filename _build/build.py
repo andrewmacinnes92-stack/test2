@@ -575,6 +575,19 @@ def home():
       </div>
     </section>
 
+    <section class="stats" aria-label="Independent Claims Consultants in numbers">
+      <div class="container">
+        <span class="eyebrow">By the numbers</span>
+        <h2>Decades of experience, working only for you</h2>
+        <ul>
+          <li><span class="stat-num"><span data-count="30">30</span><span class="unit">+</span></span><span class="t">years managing insurance claims</span></li>
+          <li><span class="stat-num"><span data-count="100">100</span><span class="unit">+</span></span><span class="t">years of family history in loss assessment</span></li>
+          <li><span class="stat-num"><span data-count="3">3</span></span><span class="t">UK offices: Hale, Birmingham and London</span></li>
+          <li><span class="stat-num">4<span class="unit">–</span>6</span><span class="t">weeks to settle a typical straightforward claim</span></li>
+        </ul>
+      </div>
+    </section>
+
     <section class="section">
       <div class="container">
         <div class="section-head">
