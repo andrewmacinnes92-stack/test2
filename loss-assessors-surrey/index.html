@@ -43,32 +43,72 @@
   "openingHours": "Mo-Fr 09:00-17:00",
   "areaServed": [
     {
-      "@type": "Place",
-      "name": "Cobham, Surrey"
-    },
-    {
-      "@type": "Place",
-      "name": "Esher, Surrey"
-    },
-    {
-      "@type": "Place",
-      "name": "Weybridge, Surrey"
-    },
-    {
-      "@type": "Place",
-      "name": "Walton-on-Thames, Surrey"
-    },
-    {
-      "@type": "Place",
-      "name": "Leatherhead, Surrey"
-    },
-    {
-      "@type": "Place",
-      "name": "Woking, Surrey"
+      "@type": "AdministrativeArea",
+      "name": "London"
     },
     {
       "@type": "AdministrativeArea",
       "name": "Surrey"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Sussex"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Kent"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Essex"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Hertfordshire"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Berkshire"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Buckinghamshire"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Oxfordshire"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Hampshire"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Isle of Wight"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Wiltshire"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Dorset"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Somerset"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Devon"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Cornwall"
+    },
+    {
+      "@type": "Country",
+      "name": "United Kingdom"
     }
   ],
   "parentOrganization": {
@@ -85,10 +125,10 @@
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Do you cover my part of Surrey?",
+      "name": "Do you only cover Surrey?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Our Southern office in Cobham works with clients across Surrey and the surrounding areas. If you're not sure whether we cover your town, call us on 0161 904 7800 and we'll let you know."
+        "text": "No. Our Southern office in Cobham covers the whole of the South of England, from Kent and Essex to Cornwall, including London. Independent Claims Consultants also works nationwide, so wherever your property is, call us on 0161 904 7800."
       }
     },
     {
@@ -1229,6 +1269,9 @@
       background: var(--accent-bright);
     }
     .note a { color: var(--accent); }
+    .areas li:has(a) { border-color: var(--accent); }
+    .areas a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+    .areas a:hover { text-decoration-thickness: 2px; }
 
     /* ---------- Claim pages ---------- */
     .mini-grid.three { grid-template-columns: repeat(3, 1fr); }
@@ -1383,7 +1426,7 @@
           <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../">Home</a></li><li aria-current="page">Loss assessors in Surrey</li></ol></nav>
           <p class="pill"><span class="dot" aria-hidden="true"></span>Southern office · Cobham, Surrey</p>
           <h1>Loss assessors <span>in Surrey</span></h1>
-          <p class="lead">Our Southern office in Cobham helps homeowners, landlords and businesses across Surrey and the South with fire, flood and other insurance claims. We work for you, not your insurer.</p>
+          <p class="lead">Our Southern office in Cobham helps homeowners, landlords and businesses across Surrey, London and the whole of the South of England with fire, flood and other insurance claims. We work for you, not your insurer.</p>
         </div>
         </div>
         <figure class="page-hero-img"><img class="" src="../assets/img/surrey-shere-640.webp" srcset="../assets/img/surrey-shere-640.webp 640w, ../assets/img/surrey-shere-1100.webp 1100w" sizes="(max-width: 960px) 100vw, 540px" width="1100" height="825" fetchpriority="high" decoding="async" alt="Historic cottages on a village street in Shere, Surrey"></figure>
@@ -1427,10 +1470,12 @@
         <div class="section-head">
           <span class="eyebrow">Areas we cover</span>
           <h2>Helping clients across Surrey</h2>
-          <p>From our office in Cobham we work with homeowners, landlords and businesses throughout Surrey and the surrounding areas, including:</p>
+          <p>From our office in Cobham we work with homeowners, landlords and businesses throughout Surrey, including:</p>
         </div>
-        <ul class="areas"><li>Cobham</li><li>Esher</li><li>Weybridge</li><li>Walton-on-Thames</li><li>Leatherhead</li><li>Woking</li><li>Guildford</li><li>Epsom</li><li>Kingston upon Thames</li><li>Dorking</li><li>Godalming</li><li>Staines-upon-Thames</li><li>Chertsey</li><li>Camberley</li><li>Farnham</li><li>Reigate</li></ul>
-        <p class="note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><span>Not sure if we cover your area? Call us on <a href="tel:01619047800"><strong>0161 904 7800</strong></a> and we'll let you know.</span></p>
+        <ul class="areas"><li><a href="../loss-assessors-elmbridge/">Cobham</a></li><li><a href="../loss-assessors-elmbridge/">Esher</a></li><li><a href="../loss-assessors-elmbridge/">Weybridge</a></li><li><a href="../loss-assessors-elmbridge/">Walton-on-Thames</a></li><li><a href="../loss-assessors-epsom-leatherhead/">Leatherhead</a></li><li><a href="../loss-assessors-woking/">Woking</a></li><li><a href="../loss-assessors-guildford/">Guildford</a></li><li><a href="../loss-assessors-epsom-leatherhead/">Epsom</a></li><li><a href="../loss-assessors-london/">Kingston upon Thames</a></li><li><a href="../loss-assessors-epsom-leatherhead/">Dorking</a></li><li>Godalming</li><li>Staines-upon-Thames</li><li>Chertsey</li><li>Camberley</li><li>Farnham</li><li>Reigate</li></ul>
+        <h3 style="margin-top: 40px;">And right across the South of England</h3>
+        <ul class="areas" style="margin-top: 16px;"><li><a href="../loss-assessors-london/">London</a></li><li>Sussex</li><li>Kent</li><li>Essex</li><li>Hertfordshire</li><li>Berkshire</li><li>Buckinghamshire</li><li>Oxfordshire</li><li>Hampshire</li><li>Isle of Wight</li><li>Wiltshire</li><li>Dorset</li><li>Somerset</li><li>Devon</li><li>Cornwall</li></ul>
+        <p class="note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg><span>Our Southern office covers the whole of the South of England, and we work nationwide. Wherever your property is, call us on <a href="tel:01619047800"><strong>0161 904 7800</strong></a>.</span></p>
       </div>
     </section>
 
@@ -1521,8 +1566,8 @@
         </div>
         <div class="faq">
           <details>
-            <summary>Do you cover my part of Surrey?</summary>
-            <div class="faq-body"><p>Our Southern office in Cobham works with clients across Surrey and the surrounding areas. If you're not sure whether we cover your town, call us on 0161 904 7800 and we'll let you know.</p></div>
+            <summary>Do you only cover Surrey?</summary>
+            <div class="faq-body"><p>No. Our Southern office in Cobham covers the whole of the South of England, from Kent and Essex to Cornwall, including London. Independent Claims Consultants also works nationwide, so wherever your property is, call us on 0161 904 7800.</p></div>
           </details>
           <details>
             <summary>Will a loss assessor visit my property?</summary>
@@ -1573,6 +1618,7 @@
           <h3>Claims</h3>
           <ul>
             <li><a href="../loss-assessors-surrey/">Loss assessors in Surrey</a></li>
+            <li><a href="../loss-assessors-london/">Loss assessors in London</a></li>
             <li><a href="../loss-assessors-manchester/">Loss assessors in Manchester</a></li>
             <li><a href="../domestic-insurance-claim/">Homeowners</a></li>
             <li><a href="../commercial-claims/">Businesses</a></li>

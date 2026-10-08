@@ -15,7 +15,8 @@ from urllib.parse import quote
 
 sys.path.insert(0, str(Path(__file__).parent))
 from services import SERVICE_PAGES, CARD, QUICK
-from guides import GUIDES  # noqa: E402
+from guides import GUIDES
+from towns import TOWNS  # noqa: E402
 
 HERE = Path(__file__).parent
 ROOT = HERE.parent
@@ -181,6 +182,9 @@ FAQS = [
         ("What types of claim do you manage?",
          "<p>We handle claims for homeowners, landlords and commercial clients, including fire, flood, escape of water, storm damage, impact damage, theft and subsidence.</p>"
          "<p>We also deal with alternative accommodation and, for commercial clients and landlords, loss of rent, business interruption, and stock and machinery.</p>"),
+        ("Which areas do you cover?",
+         "<p>We work nationwide. Our Southern office in Cobham, Surrey covers the whole of the South of England, from Kent and Essex to Cornwall, including London. Our head office in Hale, Cheshire covers the North West and beyond.</p>"
+         "<p>Wherever your property is, your loss assessor will visit you to inspect the damage and meet your insurer's loss adjuster.</p>"),
         ("How can you help me?",
          "<p>If you appoint us early, we can manage every aspect of your claim. We can:</p>"
          "<ul><li>secure your property, organise emergency works and arrange alternative accommodation where needed</li>"
@@ -365,6 +369,7 @@ FOOTER = f"""  <footer class="site-footer">
           <h3>Claims</h3>
           <ul>
             <li><a href="surrey.html">Loss assessors in Surrey</a></li>
+            <li><a href="london.html">Loss assessors in London</a></li>
             <li><a href="manchester.html">Loss assessors in Manchester</a></li>
             <li><a href="home-claims.html">Homeowners</a></li>
             <li><a href="commercial.html">Businesses</a></li>
@@ -619,11 +624,11 @@ def home():
             <p>{p}</p>
           </article>""" for m, t, p in CASES)
 
-    areas = [("surrey-shere", "Historic timber-framed cottages in a Surrey village", "Surrey and the South East",
-              "Our Southern office in Cobham covers homes and businesses across Surrey, London and the South East.",
+    areas = [("surrey-shere", "Historic timber-framed cottages in a Surrey village", "The South of England",
+              "Our Southern office in Cobham covers the whole of the South of England, from Kent and Essex to Cornwall, including London.",
               "surrey.html", "Loss assessors in Surrey"),
              ("manchester-street", "A busy street in Manchester city centre", "Manchester and the North West",
-              "Our head office in Hale covers Greater Manchester, Cheshire and the North West.",
+              "Our head office in Hale covers Greater Manchester, Cheshire, the North West and beyond.",
               "manchester.html", "Loss assessors in Manchester")]
     areas_html = '\n'.join(f"""          <article class="card has-img">
             {img(n, a, kind="card", cls="card-img")}
@@ -790,7 +795,7 @@ def home():
         <div class="section-head">
           <span class="eyebrow">Areas we cover</span>
           <h2>Local loss assessors, nationwide reach</h2>
-          <p>We visit you at your property, wherever you are in the UK, from our two offices.</p>
+          <p>We're a nationwide firm. With offices in the South and the North West, we can visit you at your property wherever you are in the UK.</p>
         </div>
         <div class="grid-2">
 {areas_html}
@@ -1136,7 +1141,7 @@ def about():
         <div class="section-head">
           <span class="eyebrow">Our offices</span>
           <h2>Covering the whole of the UK</h2>
-          <p>We help clients across the country from our offices in Surrey and the North West.</p>
+          <p>We work nationwide. Our Southern office in Cobham covers the whole of the South of England, and our head office in Hale covers the North West and beyond.</p>
         </div>
         <div class="grid-2">
 {offices_html}
@@ -2031,27 +2036,54 @@ SURREY_AREAS = [
 ]
 
 SURREY_FAQS = [
-    ("Do you cover my part of Surrey?",
-     f"<p>Our Southern office in Cobham works with clients across Surrey and the surrounding areas. If you're not sure whether we cover your town, call us on {PHONE} and we'll let you know.</p>"),
+    ("Do you only cover Surrey?",
+     f"<p>No. Our Southern office in Cobham covers the whole of the South of England, from Kent and Essex to Cornwall, including London. Independent Claims Consultants also works nationwide, so wherever your property is, call us on {PHONE}.</p>"),
     ("Will a loss assessor visit my property?",
      "<p>Yes. Your loss assessor will inspect the damage, review your policy and, where it helps your claim, meet your insurer's loss adjuster at the property.</p>"),
 ]
 
 
-def surrey():
-    team = [
-        ("AM", "Andrew MacInnes", "Loss Assessor",
-         "\"Every client is assigned a dedicated loss assessor. Their experience will ensure your claim is run smoothly and efficiently.\""),
-        ("NM", "Neil Munnerley", "Loss Assessor",
-         "One of our dedicated loss assessors, managing claims for homeowners, landlords and businesses from first visit to final settlement."),
-    ]
-    team_html = '\n'.join(f"""          <article class="card member">
+SOUTH_REGIONS = ["London", "Surrey", "Sussex", "Kent", "Essex", "Hertfordshire", "Berkshire", "Buckinghamshire",
+                 "Oxfordshire", "Hampshire", "Isle of Wight", "Wiltshire", "Dorset", "Somerset", "Devon", "Cornwall"]
+
+SOUTH_TEAM = [
+    ("AM", "Andrew MacInnes", "Loss Assessor",
+     "\"Every client is assigned a dedicated loss assessor. Their experience will ensure your claim is run smoothly and efficiently.\""),
+    ("NM", "Neil Munnerley", "Loss Assessor",
+     "One of our dedicated loss assessors, managing claims for homeowners, landlords and businesses from first visit to final settlement."),
+]
+TOWN_LINKS = {"Cobham": "elmbridge.html", "Esher": "elmbridge.html", "Weybridge": "elmbridge.html",
+              "Walton-on-Thames": "elmbridge.html", "Guildford": "guildford.html", "Woking": "woking.html",
+              "Epsom": "epsom.html", "Leatherhead": "epsom.html", "Dorking": "epsom.html",
+              "Kingston upon Thames": "london.html"}
+ROUTES.update({t["key"]: t["route"] for t in TOWNS})
+
+
+def south_team_html():
+    return '\n'.join(f"""          <article class="card member">
             <span class="avatar" aria-hidden="true">{i}</span>
             <h3>{n}</h3>
             <p class="role">{r}</p>
             <p class="office">{svg("pin")}Southern office, Cobham</p>
             <p>{q}</p>
-          </article>""" for i, n, r, q in team)
+          </article>""" for i, n, r, q in SOUTH_TEAM)
+
+
+def south_office_card():
+    maps = "https://www.google.com/maps/search/?api=1&query=" + "The+Coach+House+3+Brooklands+Close+Cobham+KT11+2DR"
+    return f"""<aside class="side-card">
+          <h3>Our Southern office</h3>
+          <ul class="contact-list">
+            <li>{ic("pin")}<div><strong>The Coach House, 3 Brooklands Close</strong><span>Cobham, Surrey KT11 2DR</span></div></li>
+            <li>{ic("phone")}<a href="{TEL}"><strong>{PHONE}</strong><span>Monday to Friday, 9am to 5pm</span></a></li>
+            <li>{ic("mail")}<a href="mailto:{EMAIL}"><strong>{EMAIL}</strong><span>Email us any time</span></a></li>
+          </ul>
+          <p style="margin-top: 20px;"><a class="link-arrow" href="{maps}" target="_blank" rel="noopener">Get directions {svg("arrow")}</a></p>
+        </aside>"""
+
+
+def surrey():
+    team_html = south_team_html()
 
     claims = [
         ("flood", "Flood", "Parts of Surrey lie close to the Thames, the Wey and the Mole, and homes near these rivers have flooded in wet winters such as 2013–14. We manage flood claims from drying out to final settlement.", "flood.html"),
@@ -2068,7 +2100,8 @@ def surrey():
             {arrow_link(href, "Find out more")}
           </article>""" for i, t, p, href in claims)
 
-    areas_html = ''.join(f'<li>{a}</li>' for a in SURREY_AREAS)
+    areas_html = ''.join(f'<li><a href="{TOWN_LINKS[a]}">{a}</a></li>' if a in TOWN_LINKS else f'<li>{a}</li>' for a in SURREY_AREAS)
+    regions_html = ''.join(f'<li><a href="london.html">{a}</a></li>' if a == "London" else f'<li>{a}</li>' for a in SOUTH_REGIONS if a != "Surrey")
     faqs = SURREY_FAQS + [faq_lookup(q) for q in ["When should I contact a loss assessor?", "How much do you charge?"]]
     maps = "https://www.google.com/maps/search/?api=1&query=" + "The+Coach+House+3+Brooklands+Close+Cobham+KT11+2DR"
 
@@ -2080,7 +2113,7 @@ def surrey():
         </ul>"""
     main = page_hero(
         "Southern office · Cobham, Surrey", "Loss assessors <span>in Surrey</span>",
-        "Our Southern office in Cobham helps homeowners, landlords and businesses across Surrey and the South with fire, flood and other insurance claims. We work for you, not your insurer.",
+        "Our Southern office in Cobham helps homeowners, landlords and businesses across Surrey, London and the whole of the South of England with fire, flood and other insurance claims. We work for you, not your insurer.",
         quick, image=("surrey-shere", "Historic cottages on a village street in Shere, Surrey"))
     main += f"""
 
@@ -2114,10 +2147,12 @@ def surrey():
         <div class="section-head">
           <span class="eyebrow">Areas we cover</span>
           <h2>Helping clients across Surrey</h2>
-          <p>From our office in Cobham we work with homeowners, landlords and businesses throughout Surrey and the surrounding areas, including:</p>
+          <p>From our office in Cobham we work with homeowners, landlords and businesses throughout Surrey, including:</p>
         </div>
         <ul class="areas">{areas_html}</ul>
-        <p class="note">{svg("info")}<span>Not sure if we cover your area? Call us on <a href="{TEL}"><strong>{PHONE}</strong></a> and we'll let you know.</span></p>
+        <h3 style="margin-top: 40px;">And right across the South of England</h3>
+        <ul class="areas" style="margin-top: 16px;">{regions_html}</ul>
+        <p class="note">{svg("info")}<span>Our Southern office covers the whole of the South of England, and we work nationwide. Wherever your property is, call us on <a href="{TEL}"><strong>{PHONE}</strong></a>.</span></p>
       </div>
     </section>
 
@@ -2183,7 +2218,7 @@ def surrey():
                 "addressCountry": "GB",
             },
             "openingHours": "Mo-Fr 09:00-17:00",
-            "areaServed": [{"@type": "Place", "name": f"{a}, Surrey"} for a in SURREY_AREAS[:6]] + [{"@type": "AdministrativeArea", "name": "Surrey"}],
+            "areaServed": [{"@type": "AdministrativeArea", "name": a} for a in SOUTH_REGIONS] + [{"@type": "Country", "name": "United Kingdom"}],
             "parentOrganization": {"@type": "Organization", "name": "Independent Claims Consultants", "url": SITE + "/"},
         },
         {
@@ -2199,6 +2234,138 @@ def surrey():
     page("surrey.html", "Loss Assessors in Surrey | Independent Claims Consultants",
          "Independent loss assessors in Cobham, Surrey, helping homeowners, landlords and businesses with fire, flood and escape of water claims. No win, no fee.",
          main, schema=schema, crumb="Loss assessors in Surrey")
+
+
+# ---------------------------------------------------------------- local area pages (Southern office)
+
+def town_page(t):
+    in_surrey = t["key"] != "london.html"
+    claims_html = '\n'.join(f"""          <article class="card">
+            {ic(i, "card-icon")}
+            <h3>{h}</h3>
+            <p>{p}</p>
+            {arrow_link(href, "Find out more")}
+          </article>""" for i, h, p, href in t["claims"])
+    areas_html = ''.join(f'<li>{a}</li>' for a in t["areas"])
+    others = [o for o in TOWNS if o["key"] != t["key"]]
+    other_links = "".join(f'<li><a href="{o["key"]}">{o["place"]}</a></li>' for o in others)
+    other_links += '<li><a href="surrey.html">All of Surrey</a></li>'
+    faqs = t["faqs"] + [faq_lookup(q) for q in ["When should I contact a loss assessor?", "How much do you charge?"]]
+    intro = "\n".join(f"            <p>{x}</p>" for x in t["intro"])
+    quick = f"""
+        <ul class="creds">
+          <li><strong>Southern office</strong><span>Cobham, Surrey</span></li>
+          <li><strong>Local loss assessors</strong><span>Andrew MacInnes and Neil Munnerley</span></li>
+          <li><strong>No win, no fee</strong><span>Free, no-obligation assessment</span></li>
+        </ul>"""
+    main = page_hero("Southern office · Cobham, Surrey", t["h1"], t["lead"], quick, image=t["image"])
+    main += f"""
+
+    <section class="section">
+      <div class="container split top">
+        <div>
+          <div class="section-head">
+            <span class="eyebrow">Local and independent</span>
+            <h2>A loss assessor on your side in {t["short"]}</h2>
+          </div>
+          <div class="prose">
+{intro}
+          </div>
+        </div>
+        {south_office_card()}
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="head-row">
+          <div class="section-head">
+            <span class="eyebrow">Claims we handle</span>
+            <h2>Common claims in {t["short"]}</h2>
+          </div>
+          {arrow_link("claims.html", "All claims we handle")}
+        </div>
+        <div class="grid-2">
+{claims_html}
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="areas">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Areas we cover</span>
+          <h2>Helping clients across {t["place"]}</h2>
+          <p>We work with homeowners, landlords and businesses throughout the area, including:</p>
+        </div>
+        <ul class="areas">{areas_html}</ul>
+        <p class="note">{svg("info")}<span>Our Southern office covers the whole of the South of England, and we work nationwide. Wherever your property is, call us on <a href="{TEL}"><strong>{PHONE}</strong></a>.</span></p>
+        <h3 style="margin-top: 40px;">More local pages</h3>
+        <ul class="areas" style="margin-top: 16px;">{other_links}</ul>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="head-row">
+          <div class="section-head">
+            <span class="eyebrow">Your local team</span>
+            <h2>Meet our Southern office loss assessors</h2>
+          </div>
+          {arrow_link("about.html#team", "Meet the whole team")}
+        </div>
+        <div class="grid-2">
+{south_team_html()}
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container split top">
+        <div>
+          <div class="section-head">
+            <span class="eyebrow">FAQs</span>
+            <h2>Questions from {t["short"]} clients</h2>
+          </div>
+          {arrow_link("faq.html", "See all FAQs")}
+        </div>
+        <div class="faq">
+{faq_items(faqs)}
+        </div>
+      </div>
+    </section>
+{cta(f"Talk to a loss assessor about your {t['short']} claim", "Get your first consultation free with our Southern office team. No win, no fee.")}"""
+
+    schema = [
+        {
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "name": f"Loss assessors in {t['place']}",
+            "serviceType": "Loss assessing",
+            "url": SITE + "/" + t["route"],
+            "areaServed": [{"@type": "Place", "name": a} for a in t["areas"]],
+            "provider": {
+                "@type": "ProfessionalService",
+                "name": "Independent Claims Consultants – Southern Office",
+                "url": SITE + "/" + ROUTES["surrey.html"],
+                "telephone": "+44 161 904 7800",
+                "address": {"@type": "PostalAddress", "streetAddress": "The Coach House, 3 Brooklands Close",
+                            "addressLocality": "Cobham", "addressRegion": "Surrey", "postalCode": "KT11 2DR",
+                            "addressCountry": "GB"},
+            },
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {"@type": "Question", "name": q,
+                 "acceptedAnswer": {"@type": "Answer", "text": re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", a)).strip()}}
+                for q, a in faqs
+            ],
+        },
+    ]
+    page(t["key"], t["title"], t["desc"], main, schema=schema, crumb=f"Loss assessors in {t['place']}",
+         crumb_parent=("surrey.html", "Loss assessors in Surrey") if in_surrey else None)
 
 
 # ---------------------------------------------------------------- Manchester & Cheshire (head office)
@@ -2241,7 +2408,7 @@ def manchester():
     areas_html = ''.join(f'<li>{a}</li>' for a in MANCHESTER_AREAS)
     local_faqs = [
         ("Do you cover my part of Greater Manchester or Cheshire?",
-         f"<p>Our head office in Hale works with clients across Greater Manchester, Cheshire and the surrounding areas. If you're not sure whether we cover your town, call us on {PHONE} and we'll let you know.</p>"),
+         f"<p>Our head office in Hale works with clients across Greater Manchester, Cheshire and the North West, and Independent Claims Consultants works nationwide. Wherever your property is, call us on {PHONE}.</p>"),
         ("Will a loss assessor visit my property?",
          "<p>Yes. Your loss assessor will inspect the damage, review your policy and, where it helps your claim, meet your insurer's loss adjuster at the property.</p>"),
     ]
@@ -2293,7 +2460,7 @@ def manchester():
           <p>From our head office in Hale we work with homeowners, landlords and businesses throughout the region, including:</p>
         </div>
         <ul class="areas">{areas_html}</ul>
-        <p class="note">{svg("info")}<span>Not sure if we cover your area? Call us on <a href="{TEL}"><strong>{PHONE}</strong></a> and we'll let you know.</span></p>
+        <p class="note">{svg("info")}<span>We work nationwide, so wherever your property is, call us on <a href="{TEL}"><strong>{PHONE}</strong></a>.</span></p>
       </div>
     </section>
 
@@ -2463,6 +2630,8 @@ if __name__ == "__main__":
     faq()
     contact()
     surrey()
+    for t in TOWNS:
+        town_page(t)
     manchester()
     for s in SERVICE_PAGES:
         service_page(s)

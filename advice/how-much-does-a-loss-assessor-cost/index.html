@@ -1205,6 +1205,9 @@
       background: var(--accent-bright);
     }
     .note a { color: var(--accent); }
+    .areas li:has(a) { border-color: var(--accent); }
+    .areas a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+    .areas a:hover { text-decoration-thickness: 2px; }
 
     /* ---------- Claim pages ---------- */
     .mini-grid.three { grid-template-columns: repeat(3, 1fr); }
@@ -1537,6 +1540,7 @@
           <h3>Claims</h3>
           <ul>
             <li><a href="../../loss-assessors-surrey/">Loss assessors in Surrey</a></li>
+            <li><a href="../../loss-assessors-london/">Loss assessors in London</a></li>
             <li><a href="../../loss-assessors-manchester/">Loss assessors in Manchester</a></li>
             <li><a href="../../domestic-insurance-claim/">Homeowners</a></li>
             <li><a href="../../commercial-claims/">Businesses</a></li>
