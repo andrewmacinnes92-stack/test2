@@ -1165,7 +1165,7 @@ def advice():
     gl_html = '\n'.join(f'          <div><dt>{t}</dt><dd>{d}</dd></div>' for t, d in glossary)
 
     check_imgs = {
-        "after-a-fire": ("fire-damage", "A man sitting in a fire-damaged living room"),
+        "after-a-fire": ("fire-hose", "Firefighters directing a hose at a fire"),
         "after-a-flood": ("water-damage", "Standing water across the floor of an empty room"),
     }
 

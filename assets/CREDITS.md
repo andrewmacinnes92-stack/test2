@@ -14,7 +14,8 @@ All photos are from Pexels and the video is from Mixkit. Both licences allow fre
 | `img/phone-woman-*` | https://www.pexels.com/photo/woman-on-the-telephone-8691834/ |
 | `img/policy-woman-*` | https://www.pexels.com/photo/a-woman-smiling-and-holding-an-insurance-contract-7734599/ |
 | `img/homeowner-woman-*` | https://www.pexels.com/photo/cheerful-woman-smiling-while-sitting-at-table-with-laptop-4467687/ |
-| `img/fire-damage-*` | https://www.pexels.com/photo/pensive-man-sitting-in-a-living-room-of-burnt-house-12027310/ |
+| `img/fire-crew-*` | https://www.pexels.com/photo/firefighters-standing-in-front-of-flame-9376150/ |
+| `img/fire-hose-*` | https://www.pexels.com/photo/fire-firefighter-firefighters-fireman-1243903/ |
 | `img/water-damage-*` | https://www.pexels.com/photo/water-in-abandoned-room-18302377/ |
 | `img/surrey-shere-*` | https://www.pexels.com/photo/vintage-houses-in-town-in-uk-13764558/ |
 | `img/repairs-plaster-*` | https://www.pexels.com/photo/crop-man-preparing-wall-for-painting-5691622/ |
