@@ -23,6 +23,9 @@ All photos are from Pexels and the video is from Mixkit. Both licences allow fre
 | `img/theft-lock-*` | https://www.pexels.com/photo/deadlock-with-key-on-hole-279810/ |
 | `img/box-hill-*` | https://www.pexels.com/photo/view-of-surrey-from-the-box-hill-14298378/ |
 | `img/london-thames-*` | https://www.pexels.com/photo/river-thames-winding-through-london-18351701/ |
+| `img/brighton-pier-*` | https://www.pexels.com/photo/brighton-palace-pier-2673227/ |
+| `img/windsor-street-*` | https://www.pexels.com/photo/windsor-castle-street-view-on-a-sunny-day-33778050/ |
+| `img/portsmouth-tower-*` | https://www.pexels.com/photo/spinnaker-tower-from-below-28436693/ |
 | `img/storm-rain-*` (still frame) | https://mixkit.co/free-stock-video/window-on-a-rainy-day-2846/ |
 | `video/hero-firefighters.*`, `img/hero-poster-*` | https://mixkit.co/free-stock-video/firefighters-on-the-street-shooting-water-with-their-hoses-5296/ |
 
