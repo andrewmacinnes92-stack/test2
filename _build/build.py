@@ -2102,7 +2102,7 @@ def surrey():
           </article>""" for i, t, p, href in claims)
 
     areas_html = ''.join(f'<li><a href="{TOWN_LINKS[a]}">{a}</a></li>' if a in TOWN_LINKS else f'<li>{a}</li>' for a in SURREY_AREAS)
-    region_pages = {t["place"]: t["key"] for t in TOWNS if not t.get("in_surrey", True)}
+    region_pages = {r: t["key"] for t in TOWNS if not t.get("in_surrey", True) for r in t.get("regions", [t["place"]])}
     regions_html = ''.join(f'<li><a href="{region_pages[a]}">{a}</a></li>' if a in region_pages else f'<li>{a}</li>' for a in SOUTH_REGIONS if a != "Surrey")
     faqs = SURREY_FAQS + [faq_lookup(q) for q in ["When should I contact a loss assessor?", "How much do you charge?"]]
     maps = "https://www.google.com/maps/search/?api=1&query=" + "The+Coach+House+3+Brooklands+Close+Cobham+KT11+2DR"
@@ -2250,8 +2250,9 @@ def town_page(t):
           </article>""" for i, h, p, href in t["claims"])
     areas_html = ''.join(f'<li>{a}</li>' for a in t["areas"])
     others = [o for o in TOWNS if o["key"] != t["key"]]
-    other_links = "".join(f'<li><a href="{o["key"]}">{o["place"]}</a></li>' for o in others)
-    other_links += '<li><a href="surrey.html">All of Surrey</a></li>'
+    link = lambda o: f'<li><a href="{o["key"]}">{o["place"]}</a></li>'
+    surrey_links = "".join(link(o) for o in others if o.get("in_surrey", True)) + '<li><a href="surrey.html">All of Surrey</a></li>'
+    region_links = "".join(link(o) for o in others if not o.get("in_surrey", True))
     faqs = t["faqs"] + [faq_lookup(q) for q in ["When should I contact a loss assessor?", "How much do you charge?"]]
     intro = "\n".join(f"            <p>{x}</p>" for x in t["intro"])
     quick = f"""
@@ -2302,8 +2303,10 @@ def town_page(t):
         </div>
         <ul class="areas">{areas_html}</ul>
         <p class="note">{svg("info")}<span>Our Southern office covers the whole of the South of England, and we work nationwide. Wherever your property is, call us on <a href="{TEL}"><strong>{PHONE}</strong></a>.</span></p>
-        <h3 style="margin-top: 40px;">More local pages</h3>
-        <ul class="areas" style="margin-top: 16px;">{other_links}</ul>
+        <h3 style="margin-top: 40px;">Across the South of England</h3>
+        <ul class="areas" style="margin-top: 16px;">{region_links}</ul>
+        <h3 style="margin-top: 32px;">Around our Cobham office</h3>
+        <ul class="areas" style="margin-top: 16px;">{surrey_links}</ul>
       </div>
     </section>
 

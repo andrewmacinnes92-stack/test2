@@ -307,4 +307,356 @@ TOWNS = [
              "<p>Yes. We handle the damage to your premises, stock and equipment, and our forensic and consequential loss accountants calculate your business interruption loss.</p>"),
         ],
     },
+    {'key': 'oxfordshire.html',
+     'in_surrey': False,
+     'route': 'loss-assessors-oxfordshire/',
+     'place': 'Oxfordshire',
+     'short': 'Oxfordshire',
+     'title': 'Loss Assessors in Oxfordshire | Independent Claims Consultants',
+     'desc': 'Independent loss assessors helping homeowners, landlords and businesses in Oxford, Abingdon, '
+             'Witney, Banbury and across Oxfordshire. No win, no fee.',
+     'h1': 'Loss assessors <span>in Oxfordshire</span>',
+     'lead': 'We help homeowners, landlords and businesses across Oxfordshire with fire, flood and escape of '
+             'water claims.',
+     'image': ('homes-terrace', 'Victorian terraced houses on a street in Oxford'),
+     'intro': ['When your property is damaged, your insurer appoints a loss adjuster to look after its '
+               'interests. We look after yours, preparing and negotiating your claim so you receive everything '
+               "you're entitled to.",
+               'Our Southern office in Cobham covers the whole of the South of England, so your loss assessor '
+               "will come to you to inspect the damage, meet your insurer's loss adjuster at the property and "
+               'keep an eye on the repairs.',
+               'From Victorian terraces in Oxford to Cotswold stone cottages in the west of the county, we make '
+               'sure your claim reflects the true cost of repairing your property properly.'],
+     'areas': ['Oxford',
+               'Abingdon',
+               'Witney',
+               'Banbury',
+               'Bicester',
+               'Didcot',
+               'Henley-on-Thames',
+               'Wallingford',
+               'Thame',
+               'Wantage',
+               'Kidlington',
+               'Chipping Norton'],
+     'claims': [('flood',
+                 'River flooding',
+                 'The Thames and the Cherwell have flooded parts of Oxford and Abingdon, including in the summer '
+                 'floods of 2007. We manage flood claims from drying out to final settlement.',
+                 'flood.html'),
+                ('home',
+                 'Period and stone properties',
+                 'Older homes need the right specialists and materials. We make sure your claim covers '
+                 'like-for-like repairs, not a cheaper alternative.',
+                 'home-claims.html'),
+                ('key',
+                 'Landlords and shared houses',
+                 'We handle claims for let properties, including shared houses, and claim for the rent you lose '
+                 "while a property can't be let.",
+                 'landlords.html'),
+                ('droplet',
+                 'Escape of water',
+                 'Burst pipes and hidden leaks are among the most common claims. We make sure all the damage is '
+                 'found and included.',
+                 'escape.html')],
+     'faqs': [('Do you cover all of Oxfordshire?',
+               '<p>Yes. Our Southern office covers the whole of Oxfordshire, along with the rest of the South of '
+               'England. Your loss assessor will visit your property.</p>'),
+              ('My home is built of Cotswold stone. Will the insurer pay for matching materials?',
+               '<p>Your policy should put your home back to the condition it was in before the damage, which '
+               'usually means repairs in keeping with the original. We make sure the cost of suitable materials '
+               'and skilled trades is included in your claim.</p>')]},
+    {'key': 'buckinghamshire.html',
+     'in_surrey': False,
+     'route': 'loss-assessors-buckinghamshire/',
+     'place': 'Buckinghamshire',
+     'short': 'Buckinghamshire',
+     'title': 'Loss Assessors in Buckinghamshire | Independent Claims Consultants',
+     'desc': 'Independent loss assessors helping homeowners, landlords and businesses in High Wycombe, '
+             'Aylesbury, Marlow, Amersham and across Buckinghamshire. No win, no fee.',
+     'h1': 'Loss assessors <span>in Buckinghamshire</span>',
+     'lead': 'We help homeowners, landlords and businesses across Buckinghamshire and Milton Keynes with fire, '
+             'flood, storm and escape of water claims.',
+     'image': ('policy-woman', 'A smiling female adviser holding a policy document'),
+     'intro': ['After a fire, flood or major leak, your insurer appoints a loss adjuster to act on its behalf. '
+               "We act on yours. We prepare and negotiate your claim and deal with your insurer, so you don't "
+               'have to.',
+               'Our Southern office in Cobham covers the whole of the South of England, so your loss assessor '
+               "will come to you to inspect the damage, meet your insurer's loss adjuster at the property and "
+               'keep an eye on the repairs.',
+               'Many homes in the county are large and individually designed, with valuable contents. That makes '
+               'it especially important that nothing is undervalued or left out of your claim.'],
+     'areas': ['High Wycombe',
+               'Aylesbury',
+               'Milton Keynes',
+               'Amersham',
+               'Beaconsfield',
+               'Marlow',
+               'Chesham',
+               'Gerrards Cross',
+               'Princes Risborough',
+               'Great Missenden',
+               'Buckingham',
+               'Burnham'],
+     'claims': [('flood',
+                 'Thames flooding',
+                 'Riverside homes in towns such as Marlow have flooded in very wet winters, including early '
+                 '2014. We manage flood claims from drying out to final settlement.',
+                 'flood.html'),
+                ('pound',
+                 'High-value homes and contents',
+                 'Larger homes can cost more to rebuild than people expect. We check your cover and present '
+                 'every item properly.',
+                 'a-under.html'),
+                ('storm',
+                 'Storms and fallen trees',
+                 'In wooded areas like the Chilterns, high winds can bring trees down onto roofs and '
+                 'outbuildings. We arrange emergency works and claim for all the damage.',
+                 'storm.html'),
+                ('briefcase',
+                 'Business interruption',
+                 'Our forensic and consequential loss accountants calculate your lost income while your premises '
+                 'are restored.',
+                 'bi.html')],
+     'faqs': [('Do you cover all of Buckinghamshire?',
+               '<p>Yes. Our Southern office covers the whole of Buckinghamshire, along with the rest of the '
+               'South of England. Your loss assessor will visit your property.</p>'),
+              ('Do you cover Milton Keynes?',
+               '<p>Yes. We cover Milton Keynes and the whole of Buckinghamshire.</p>')]},
+    {'key': 'hertfordshire.html',
+     'in_surrey': False,
+     'route': 'loss-assessors-hertfordshire/',
+     'place': 'Hertfordshire',
+     'short': 'Hertfordshire',
+     'title': 'Loss Assessors in Hertfordshire | Independent Claims Consultants',
+     'desc': 'Independent loss assessors helping homeowners, landlords and businesses in St Albans, Watford, '
+             'Hemel Hempstead, Stevenage and across Hertfordshire. No win, no fee.',
+     'h1': 'Loss assessors <span>in Hertfordshire</span>',
+     'lead': 'We help homeowners, landlords and businesses across Hertfordshire with fire, flood, subsidence and '
+             'escape of water claims.',
+     'image': ('st-albans', 'St Albans Cathedral at sunset'),
+     'intro': ['When something goes wrong at your property, your insurer appoints a loss adjuster to protect its '
+               'interests. We protect yours, preparing and negotiating your claim so you receive your full '
+               'entitlement.',
+               'Our Southern office in Cobham covers the whole of the South of England, so your loss assessor '
+               "will come to you to inspect the damage, meet your insurer's loss adjuster at the property and "
+               'keep an eye on the repairs.',
+               'From family homes in commuter towns to warehouses and offices along the M1 and M25, we handle '
+               'every kind of property claim.'],
+     'areas': ['St Albans',
+               'Watford',
+               'Hemel Hempstead',
+               'Stevenage',
+               'Hertford',
+               'Welwyn Garden City',
+               'Hatfield',
+               'Harpenden',
+               'Hitchin',
+               'Letchworth',
+               "Bishop's Stortford",
+               'Berkhamsted'],
+     'claims': [('subsidence',
+                 'Subsidence',
+                 'Clay soils in parts of the county shrink in dry summers and can cause cracking. We investigate '
+                 'the cause and manage the claim through to repair.',
+                 'subsidence.html'),
+                ('building',
+                 'Commercial and industrial premises',
+                 'One incident can damage many properties at once, as the Buncefield explosion near Hemel '
+                 'Hempstead showed in 2005. We handle building, stock and business interruption claims together.',
+                 'commercial.html'),
+                ('droplet',
+                 'Escape of water',
+                 'Burst pipes and leaks from bathrooms and appliances are among the most common claims. We make '
+                 'sure all the damage is found and included.',
+                 'escape.html'),
+                ('fire',
+                 'Fire and smoke',
+                 'We arrange emergency help and alternative accommodation, and make sure smoke and soot damage '
+                 'is fully claimed for.',
+                 'fire.html')],
+     'faqs': [('Do you cover all of Hertfordshire?',
+               '<p>Yes. Our Southern office covers the whole of Hertfordshire, along with the rest of the South '
+               'of England. Your loss assessor will visit your property.</p>'),
+              ("I've noticed cracks in my walls. Could it be subsidence?",
+               '<p>It could be, especially on clay soils after a dry summer, but cracks have many causes. Note '
+               'when you first saw them, take photos and contact your insurer. <a href="subsidence.html">Read '
+               'more about subsidence claims</a>.</p>')]},
+    {'key': 'wiltshire.html',
+     'in_surrey': False,
+     'route': 'loss-assessors-wiltshire/',
+     'place': 'Wiltshire',
+     'short': 'Wiltshire',
+     'title': 'Loss Assessors in Wiltshire | Independent Claims Consultants',
+     'desc': 'Independent loss assessors helping homeowners, landlords, farms and businesses in Salisbury, '
+             'Swindon, Chippenham, Trowbridge and across Wiltshire. No win, no fee.',
+     'h1': 'Loss assessors <span>in Wiltshire</span>',
+     'lead': 'We help homeowners, landlords and businesses across Wiltshire with fire, flood, storm and escape '
+             'of water claims.',
+     'image': ('salisbury-cathedral', 'Salisbury Cathedral and its spire'),
+     'intro': ['After your property is damaged, your insurer appoints a loss adjuster to act for it. We act for '
+               'you. We prepare, present and negotiate your claim, and deal with your insurer from start to '
+               'finish.',
+               'Our Southern office in Cobham covers the whole of the South of England, so your loss assessor '
+               "will come to you to inspect the damage, meet your insurer's loss adjuster at the property and "
+               'keep an eye on the repairs.',
+               "Wiltshire's market towns, villages and rural properties bring their own challenges, from "
+               'thatched roofs and stone walls to outbuildings and business premises.'],
+     'areas': ['Salisbury',
+               'Swindon',
+               'Chippenham',
+               'Trowbridge',
+               'Devizes',
+               'Marlborough',
+               'Warminster',
+               'Melksham',
+               'Calne',
+               'Corsham',
+               'Bradford on Avon',
+               'Amesbury'],
+     'claims': [('fire',
+                 'Fire, including thatched homes',
+                 'Fires in thatched and older properties need specialist trades and materials. We make sure your '
+                 'claim covers like-for-like repairs.',
+                 'fire.html'),
+                ('flood',
+                 'River flooding',
+                 "Towns and villages along the county's rivers can flood after prolonged rain. We manage flood "
+                 'claims from drying out to final settlement.',
+                 'flood.html'),
+                ('storm',
+                 'Storm damage to rural properties',
+                 'Exposed homes, barns and outbuildings can be badly hit by high winds. We arrange emergency '
+                 'works and claim for all the damage.',
+                 'storm.html'),
+                ('building',
+                 'Commercial premises',
+                 'For warehouses, shops and offices in Swindon and beyond, we handle the building, stock and '
+                 'business interruption parts of your claim.',
+                 'commercial.html')],
+     'faqs': [('Do you cover all of Wiltshire?',
+               '<p>Yes. Our Southern office covers the whole of Wiltshire, along with the rest of the South of '
+               'England. Your loss assessor will visit your property.</p>'),
+              ('My home has a thatched roof. Can you help after a fire?',
+               '<p>Yes. Thatched and older properties need specialist thatchers and traditional materials, which '
+               'can cost more and take longer. We make sure your claim reflects that, and arrange alternative '
+               "accommodation if you can't live at home.</p>")]},
+    {'key': 'dorset.html',
+     'in_surrey': False,
+     'route': 'loss-assessors-dorset/',
+     'place': 'Dorset',
+     'short': 'Dorset',
+     'title': 'Loss Assessors in Dorset | Independent Claims Consultants',
+     'desc': 'Independent loss assessors helping homeowners, landlords and businesses in Bournemouth, Poole, '
+             'Dorchester, Weymouth and across Dorset. No win, no fee.',
+     'h1': 'Loss assessors <span>in Dorset</span>',
+     'lead': 'We help homeowners, holiday-let owners, landlords and businesses across Dorset with fire, flood, '
+             'storm and escape of water claims.',
+     'image': ('durdle-door', 'Durdle Door, the limestone arch on the Dorset coast'),
+     'intro': ['When your property is damaged, your insurer appoints a loss adjuster to look after its '
+               'interests. As your loss assessor, we look after yours, preparing and negotiating your claim so '
+               'you get your full entitlement.',
+               'Our Southern office in Cobham covers the whole of the South of England, so your loss assessor '
+               "will come to you to inspect the damage, meet your insurer's loss adjuster at the property and "
+               'keep an eye on the repairs.',
+               'From seafront flats in Bournemouth and Poole to thatched cottages and holiday lets along the '
+               'coast, we know the claims Dorset properties bring.'],
+     'areas': ['Bournemouth',
+               'Poole',
+               'Christchurch',
+               'Dorchester',
+               'Weymouth',
+               'Bridport',
+               'Wimborne Minster',
+               'Ferndown',
+               'Blandford Forum',
+               'Sherborne',
+               'Swanage',
+               'Shaftesbury'],
+     'claims': [('storm',
+                 'Coastal storms',
+                 'Strong winds and driving rain off the Channel can damage roofs, windows and seafront '
+                 'properties. We arrange emergency works and claim for all the damage.',
+                 'storm.html'),
+                ('key',
+                 'Holiday lets and second homes',
+                 "Damage to a property that's empty or let to guests can raise questions about cover. We check "
+                 'your policy and present the claim for you.',
+                 'landlords.html'),
+                ('fire',
+                 'Fire, including thatched homes',
+                 'Fires in thatched and older properties need specialist trades and materials. We make sure your '
+                 'claim covers like-for-like repairs.',
+                 'fire.html'),
+                ('droplet',
+                 'Escape of water',
+                 'Leaks in flats and empty properties can go unnoticed for days. We make sure all the damage is '
+                 'found and claimed for.',
+                 'escape.html')],
+     'faqs': [('Do you cover all of Dorset?',
+               '<p>Yes. Our Southern office covers the whole of Dorset, along with the rest of the South of '
+               'England. Your loss assessor will visit your property.</p>'),
+              ('My holiday home or second home was damaged while it was empty. Am I covered?',
+               '<p>Possibly. Many policies restrict cover if a property is left unoccupied for longer than a set '
+               'period, and holiday lets often need a specific type of policy. The exact wording matters, so '
+               "don't assume the claim will fail. We can review your policy and present the claim for you.</p>")]},
+    {'key': 'devon-cornwall.html',
+     'in_surrey': False,
+     'route': 'loss-assessors-devon-cornwall/',
+     'place': 'Devon and Cornwall',
+     'short': 'Devon and Cornwall',
+     'title': 'Loss Assessors in Devon & Cornwall | Independent Claims Consultants',
+     'desc': 'Independent loss assessors helping homeowners, holiday-let owners and businesses in Exeter, '
+             'Plymouth, Truro and across Devon and Cornwall. No win, no fee.',
+     'h1': 'Loss assessors <span>in Devon and Cornwall</span>',
+     'lead': 'We help homeowners, holiday-let owners, landlords and businesses across Devon and Cornwall with '
+             'storm, flood, fire and escape of water claims.',
+     'image': ('st-ives', 'Boats in St Ives harbour, Cornwall, at low tide'),
+     'intro': ['After a storm, flood or fire, your insurer appoints a loss adjuster to act on its behalf. We act '
+               "on yours. We prepare and negotiate your claim and deal with your insurer, so you don't have to.",
+               'Our Southern office in Cobham covers the whole of the South of England, so your loss assessor '
+               "will come to you to inspect the damage, meet your insurer's loss adjuster at the property and "
+               'keep an eye on the repairs.',
+               "The South West's exposed coast, steep valleys and older stone and cob buildings bring their own "
+               'challenges. We make sure every part of the damage is included in your claim.'],
+     'areas': ['Exeter',
+               'Plymouth',
+               'Torquay',
+               'Exmouth',
+               'Barnstaple',
+               'Newton Abbot',
+               'Truro',
+               'Falmouth',
+               'Newquay',
+               'St Ives',
+               'Penzance',
+               'Bodmin'],
+     'claims': [('storm',
+                 'Coastal storms',
+                 'Winter storms can batter exposed coastal properties, as the storms of early 2014 showed along '
+                 'the South West coast. We arrange emergency works and claim for all the damage.',
+                 'storm.html'),
+                ('flood',
+                 'Flash flooding',
+                 'Heavy rain in steep valleys can cause sudden, severe flooding, as Boscastle saw in 2004. We '
+                 'manage flood claims from drying out to final settlement.',
+                 'flood.html'),
+                ('key',
+                 'Holiday lets and second homes',
+                 "Damage to a property that's empty or let to guests can raise questions about cover. We check "
+                 'your policy and present the claim for you.',
+                 'landlords.html'),
+                ('home',
+                 'Older stone and cob buildings',
+                 'Traditional buildings need the right specialists and materials. We make sure your claim covers '
+                 'like-for-like repairs.',
+                 'home-claims.html')],
+     'faqs': [('Do you cover all of Devon and Cornwall?',
+               '<p>Yes. Our Southern office covers the whole of Devon and Cornwall, along with the rest of the '
+               'South of England. Your loss assessor will visit your property.</p>'),
+              ('My holiday home or second home was damaged while it was empty. Am I covered?',
+               '<p>Possibly. Many policies restrict cover if a property is left unoccupied for longer than a set '
+               'period, and holiday lets often need a specific type of policy. The exact wording matters, so '
+               "don't assume the claim will fail. We can review your policy and present the claim for you.</p>")],
+     'regions': ['Devon', 'Cornwall']},
 ]
