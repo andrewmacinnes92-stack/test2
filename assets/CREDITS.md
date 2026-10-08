@@ -21,6 +21,8 @@ All photos are from Pexels and the video is from Mixkit. Both licences allow fre
 | `img/surrey-shere-*` | https://www.pexels.com/photo/vintage-houses-in-town-in-uk-13764558/ |
 | `img/repairs-plaster-*` | https://www.pexels.com/photo/crop-man-preparing-wall-for-painting-5691622/ |
 | `img/theft-lock-*` | https://www.pexels.com/photo/deadlock-with-key-on-hole-279810/ |
+| `img/box-hill-*` | https://www.pexels.com/photo/view-of-surrey-from-the-box-hill-14298378/ |
+| `img/london-thames-*` | https://www.pexels.com/photo/river-thames-winding-through-london-18351701/ |
 | `img/storm-rain-*` (still frame) | https://mixkit.co/free-stock-video/window-on-a-rainy-day-2846/ |
 | `video/hero-firefighters.*`, `img/hero-poster-*` | https://mixkit.co/free-stock-video/firefighters-on-the-street-shooting-water-with-their-hoses-5296/ |
 
