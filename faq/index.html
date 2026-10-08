@@ -81,7 +81,7 @@
       "name": "How long will my claim take?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Every claim is different, so there are no set timescales. A straightforward, non-contentious claim generally takes between four and six weeks to settle. More complex or hard-fought claims can take longer. We don't get paid until you do, so we progress every claim as quickly and forcefully as we can."
+        "text": "Every claim is different, so there are no set timescales. A straightforward, non-contentious claim generally takes between four and six weeks to settle. More complex or hard-fought claims can take longer. We don't get paid until you do, so we progress every claim as quickly and forcefully as we can. Read our guide to how long claims take ."
       }
     },
     {
@@ -105,7 +105,7 @@
       "name": "My insurer has rejected my claim. Can it do that?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "In some circumstances, yes. A policy is a contract, and an insurer can deny a claim if it believes you haven't kept to your side of it, the loss isn't covered, or it suspects fraud. That doesn't mean the insurer is right. We can represent you professionally and fight for the claim to be accepted and settled."
+        "text": "In some circumstances, yes. A policy is a contract, and an insurer can deny a claim if it believes you haven't kept to your side of it, the loss isn't covered, or it suspects fraud. That doesn't mean the insurer is right. We can represent you professionally and fight for the claim to be accepted and settled. Read our guide to challenging a rejected claim ."
       }
     },
     {
@@ -121,7 +121,7 @@
       "name": "How much do you charge?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Your first consultation is free and there's no obligation. We work on a no win, no fee basis, so we don't get paid until you do. Call us and we'll talk you through how our fees work for your claim."
+        "text": "Your first consultation is free and there's no obligation. We work on a no win, no fee basis, so we don't get paid until you do. Call us and we'll talk you through how our fees work for your claim. Read more about loss assessor fees ."
       }
     },
     {
@@ -1025,7 +1025,7 @@
     .footer-col a:hover { color: var(--ink); }
     .footer-bottom { padding-top: 24px; border-top: 1px solid var(--line); }
     .copyright { color: var(--muted); font-size: 0.85rem; }
-    .legal { margin-top: 6px; color: #94a3b8; font-size: 0.8rem; line-height: 1.6; }
+    .legal { margin-top: 6px; color: var(--muted); font-size: 0.8rem; line-height: 1.6; }
 
     /* ---------- Mobile call bar ---------- */
     .callbar { display: none; }
@@ -1258,6 +1258,72 @@
     @media (max-width: 768px) { .mini-grid.three { grid-template-columns: 1fr; } }
     .block-links { display: flex; flex-wrap: wrap; gap: 12px 28px; }
 
+    /* ---------- Claims drop-down menu ---------- */
+    .nav .has-sub { position: relative; display: flex; align-items: center; }
+    .sub-toggle {
+      display: grid;
+      place-items: center;
+      width: 26px;
+      height: 26px;
+      margin-left: -10px;
+      padding: 0;
+      border: 0;
+      border-radius: 8px;
+      background: none;
+      color: var(--text);
+      cursor: pointer;
+    }
+    .sub-toggle svg { width: 14px; height: 14px; transform: rotate(90deg); transition: transform 0.2s ease; }
+    .has-sub.open .sub-toggle svg { transform: rotate(-90deg); }
+    .sub-toggle:hover { background: var(--soft); }
+    .submenu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 10px);
+      left: -12px;
+      z-index: 70;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 8px 24px;
+      width: 540px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 24px 48px -20px rgba(15, 23, 42, 0.28);
+    }
+    .submenu::before { content: ""; position: absolute; top: -14px; right: 0; left: 0; height: 14px; }
+    .has-sub:hover .submenu, .has-sub:focus-within .submenu, .has-sub.open .submenu { display: grid; }
+    .sub-head {
+      margin: 0 0 6px;
+      padding: 0 10px;
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .nav .submenu ul { display: grid; gap: 2px; align-items: stretch; }
+    .nav .submenu .types ul { grid-template-columns: 1fr 1fr; }
+    .nav .submenu a { padding: 8px 10px; border-radius: 10px; font-size: 0.92rem; white-space: nowrap; }
+    .sub-all { grid-column: 1 / -1; margin-top: 4px; padding-top: 10px; border-top: 1px solid var(--line); }
+    .nav .sub-all a { color: var(--accent); font-weight: 600; }
+    @media (max-width: 900px) {
+      .nav .has-sub { flex-wrap: wrap; }
+      .nav .has-sub > a { flex: 1; }
+      .sub-toggle { width: 40px; height: 40px; margin: 0; }
+      .submenu {
+        position: static;
+        grid-template-columns: 1fr;
+        width: 100%;
+        padding: 4px 0 10px 12px;
+        border: 0;
+        box-shadow: none;
+      }
+      .submenu::before { display: none; }
+      .has-sub:hover .submenu, .has-sub:focus-within .submenu { display: none; }
+      .has-sub.open .submenu { display: grid; }
+    }
+
     .skip {
       position: absolute;
       top: -100px;
@@ -1286,12 +1352,12 @@
 <body>
 
   <a class="skip" href="#main">Skip to content</a>
-  <div class="topbar">
+  <aside class="topbar" aria-label="Contact details">
     <div class="container topbar-inner">
       <span><a href="../loss-assessors-surrey/">Southern office: Cobham, Surrey</a><span class="sep">·</span>FCA Reg No 308042<span class="sep">·</span>Members of the IPLA</span>
       <span><a href="tel:01619047800">Call 0161 904 7800</a><span class="sep">·</span>Mon to Fri, 9am to 5pm</span>
     </div>
-  </div>
+  </aside>
 
   <header class="site-header">
     <div class="container header-inner">
@@ -1306,7 +1372,15 @@
       <nav class="nav" id="main-nav" aria-label="Main">
         <ul>
           <li class="mobile-only"><a href="../">Home</a></li>
-          <li><a href="../claims/">Claims we handle</a></li>
+          <li class="has-sub">
+            <a href="../claims/">Claims we handle</a>
+            <button class="sub-toggle" type="button" aria-expanded="false" aria-controls="claims-menu"><span class="visually-hidden">Show claim types</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></button>
+            <div class="submenu" id="claims-menu">
+              <div><p class="sub-head">Who we help</p><ul><li><a href="../domestic-insurance-claim/">Home insurance claims</a></li><li><a href="../commercial-claims/">Commercial claims</a></li><li><a href="../landlord-insurance-claims/">Landlord claims</a></li></ul></div>
+              <div class="types"><p class="sub-head">Claim types</p><ul><li><a href="../fire-damage-claims/">Fire damage</a></li><li><a href="../flood-damage-claims/">Flood damage</a></li><li><a href="../escape-of-water-claims/">Escape of water</a></li><li><a href="../storm-damage-claims/">Storm damage</a></li><li><a href="../theft-claims/">Theft and burglary</a></li><li><a href="../subsidence-claims/">Subsidence</a></li><li><a href="../impact-damage-claims/">Impact damage</a></li><li><a href="../business-interruption-claims/">Business interruption</a></li></ul></div>
+              <p class="sub-all"><a href="../claims/">All claims we handle</a></p>
+            </div>
+          </li>
           <li><a href="../about/">About</a></li>
           <li><a href="../advice/">Advice</a></li>
           <li><a href="../faq/" aria-current="page">FAQs</a></li>
@@ -1369,7 +1443,7 @@
           </details>
           <details>
             <summary>How long will my claim take?</summary>
-            <div class="faq-body"><p>Every claim is different, so there are no set timescales. A straightforward, non-contentious claim generally takes between four and six weeks to settle. More complex or hard-fought claims can take longer. We don't get paid until you do, so we progress every claim as quickly and forcefully as we can.</p></div>
+            <div class="faq-body"><p>Every claim is different, so there are no set timescales. A straightforward, non-contentious claim generally takes between four and six weeks to settle. More complex or hard-fought claims can take longer. We don't get paid until you do, so we progress every claim as quickly and forcefully as we can.</p><p><a href="../advice/how-long-does-an-insurance-claim-take/">Read our guide to how long claims take</a>.</p></div>
           </details>
           <details>
             <summary>What types of claim do you manage?</summary>
@@ -1386,7 +1460,7 @@
           <div class="faq">
           <details>
             <summary>My insurer has rejected my claim. Can it do that?</summary>
-            <div class="faq-body"><p>In some circumstances, yes. A policy is a contract, and an insurer can deny a claim if it believes you haven't kept to your side of it, the loss isn't covered, or it suspects fraud.</p><p>That doesn't mean the insurer is right. We can represent you professionally and fight for the claim to be accepted and settled.</p></div>
+            <div class="faq-body"><p>In some circumstances, yes. A policy is a contract, and an insurer can deny a claim if it believes you haven't kept to your side of it, the loss isn't covered, or it suspects fraud.</p><p>That doesn't mean the insurer is right. We can represent you professionally and fight for the claim to be accepted and settled.</p><p><a href="../advice/insurance-claim-rejected/">Read our guide to challenging a rejected claim</a>.</p></div>
           </details>
           <details>
             <summary>What if I&#x27;m underinsured?</summary>
@@ -1394,7 +1468,7 @@
           </details>
           <details>
             <summary>How much do you charge?</summary>
-            <div class="faq-body"><p>Your first consultation is free and there's no obligation. We work on a no win, no fee basis, so we don't get paid until you do. Call us and we'll talk you through how our fees work for your claim.</p></div>
+            <div class="faq-body"><p>Your first consultation is free and there's no obligation. We work on a no win, no fee basis, so we don't get paid until you do. Call us and we'll talk you through how our fees work for your claim.</p><p><a href="../advice/how-much-does-a-loss-assessor-cost/">Read more about loss assessor fees</a>.</p></div>
           </details>
           <details>
             <summary>Are you regulated?</summary>
@@ -1474,10 +1548,10 @@
       </div>
     </div>
   </footer>
-  <div class="callbar">
+  <nav class="callbar" aria-label="Quick contact">
     <a href="tel:01619047800" class="btn btn-ghost"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg> Call us</a>
     <a href="../contact/" class="btn btn-primary">Start your claim</a>
-  </div>
+  </nav>
 
   <script>
     // Mobile menu
@@ -1672,6 +1746,15 @@
         heroVideo.play().catch(() => {});
       }
     }
+
+    // Claims drop-down menu
+    document.querySelectorAll('.has-sub').forEach(item => {
+      const btn = item.querySelector('.sub-toggle');
+      const set = (open) => { item.classList.toggle('open', open); btn.setAttribute('aria-expanded', open); };
+      btn.addEventListener('click', (e) => { e.stopPropagation(); set(!item.classList.contains('open')); });
+      document.addEventListener('click', (e) => { if (!item.contains(e.target)) set(false); });
+      item.addEventListener('keydown', (e) => { if (e.key === 'Escape') { set(false); btn.focus(); } });
+    });
   </script>
 </body>
 </html>
