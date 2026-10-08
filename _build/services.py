@@ -68,7 +68,7 @@ SERVICE_PAGES = [
              "<p>Every claim is different. A straightforward claim can settle in a matter of weeks, while a major fire involving rebuilding can take considerably longer. We progress your claim as quickly and forcefully as we can, and we don't get paid until you do.</p>"),
         ],
         "related": ["flood.html", "escape.html", "home-claims.html", "bi.html"],
-        "advice": ("advice.html#after-a-fire", "What to do after a fire: our step-by-step checklist"),
+        "advice": ("a-fire.html", "What to do after a fire: our step-by-step checklist"),
     },
     # ------------------------------------------------------------------ flood
     {
@@ -121,7 +121,7 @@ SERVICE_PAGES = [
              "<p>Make the property safe and stop further damage if you can, but photograph and video everything first. Don't throw damaged items away until your insurer has seen them or agreed, and keep receipts for any emergency costs.</p>"),
         ],
         "related": ["escape.html", "fire.html", "home-claims.html", "commercial.html"],
-        "advice": ("advice.html#after-a-flood", "What to do after a flood or leak: our step-by-step checklist"),
+        "advice": ("a-flood.html", "What to do after a flood or leak: our step-by-step checklist"),
     },
     # ------------------------------------------------------------------ escape of water
     {
@@ -174,7 +174,7 @@ SERVICE_PAGES = [
              "<p>Turn off the water at the stopcock, switch off electrics in affected areas if it's safe to do so, and photograph the damage. Then tell your insurer and contact us as early as you can.</p>"),
         ],
         "related": ["flood.html", "home-claims.html", "landlords.html", "fire.html"],
-        "advice": ("advice.html#after-a-flood", "What to do after a flood or leak: our step-by-step checklist"),
+        "advice": ("a-flood.html", "What to do after a flood or leak: our step-by-step checklist"),
     },
     # ------------------------------------------------------------------ business interruption
     {

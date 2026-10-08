@@ -37,6 +37,7 @@ ROUTES = {
     "faq.html": "faq/",
     "contact.html": "contact/",
     "surrey.html": "loss-assessors-surrey/",
+    "manchester.html": "loss-assessors-manchester/",
 }
 ROUTES.update({s["key"]: s["route"] for s in SERVICE_PAGES})
 
@@ -344,6 +345,7 @@ FOOTER = f"""  <footer class="site-footer">
           <h3>Claims</h3>
           <ul>
             <li><a href="surrey.html">Loss assessors in Surrey</a></li>
+            <li><a href="manchester.html">Loss assessors in Manchester</a></li>
             <li><a href="home-claims.html">Homeowners</a></li>
             <li><a href="commercial.html">Businesses</a></li>
             <li><a href="landlords.html">Landlords</a></li>
@@ -600,9 +602,9 @@ def home():
     faq4 = [faq_lookup(q) for q in ["What is a loss assessor?", "My insurer is sending a loss adjuster. Why do I need you?",
                                      "When should I contact a loss assessor?", "How long will my claim take?"]]
 
-    guides = [("fire", "What to do after a fire", "A step-by-step checklist for the first hours and days after a fire.", "advice.html#after-a-fire"),
-              ("droplet", "What to do after a flood or leak", "How to stay safe, limit the damage and protect your claim.", "advice.html#after-a-flood"),
-              ("help", "Answering your loss adjuster", "The questions they'll ask, why they ask them and how to answer.", "advice.html#loss-adjuster-questions")]
+    guides = [("fire", "What to do after a fire", "A step-by-step checklist for the first hours and days after a fire.", "a-fire.html"),
+              ("droplet", "What to do after a flood or leak", "How to stay safe, limit the damage and protect your claim.", "a-flood.html"),
+              ("help", "Answering your loss adjuster", "The questions they'll ask, why they ask them and how to answer.", "a-questions.html")]
     guides_html = '\n'.join(f"""          <article class="card">
             {ic(i, "card-icon")}
             <h3>{t}</h3>
@@ -688,7 +690,7 @@ def home():
             <p>A loss adjuster is appointed and paid by your insurance company. Their job is to investigate your claim and recommend a settlement from the insurer's point of view.</p>
             <p>A loss assessor works for you. We prepare and negotiate your claim, deal with the adjuster on your behalf and make sure nothing you're entitled to is missed.</p>
           </div>
-          <p style="margin-top: 24px;">{arrow_link("advice.html#adjuster-vs-assessor", "Adjusters and assessors explained")}</p>
+          <p style="margin-top: 24px;">{arrow_link("a-vs.html", "Adjusters and assessors explained")}</p>
         </div>
         <div>
           {COMPARE_TABLE}
@@ -1016,7 +1018,7 @@ def about():
     offices_html = '\n'.join(f"""          <article class="card">
             {ic("pin")}
             <h3 style="margin-top: 18px;">{t}</h3>
-            <p>{a}</p>{'' if t != "Southern office" else chr(10) + "            " + arrow_link("surrey.html", "Loss assessors in Surrey")}
+            <p>{a}</p>{chr(10) + "            " + arrow_link("surrey.html" if t == "Southern office" else "manchester.html", "Loss assessors in Surrey" if t == "Southern office" else "Loss assessors in Manchester")}
           </article>""" for t, a in offices)
 
     main = page_hero(
@@ -1107,7 +1109,159 @@ def checklist(items):
     return '\n'.join(f'            <li><div><strong>{t}</strong><span>{d}</span></div></li>' for t, d in items)
 
 
+ARTICLES = {
+    "a-fire.html": ("advice/what-to-do-after-a-fire/", "fire", "What to do after a fire",
+                    "A step-by-step checklist for the first hours and days after a fire, and the mistakes to avoid."),
+    "a-flood.html": ("advice/what-to-do-after-a-flood/", "droplet", "What to do after a flood or leak",
+                     "How to stay safe, limit the damage and protect your claim after flood or escape of water."),
+    "a-questions.html": ("advice/loss-adjuster-questions/", "help", "Questions your loss adjuster may ask",
+                         "What a loss adjuster will ask you, why they ask it and how to answer."),
+    "a-vs.html": ("advice/loss-adjuster-vs-loss-assessor/", "scale", "Loss adjuster vs loss assessor",
+                  "Who they work for, what they do and why it pays to have your own representation."),
+    "a-under.html": ("advice/underinsurance/", "pound", "Underinsurance explained",
+                     "How being underinsured can reduce your settlement, and how to check your cover."),
+    "a-glossary.html": ("advice/insurance-claim-glossary/", "file", "Insurance claim glossary",
+                        "Plain-English definitions of the terms you'll hear during a claim."),
+}
+ROUTES.update({k: v[0] for k, v in ARTICLES.items()})
+
+PUBLISHED = "2026-10-08"
+
+
+def article_page(key, title, description, h1, lead, body, related, image=None, extra_schema=None):
+    route, icon, name, _ = ARTICLES[key]
+    main = page_hero("Advice centre", h1, lead, image=image)
+    main += body
+    rel = "\n".join(
+        f'          <a class="tile" href="{k}">{ic(ARTICLES[k][1])}<strong>{ARTICLES[k][2]}</strong><span>{ARTICLES[k][3]}</span></a>'
+        for k in related)
+    main += f"""
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="head-row">
+          <div class="section-head">
+            <span class="eyebrow">Keep reading</span>
+            <h2>More from our advice centre</h2>
+          </div>
+          {arrow_link("advice.html", "All guides")}
+        </div>
+        <div class="grid-3">
+{rel}
+        </div>
+      </div>
+    </section>
+{cta("Need help with your claim?", "Speak to an experienced loss assessor for free, no-obligation advice. No win, no fee.")}"""
+    schema = [{
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": name,
+        "description": description,
+        "url": SITE + "/" + route,
+        "image": SITE + "/assets/img/" + (image[0] + "-1100.webp" if image else "og-image.jpg"),
+        "datePublished": PUBLISHED,
+        "dateModified": __import__("datetime").date.today().isoformat(),
+        "author": {"@type": "Organization", "name": "Independent Claims Consultants", "url": SITE + "/"},
+        "publisher": {"@type": "Organization", "name": "Independent Claims Consultants",
+                      "logo": {"@type": "ImageObject", "url": SITE + "/assets/apple-touch-icon.png"}},
+    }] + (extra_schema or [])
+    page(key, title, description, main, schema=schema, crumb=name, crumb_parent=("advice.html", "Advice centre"))
+
+
+def mistakes(items):
+    return "\n".join(f"            <li><div><strong>{t}</strong><span>{d}</span></div></li>" for t, d in items)
+
+
 def advice():
+    # ------------------------------------------------------------------ hub
+    cards = "\n".join(f"""          <article class="card">
+            {ic(icon, "card-icon")}
+            <h3>{name}</h3>
+            <p>{blurb}</p>
+            {arrow_link(k, "Read the guide")}
+          </article>""" for k, (route, icon, name, blurb) in ARTICLES.items())
+    claim_links = "\n".join(
+        f'          <a class="tile" href="{k}">{ic(CARD[k][0])}<strong>{CARD[k][1]}</strong><span>{CARD[k][2]}</span></a>'
+        for k in ["fire.html", "flood.html", "escape.html", "storm.html"])
+    main = page_hero(
+        "Advice centre", "Practical help <span>for your claim</span>",
+        "Clear guidance on what to do after a fire or flood, how to deal with your insurer's loss adjuster, and the terms you'll come across along the way.",
+        image=("policy-woman", "A smiling female adviser holding a policy document"))
+    main += f"""
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Guides</span>
+          <h2>Insurance claim guides</h2>
+          <p>Written by our loss assessors to help you protect your claim from day one.</p>
+        </div>
+        <div class="grid-3">
+{cards}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="head-row">
+          <div class="section-head">
+            <span class="eyebrow">By claim type</span>
+            <h2>Help with a specific claim</h2>
+          </div>
+          {arrow_link("claims.html", "All claims we handle")}
+        </div>
+        <div class="grid-4">
+{claim_links}
+        </div>
+      </div>
+    </section>
+{cta("Need help with your claim?", "Speak to an experienced loss assessor for free, no-obligation advice. No win, no fee.")}"""
+    page("advice.html", "Insurance Claim Advice | Independent Claims Consultants",
+         "Practical guides from our loss assessors: what to do after a fire or flood, answering your loss adjuster, underinsurance and a glossary of claim terms.",
+         main, crumb="Advice centre")
+
+    def check_body(intro_head, intro, items, img_spec, extra_head, extra_intro, extra_items, claim_links):
+        intro_html = "\n".join(f"            <p>{p}</p>" for p in intro)
+        links = "".join(arrow_link(k, t) for k, t in claim_links)
+        return f"""
+
+    <section class="section">
+      <div class="container split top">
+        <div>
+          <div class="section-head">
+            <span class="eyebrow">Checklist</span>
+            <h2>{intro_head}</h2>
+          </div>
+          <div class="prose">
+{intro_html}
+          </div>
+          <button type="button" class="btn btn-ghost print-btn no-print" data-print>{svg("printer")} Print this checklist</button>
+          {img(*img_spec, cls="block-img no-print")}
+        </div>
+        <ol class="checklist">
+{checklist(items)}
+        </ol>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container split top">
+        <div>
+          <div class="section-head">
+            <span class="eyebrow">Avoid these</span>
+            <h2>{extra_head}</h2>
+            <p>{extra_intro}</p>
+          </div>
+          <p class="block-links">{links}</p>
+        </div>
+        <ul class="checklist ticklist">
+{mistakes(extra_items)}
+        </ul>
+      </div>
+    </section>"""
+
+    # ------------------------------------------------------------------ after a fire
     fire = [
         ("Make sure everyone is safe", "Don't go back inside until the fire service tells you it's safe."),
         ("Tell your insurer", "Report the fire as soon as you can and note your claim reference."),
@@ -1117,6 +1271,29 @@ def advice():
         ("Don't rush into an offer", "Don't accept a settlement or sign anything until you understand your full entitlement."),
         ("Speak to a loss assessor early", "Ideally before the loss adjuster visits, so you're represented from the start."),
     ]
+    fire_mistakes = [
+        ("Throwing damaged items away", "Without the items, or at least clear photos, it's much harder to prove what was lost."),
+        ("Underestimating smoke damage", "Smoke and soot spread well beyond the fire itself and can affect rooms that look untouched."),
+        ("Starting permanent repairs too soon", "Emergency work is fine, but get permanent repairs agreed before they start."),
+        ("Accepting the first offer", "An early offer may not reflect everything your policy covers."),
+        ("Waiting to get advice", "Once the loss adjuster has reported, it can be much harder to challenge their findings."),
+    ]
+    article_page(
+        "a-fire.html", "What to Do After a House Fire: Checklist | Independent Claims Consultants",
+        "What to do after a house or business fire: a step-by-step checklist to keep you safe and protect your insurance claim, plus the mistakes to avoid.",
+        "What to do <span>after a fire</span>",
+        "The first few days after a fire are overwhelming. These steps protect you, your property and your insurance claim.",
+        check_body(
+            "The first steps after a fire",
+            ["After a fire, safety comes first. Once everyone is safe, the decisions you make in the first few days can have a direct impact on the outcome of your insurance claim.",
+             "Work through this checklist, keep a note of everything you do and spend, and get advice before agreeing anything with your insurer."],
+            fire, ("fire-hose", "Firefighters directing a hose at a fire"),
+            "Common mistakes after a fire",
+            "These are the mistakes we see most often, and each one can reduce what you receive.",
+            fire_mistakes, [("fire.html", "Fire damage claims")]),
+        ["a-questions.html", "a-vs.html", "a-under.html"])
+
+    # ------------------------------------------------------------------ after a flood
     flood = [
         ("Stay safe", "Avoid floodwater, which can be contaminated. Only turn off the electricity at the mains if it's safe to do so."),
         ("Stop the water if you can", "For a burst pipe or leak, turn off the water at the stopcock."),
@@ -1126,6 +1303,29 @@ def advice():
         ("Don't start repairs too soon", "Get emergency drying and urgent works agreed first, and keep every receipt."),
         ("Get your own representation", "A loss assessor makes sure your property is properly dried and your claim covers all the damage."),
     ]
+    flood_mistakes = [
+        ("Repairing before the building is dry", "Repairs should wait until moisture readings confirm the property is dry, or damp and mould can follow."),
+        ("Cleaning up before photographing", "Record the damage first. Photos and videos are some of your best evidence."),
+        ("Claiming under the wrong section", "Flood from outside and escape of water from inside are treated differently by most policies."),
+        ("Not keeping receipts", "Emergency costs such as pumps, dehumidifiers and temporary repairs can usually be claimed."),
+        ("Not checking alternative accommodation cover", "If your home can't be lived in, your policy may pay for somewhere to stay."),
+    ]
+    article_page(
+        "a-flood.html", "What to Do After a Flood or Leak | Independent Claims Consultants",
+        "What to do after a flood, burst pipe or leak: a step-by-step checklist to stay safe, limit the damage and protect your insurance claim.",
+        "What to do <span>after a flood or leak</span>",
+        "Water damage spreads quickly. Acting fast limits the damage and protects your insurance claim.",
+        check_body(
+            "The first steps after water damage",
+            ["Whether the water came from a river, heavy rain or a burst pipe, the first priority is safety. Floodwater can be contaminated, and water and electricity are a dangerous mix.",
+             "Then concentrate on stopping further damage and recording what's happened. Proper drying matters as much as the repairs themselves."],
+            flood, ("water-damage", "Standing water across the floor of an empty room"),
+            "Common mistakes after a flood or leak",
+            "Avoid these and you'll protect both your property and your claim.",
+            flood_mistakes, [("flood.html", "Flood damage claims"), ("escape.html", "Escape of water claims")]),
+        ["a-fire.html", "a-under.html", "a-questions.html"])
+
+    # ------------------------------------------------------------------ loss adjuster questions
     questions = [
         ("What happened?", "To compare your account with what your policy covers.",
          "Stick to the facts you know. Don't guess or exaggerate.",
@@ -1139,6 +1339,12 @@ def advice():
         ("How much is your property insured for?", "To check whether you're underinsured, which can reduce your settlement.",
          "Have your policy schedule to hand and answer accurately.",
          "If underinsurance is raised, we challenge it and fight for every penny you're entitled to."),
+        ("Have you started any repairs?", "To check any work was necessary and the costs are reasonable.",
+         "Explain any emergency work you've had done and provide photos and receipts.",
+         "We make sure reasonable emergency costs are included in your claim."),
+        ("Have you made any previous claims?", "To check your claims history and what you told the insurer when you took out the policy.",
+         "Answer honestly and accurately.",
+         "We help make sure your answers are complete and correct."),
     ]
     q_html = '\n'.join(f"""          <article class="card">
             <h3>"{q}"</h3>
@@ -1146,67 +1352,27 @@ def advice():
             <div class="qa-part"><b>How to answer</b><p>{a}</p></div>
             <div class="qa-part"><b>How we help</b><p>{h}</p></div>
           </article>""" for q, w, a, h in questions)
-    glossary = [
-        ("Loss adjuster", "A claims specialist appointed and paid by your insurer to investigate a claim and recommend a settlement."),
-        ("Loss assessor", "A specialist appointed by you, the policyholder, to prepare, manage and negotiate your claim."),
-        ("Policyholder", "The person or business named on the insurance policy."),
-        ("Policy schedule", "The document summarising your cover, sums insured and excesses."),
-        ("Excess", "The amount you pay towards a claim before your insurer pays the rest."),
-        ("Sum insured", "The most your insurer will pay under a section of your policy."),
-        ("Underinsurance", "When the sum insured is less than the true cost to rebuild or replace."),
-        ("Reinstatement", "Restoring the property to the condition it was in before the loss."),
-        ("Escape of water", "Damage caused by water leaking from pipes, tanks or appliances."),
-        ("Business interruption", "Cover for lost income and extra costs while a business recovers from damage."),
-        ("Alternative accommodation", "Temporary housing paid for under your policy while your home can't be lived in."),
-        ("Loss of rent", "Cover for rent a landlord loses while a damaged property can't be let."),
-        ("Liability", "Your insurer accepting that the loss is covered and that it must pay."),
-        ("Settlement", "The final amount agreed and paid by your insurer."),
+    prepare = [
+        ("Your policy schedule and wording", "So you know what you're covered for, and for how much."),
+        ("Photos and videos of the damage", "Taken before anything was moved, cleaned or repaired."),
+        ("A list of damaged and lost items", "With approximate ages and values where you know them."),
+        ("Receipts for emergency costs", "Such as boarding up, drying equipment and temporary accommodation."),
+        ("A note of what happened", "Dates, times and a simple timeline while it's fresh in your mind."),
+        ("Your loss assessor", "If you've appointed one, they can attend the visit with you."),
     ]
-    gl_html = '\n'.join(f'          <div><dt>{t}</dt><dd>{d}</dd></div>' for t, d in glossary)
+    article_page(
+        "a-questions.html", "Questions Your Loss Adjuster May Ask | Independent Claims Consultants",
+        "The questions a loss adjuster is likely to ask after a fire, flood or other insurance claim, why they ask them and how to answer, plus how to prepare for the visit.",
+        "Questions your loss adjuster <span>may ask</span>",
+        "A loss adjuster's questions help your insurer decide whether to pay, and how much. Here's what to expect and how to prepare.",
+        f"""
 
-    check_imgs = {
-        "after-a-fire": ("fire-hose", "Firefighters directing a hose at a fire"),
-        "after-a-flood": ("water-damage", "Standing water across the floor of an empty room"),
-    }
-
-    def check_section(id_, title, intro, items, soft):
-        return f"""
-    <section class="section{' section-soft' if soft else ''}" id="{id_}">
-      <div class="container split top">
-        <div>
-          <div class="section-head">
-            <span class="eyebrow">Checklist</span>
-            <h2>{title}</h2>
-            <p>{intro}</p>
-          </div>
-          <button type="button" class="btn btn-ghost print-btn no-print" data-print>{svg("printer")} Print this page</button>
-          {img(*check_imgs[id_], cls="block-img no-print")}
-        </div>
-        <ol class="checklist">
-{checklist(items)}
-        </ol>
-      </div>
-    </section>"""
-
-    main = page_hero(
-        "Advice centre", "Practical help <span>for your claim</span>",
-        "Clear guidance on what to do after a fire or flood, how to deal with your insurer's loss adjuster, and the terms you'll come across along the way.",
-        image=("policy-woman", "A smiling female adviser holding a policy document"),
-        extra=jump([("after-a-fire", "After a fire"), ("after-a-flood", "After a flood or leak"),
-              ("loss-adjuster-questions", "Your loss adjuster's questions"), ("adjuster-vs-assessor", "Adjuster vs assessor"),
-              ("underinsurance", "Underinsurance"), ("glossary", "Glossary")]))
-    main += check_section("after-a-fire", "What to do after a fire",
-                          "The first few days after a fire are overwhelming. These steps protect you, your property and your claim.", fire, False)
-    main += check_section("after-a-flood", "What to do after a flood or leak",
-                          "Water damage spreads quickly. Acting fast limits the damage and protects your claim.", flood, True)
-    main += f"""
-
-    <section class="section" id="loss-adjuster-questions">
+    <section class="section">
       <div class="container">
         <div class="section-head">
-          <span class="eyebrow">Dealing with your loss adjuster</span>
-          <h2>Questions your loss adjuster may ask</h2>
-          <p>A loss adjuster's questions help your insurer decide whether to pay, and how much. Here's what to expect.</p>
+          <span class="eyebrow">The visit</span>
+          <h2>What they'll ask, and why</h2>
+          <p>Answer clearly and honestly, stick to the facts, and don't guess. If you're not sure, say so and come back to them.</p>
         </div>
         <div class="grid-2">
 {q_html}
@@ -1214,12 +1380,41 @@ def advice():
       </div>
     </section>
 
-    <section class="section section-soft" id="adjuster-vs-assessor">
+    <section class="section section-soft">
+      <div class="container split top">
+        <div>
+          <div class="section-head">
+            <span class="eyebrow">Be prepared</span>
+            <h2>Before the loss adjuster visits</h2>
+            <p>Having these ready makes the visit smoother and your claim stronger.</p>
+          </div>
+          {arrow_link("a-vs.html", "Why your own representation matters")}
+        </div>
+        <ul class="checklist ticklist">
+{mistakes(prepare)}
+        </ul>
+      </div>
+    </section>""",
+        ["a-vs.html", "a-under.html", "a-fire.html"],
+        image=("inspector", "An inspector in a hard hat checking a window"))
+
+    # ------------------------------------------------------------------ adjuster vs assessor
+    vs_faqs = [faq_lookup(q) for q in ["What is a loss assessor?", "What does a loss adjuster do?",
+                                        "My insurer is sending a loss adjuster. Why do I need you?",
+                                        "When should I contact a loss assessor?"]]
+    article_page(
+        "a-vs.html", "Loss Adjuster vs Loss Assessor: The Difference | Independent Claims Consultants",
+        "What's the difference between a loss adjuster and a loss assessor? Who they work for, what they do, who pays them and why it pays to appoint your own.",
+        "Loss adjuster <span>vs loss assessor</span>",
+        "They sound alike, but they work for different people. Here's the difference, and why it matters for your claim.",
+        f"""
+
+    <section class="section">
       <div class="container split top wide-right">
         <div>
           <div class="section-head">
             <span class="eyebrow">Know the difference</span>
-            <h2>Loss adjuster vs loss assessor</h2>
+            <h2>Two experts, two sides</h2>
           </div>
           <div class="prose">
             <p>A loss adjuster is appointed and paid by your insurer to investigate a complex or contentious claim. They establish the cause of the loss, check whether it's covered by your policy and report back with a recommended settlement. They review your claim from the insurer's point of view.</p>
@@ -1233,12 +1428,49 @@ def advice():
       </div>
     </section>
 
-    <section class="section" id="underinsurance">
+    <section class="section section-soft">
       <div class="container split top">
         <div>
           <div class="section-head">
-            <span class="eyebrow">Underinsurance</span>
-            <h2>What if I'm underinsured?</h2>
+            <span class="eyebrow">FAQs</span>
+            <h2>Common questions</h2>
+          </div>
+          {arrow_link("faq.html", "See all FAQs")}
+        </div>
+        <div class="faq">
+{faq_items(vs_faqs)}
+        </div>
+      </div>
+    </section>""",
+        ["a-questions.html", "a-under.html", "a-glossary.html"],
+        image=("adviser-woman", "A female adviser going through paperwork with clients at a table"),
+        extra_schema=[{
+            "@context": "https://schema.org", "@type": "FAQPage",
+            "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer",
+                            "text": re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", a)).strip()}} for q, a in vs_faqs]}])
+
+    # ------------------------------------------------------------------ underinsurance
+    check_cover = [
+        ("Insure for the rebuild cost", "Your buildings sum insured should reflect what it would cost to rebuild, not the market value."),
+        ("Include everything", "Outbuildings, garages, walls and extensions all add to the rebuild cost."),
+        ("Value your contents properly", "Go room by room. Most people underestimate the cost of replacing everything."),
+        ("List high-value items", "Jewellery, art and other valuables above the single-item limit usually need to be named."),
+        ("Review every year", "Building costs and your belongings change. Check your sums insured at each renewal."),
+        ("Get professional advice", "For larger or older properties, a surveyor's rebuild valuation is worth considering."),
+    ]
+    article_page(
+        "a-under.html", "Underinsurance Explained | Independent Claims Consultants",
+        "What underinsurance is, how it can reduce your insurance settlement, a worked example, and how to check you're properly covered.",
+        "Underinsurance <span>explained</span>",
+        "Being underinsured can reduce your settlement, sometimes severely. Here's how it works and how to protect yourself.",
+        f"""
+
+    <section class="section">
+      <div class="container split top">
+        <div>
+          <div class="section-head">
+            <span class="eyebrow">What it means</span>
+            <h2>What is underinsurance?</h2>
           </div>
           <div class="prose">
             <p>You're underinsured when your sum insured is less than it would really cost to rebuild your property or replace its contents. Your insurer can then reduce your settlement, sometimes severely, and in cases of gross underinsurance it can reject the claim altogether.</p>
@@ -1247,30 +1479,69 @@ def advice():
           </div>
         </div>
         <aside class="card">
-          {ic("help", "card-icon")}
-          <h3>Has your claim been refused?</h3>
-          <p>An insurer can refuse a claim, but that doesn't mean it's right. We can represent you and fight for the claim to be accepted.</p>
-          {arrow_link("claims.html#disputed", "Refused and disputed claims")}
+          {ic("calc", "card-icon")}
+          <h3>A worked example</h3>
+          <p>Some policies include an "average" condition. Say your home would cost £300,000 to rebuild, but it's insured for £200,000: two-thirds of its true value.</p>
+          <p style="margin-top: 12px;">If a fire then causes £60,000 of damage, an insurer applying average might pay only two-thirds of the claim: <strong>£40,000</strong>, leaving you £20,000 short.</p>
         </aside>
       </div>
     </section>
 
-    <section class="section section-soft" id="glossary">
-      <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">Glossary</span>
-          <h2>Insurance claim terms explained</h2>
-          <p>Plain-English definitions of the words you're likely to hear during your claim.</p>
+    <section class="section section-soft">
+      <div class="container split top">
+        <div>
+          <div class="section-head">
+            <span class="eyebrow">Protect yourself</span>
+            <h2>How to check you're properly insured</h2>
+            <p>A few checks at renewal can save a lot of trouble if you ever need to claim.</p>
+          </div>
+          {arrow_link("claims.html#disputed", "Help with refused or reduced claims")}
         </div>
+        <ul class="checklist ticklist">
+{mistakes(check_cover)}
+        </ul>
+      </div>
+    </section>""",
+        ["a-vs.html", "a-questions.html", "a-glossary.html"],
+        image=("homes-terrace", "Victorian terraced houses on a street in Oxford"))
+
+    # ------------------------------------------------------------------ glossary
+    glossary = [
+        ("Loss adjuster", "A claims specialist appointed and paid by your insurer to investigate a claim and recommend a settlement."),
+        ("Loss assessor", "A specialist appointed by you, the policyholder, to prepare, manage and negotiate your claim."),
+        ("Policyholder", "The person or business named on the insurance policy."),
+        ("Policy schedule", "The document summarising your cover, sums insured and excesses."),
+        ("Excess", "The amount you pay towards a claim before your insurer pays the rest."),
+        ("Sum insured", "The most your insurer will pay under a section of your policy."),
+        ("Underinsurance", "When the sum insured is less than the true cost to rebuild or replace."),
+        ("Average", "A policy condition that reduces a claim in proportion when you're underinsured."),
+        ("Reinstatement", "Restoring the property to the condition it was in before the loss."),
+        ("Escape of water", "Damage caused by water leaking from pipes, tanks or appliances."),
+        ("Trace and access", "Cover for finding the source of a leak and repairing the damage caused getting to it."),
+        ("Business interruption", "Cover for lost income and extra costs while a business recovers from damage."),
+        ("Indemnity period", "The longest period a business interruption policy will pay for after the damage."),
+        ("Alternative accommodation", "Temporary housing paid for under your policy while your home can't be lived in."),
+        ("Loss of rent", "Cover for rent a landlord loses while a damaged property can't be let."),
+        ("Liability", "Your insurer accepting that the loss is covered and that it must pay."),
+        ("Proof of ownership", "Evidence that you owned an item, such as receipts, statements or photos."),
+        ("Settlement", "The final amount agreed and paid by your insurer."),
+    ]
+    gl_html = '\n'.join(f'          <div><dt>{t}</dt><dd>{d}</dd></div>' for t, d in glossary)
+    article_page(
+        "a-glossary.html", "Insurance Claim Glossary | Independent Claims Consultants",
+        "Plain-English definitions of insurance claim terms, from loss adjuster and excess to average, trace and access, indemnity period and settlement.",
+        "Insurance claim <span>glossary</span>",
+        "Plain-English definitions of the words you're likely to hear during your claim.",
+        f"""
+
+    <section class="section">
+      <div class="container">
         <dl class="glossary">
 {gl_html}
         </dl>
       </div>
-    </section>
-{cta("Need help with your claim?", "Speak to an experienced loss assessor for free, no-obligation advice. No win, no fee.")}"""
-    page("advice.html", "Insurance Claim Advice | Independent Claims Consultants",
-         "What to do after a fire or flood, how to answer your loss adjuster's questions, underinsurance explained and a glossary of insurance claim terms.",
-         main, crumb="Advice centre")
+    </section>""",
+        ["a-vs.html", "a-under.html", "a-questions.html"])
 
 
 # ---------------------------------------------------------------- FAQ
@@ -1785,6 +2056,198 @@ def surrey():
          main, schema=schema, crumb="Loss assessors in Surrey")
 
 
+# ---------------------------------------------------------------- Manchester & Cheshire (head office)
+
+MANCHESTER_AREAS = [
+    "Manchester", "Salford", "Trafford", "Altrincham", "Hale", "Sale", "Stockport", "Cheadle",
+    "Wilmslow", "Knutsford", "Macclesfield", "Warrington", "Bolton", "Wigan", "Oldham", "Chester",
+]
+
+
+def manchester():
+    ROUTES["manchester.html"] = "loss-assessors-manchester/"
+    team = [
+        ("NC", "Nic Castleton", "Managing Director",
+         "\"Your specialist loss assessor will ensure your claim is processed as quickly as possible, with everything in place ready for the moment liability is accepted.\""),
+        ("NH", "Nigel Hennerley", "Loss Assessor",
+         "\"You will have peace of mind knowing your loss assessor will guide you through the entire claims process.\""),
+    ]
+    team_html = '\n'.join(f"""          <article class="card member">
+            <span class="avatar" aria-hidden="true">{i}</span>
+            <h3>{n}</h3>
+            <p class="role">{r}</p>
+            <p class="office">{svg("pin")}Head office, Hale</p>
+            <p>{q}</p>
+          </article>""" for i, n, r, q in team)
+    claims = [
+        ("flood", "Flood", "Greater Manchester has seen serious flooding in recent years, including the Boxing Day floods of 2015 and Storm Christoph in 2021. We manage flood claims from drying out to final settlement.", "flood.html"),
+        ("droplet", "Escape of water", "Burst pipes and leaks are among the most common home insurance claims, and older terraced and Victorian properties can hide damage under floors and behind walls.", "escape.html"),
+        ("fire", "Fire and smoke", "From kitchen fires to serious house fires, we guide you through every decision and make sure smoke and soot damage is fully included in your claim.", "fire.html"),
+        ("storm", "Storm damage", "High winds and heavy rain can damage roofs, chimneys and walls. We arrange emergency works and challenge unfair wear and tear decisions.", "storm.html"),
+        ("briefcase", "Business interruption", "For businesses across the region, our forensic and consequential loss accountants calculate lost income while your premises are restored.", "bi.html"),
+        ("key", "Landlord claims", "If a let property is damaged, we handle the claim and the reinstatement, and claim for the rent you lose while it can't be let.", "landlords.html"),
+    ]
+    claims_html = '\n'.join(f"""          <article class="card">
+            {ic(i, "card-icon")}
+            <h3>{t}</h3>
+            <p>{p}</p>
+            {arrow_link(href, "Find out more")}
+          </article>""" for i, t, p, href in claims)
+    areas_html = ''.join(f'<li>{a}</li>' for a in MANCHESTER_AREAS)
+    local_faqs = [
+        ("Do you cover my part of Greater Manchester or Cheshire?",
+         f"<p>Our head office in Hale works with clients across Greater Manchester, Cheshire and the surrounding areas. If you're not sure whether we cover your town, call us on {PHONE} and we'll let you know.</p>"),
+        ("Will a loss assessor visit my property?",
+         "<p>Yes. Your loss assessor will inspect the damage, review your policy and, where it helps your claim, meet your insurer's loss adjuster at the property.</p>"),
+    ]
+    faqs = local_faqs + [faq_lookup(q) for q in ["When should I contact a loss assessor?", "How much do you charge?"]]
+    case = CASES[3]
+    maps = "https://www.google.com/maps/search/?api=1&query=" + "Arco+House+86+Woburn+Drive+Hale+WA15+8NE"
+    quick = """
+        <ul class="creds">
+          <li><strong>Head office</strong><span>Arco House, Hale, near Altrincham</span></li>
+          <li><strong>Local loss assessors</strong><span>Nic Castleton and Nigel Hennerley</span></li>
+          <li><strong>No win, no fee</strong><span>Free, no-obligation assessment</span></li>
+        </ul>"""
+    main = page_hero(
+        "Head office · Hale, Cheshire", "Loss assessors <span>in Manchester and Cheshire</span>",
+        "Our head office in Hale helps homeowners, landlords and businesses across Greater Manchester and Cheshire with fire, flood and other insurance claims. We work for you, not your insurer.",
+        quick, image=("manchester-street", "A Manchester street with Victorian buildings and modern towers"))
+    main += f"""
+
+    <section class="section">
+      <div class="container split top">
+        <div>
+          <div class="section-head">
+            <span class="eyebrow">Local and independent</span>
+            <h2>Your local loss assessors in the North West</h2>
+          </div>
+          <div class="prose">
+            <p>When a fire, flood or escape of water damages your property, your insurer appoints a loss adjuster to assess the claim on its behalf. Our loss assessors work for you instead, preparing and negotiating your claim so you receive everything you're entitled to.</p>
+            <p>Independent Claims Consultants has managed insurance claims for more than 30 years, and our head office is in Hale, near Altrincham. Being close by means your loss assessor can inspect the damage, meet your insurer's loss adjuster at the property and keep an eye on the repairs.</p>
+            <p>Our team is led by Managing Director Nic Castleton, whose family has worked in loss assessment for over 100 years and helped establish the Institute of Public Loss Assessors.</p>
+          </div>
+        </div>
+        <aside class="side-card">
+          <h3>Our head office</h3>
+          <ul class="contact-list">
+            <li>{ic("pin")}<div><strong>Arco House, 86 Woburn Drive</strong><span>Hale, Altrincham, Cheshire WA15 8NE</span></div></li>
+            <li>{ic("phone")}<a href="{TEL}"><strong>{PHONE}</strong><span>Monday to Friday, 9am to 5pm</span></a></li>
+            <li>{ic("mail")}<a href="mailto:{EMAIL}"><strong>{EMAIL}</strong><span>Email us any time</span></a></li>
+          </ul>
+          <p style="margin-top: 20px;"><a class="link-arrow" href="{maps}" target="_blank" rel="noopener">Get directions {svg("arrow")}</a></p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="areas">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Areas we cover</span>
+          <h2>Helping clients across Greater Manchester and Cheshire</h2>
+          <p>From our head office in Hale we work with homeowners, landlords and businesses throughout the region, including:</p>
+        </div>
+        <ul class="areas">{areas_html}</ul>
+        <p class="note">{svg("info")}<span>Not sure if we cover your area? Call us on <a href="{TEL}"><strong>{PHONE}</strong></a> and we'll let you know.</span></p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Claims we handle</span>
+          <h2>Common claims we help with in the North West</h2>
+        </div>
+        <div class="grid-3">
+{claims_html}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container split top">
+        <div>
+          <div class="section-head">
+            <span class="eyebrow">A local case</span>
+            <h2>Back home after a house fire in Manchester</h2>
+          </div>
+          {arrow_link("fire.html", "Fire damage claims")}
+        </div>
+        <article class="card">
+          <p class="case-meta">{case[0]}</p>
+          <h3>{case[1]}</h3>
+          <p>{case[2]}</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="head-row">
+          <div class="section-head">
+            <span class="eyebrow">Your local team</span>
+            <h2>Meet our head office team</h2>
+          </div>
+          {arrow_link("about.html#team", "Meet the whole team")}
+        </div>
+        <div class="grid-2">
+{team_html}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container split top">
+        <div>
+          <div class="section-head">
+            <span class="eyebrow">FAQs</span>
+            <h2>Questions from local clients</h2>
+          </div>
+          {arrow_link("faq.html", "See all FAQs")}
+        </div>
+        <div class="faq">
+{faq_items(faqs)}
+        </div>
+      </div>
+    </section>
+{cta("Talk to a loss assessor in the North West", "Get your first consultation free with our head office team. No win, no fee.")}"""
+    schema = [
+        {
+            "@context": "https://schema.org",
+            "@type": "ProfessionalService",
+            "name": "Independent Claims Consultants – Head Office",
+            "url": SITE + "/" + ROUTES["manchester.html"],
+            "image": SITE + "/assets/img/og-image.jpg",
+            "telephone": "+44 161 904 7800",
+            "email": EMAIL,
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Arco House, 86 Woburn Drive",
+                "addressLocality": "Hale, Altrincham",
+                "addressRegion": "Cheshire",
+                "postalCode": "WA15 8NE",
+                "addressCountry": "GB",
+            },
+            "openingHours": "Mo-Fr 09:00-17:00",
+            "areaServed": [{"@type": "AdministrativeArea", "name": "Greater Manchester"},
+                           {"@type": "AdministrativeArea", "name": "Cheshire"}],
+            "parentOrganization": {"@type": "Organization", "name": "Independent Claims Consultants", "url": SITE + "/"},
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {"@type": "Question", "name": q,
+                 "acceptedAnswer": {"@type": "Answer", "text": re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", a)).strip()}}
+                for q, a in faqs
+            ],
+        },
+    ]
+    page("manchester.html", "Loss Assessors in Manchester &amp; Cheshire | Independent Claims Consultants",
+         "Independent loss assessors with a head office in Hale, Cheshire, helping clients across Greater Manchester and Cheshire with fire and flood claims. No win, no fee.",
+         main, schema=schema, crumb="Loss assessors in Manchester and Cheshire")
+
+
 # ---------------------------------------------------------------- 404, redirects, sitemap, robots
 
 def not_found():
@@ -1854,6 +2317,7 @@ if __name__ == "__main__":
     faq()
     contact()
     surrey()
+    manchester()
     for s in SERVICE_PAGES:
         service_page(s)
     not_found()
