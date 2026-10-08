@@ -1022,7 +1022,7 @@ def about():
     main = page_hero(
         "About us", "On your side for <span>over 30 years.</span>",
         "Independent Claims Consultants helps homeowners, landlords and businesses across the UK recover from fire, flood and other disasters, and get everything they're entitled to.",
-        creds, image=("adviser-couple", "An adviser going through paperwork with an older couple in their living room"))
+        creds, image=("adviser-woman", "A female adviser going through paperwork with clients at a table"))
     main += f"""
 
     <section class="section">
@@ -1191,7 +1191,7 @@ def advice():
     main = page_hero(
         "Advice centre", "Practical help <span>for your claim</span>",
         "Clear guidance on what to do after a fire or flood, how to deal with your insurer's loss adjuster, and the terms you'll come across along the way.",
-        image=("agent-documents", "A couple discussing documents with an adviser across a table"),
+        image=("policy-woman", "A smiling female adviser holding a policy document"),
         extra=jump([("after-a-fire", "After a fire"), ("after-a-flood", "After a flood or leak"),
               ("loss-adjuster-questions", "Your loss adjuster's questions"), ("adjuster-vs-assessor", "Adjuster vs assessor"),
               ("underinsurance", "Underinsurance"), ("glossary", "Glossary")]))
@@ -1285,7 +1285,7 @@ def faq():
     main = page_hero(
         "FAQs", "Frequently asked <span>questions</span>",
         f'Answers to the questions we\'re asked most often. Can\'t find what you need? Call us on <a href="{TEL}" style="color: var(--accent); font-weight: 600;">{PHONE}</a>.',
-        image=("couple-documents", "A couple sitting at a kitchen table working through paperwork"))
+        image=("homeowner-woman", "A smiling woman sitting at her laptop at home"))
     main += f"""
 
     <section class="section">
@@ -1316,7 +1316,7 @@ def contact():
     main = page_hero(
         "Start your claim", "Talk to a loss assessor <span>today</span>",
         f'Tell us a little about what\'s happened and we\'ll get back to you with a free, no-obligation assessment. Prefer to talk? Call <a href="{TEL}" style="color: var(--accent); font-weight: 600;">{PHONE}</a>.',
-        image=("adviser-couple-2", "An adviser talking with a couple on their sofa at home"))
+        image=("phone-woman", "A woman talking on the phone at her desk"))
     main += f"""
 
     <section class="section" style="padding-top: 0;">
