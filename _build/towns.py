@@ -56,7 +56,7 @@ TOWNS = [
         ],
         "faqs": [
             ("Do you cover Guildford and the villages around it?",
-             f"<p>Yes. Our Southern office in Cobham covers Guildford and the surrounding area. If you're not sure we cover your village, give us a call and we'll let you know.</p>"),
+             f"<p>Yes. Our Southern office in Cobham covers Guildford and its villages, the rest of Surrey and the whole of the South of England.</p>"),
             ("My home is a listed building. Can you help with the claim?",
              "<p>Yes. Repairs to listed and older buildings often need specialist trades, traditional materials and the right consents. We make sure your claim reflects the true cost of doing the work properly.</p>"),
         ],
@@ -118,7 +118,7 @@ TOWNS = [
             ("A tree fell on my house in a storm. Am I covered?",
              "<p>Storm damage is covered by most home insurance policies, and that usually includes damage caused by a falling tree. The cost of removing the tree may be limited, so check your policy. We can make sure everything is included in your claim.</p>"),
             ("Do you cover villages around Dorking and Leatherhead?",
-             "<p>Yes. We cover the towns and villages across Mole Valley and Epsom and Ewell. If you're not sure we cover your area, call us and we'll let you know.</p>"),
+             "<p>Yes. We cover every town and village across Mole Valley and Epsom and Ewell, and our Southern office covers the whole of the South of England.</p>"),
         ],
     },
     {
@@ -129,7 +129,7 @@ TOWNS = [
         "title": "Loss Assessors in London | Independent Claims Consultants",
         "desc": "Independent loss assessors helping London homeowners, flat owners, landlords and businesses with fire, flood and escape of water claims. No win, no fee.",
         "h1": "Loss assessors <span>in London</span>",
-        "lead": "Our Southern office in Cobham helps homeowners, flat owners, landlords and businesses across London, especially south-west London, with property insurance claims.",
+        "lead": "Our Southern office in Cobham helps homeowners, flat owners, landlords and businesses right across London with property insurance claims.",
         "image": ("london-thames", "Tower Bridge and the River Thames in London from above"),
         "intro": [
             "After a fire, flood or escape of water, your insurer will often appoint a loss adjuster to look after its interests. We work only for you. We prepare and negotiate your claim and deal with your insurer so you can focus on getting back to normal.",
