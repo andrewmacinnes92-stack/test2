@@ -64,6 +64,17 @@ def ic(name, cls="ic"):
     return f'<span class="{cls}" aria-hidden="true">{svg(name)}</span>'
 
 
+def img(name, alt, kind="wide", cls="", eager=False):
+    """Responsive WebP image from assets/img. kind: 'card' (16:10) or 'wide' (4:3)."""
+    small, big = (480, 800) if kind == "card" else (640, 1100)
+    h = big * 10 // 16 if kind == "card" else big * 3 // 4
+    sizes = "(max-width: 960px) 100vw, 380px" if kind == "card" else "(max-width: 960px) 100vw, 540px"
+    load = 'fetchpriority="high"' if eager else 'loading="lazy"'
+    return (f'<img class="{cls}" src="assets/img/{name}-{small}.webp" '
+            f'srcset="assets/img/{name}-{small}.webp {small}w, assets/img/{name}-{big}.webp {big}w" '
+            f'sizes="{sizes}" width="{big}" height="{h}" {load} decoding="async" alt="{html.escape(alt)}">')
+
+
 def arrow_link(href, text):
     return f'<a class="link-arrow" href="{href}">{text} {svg("arrow")}</a>'
 
@@ -198,15 +209,28 @@ def cta(title="Get your first consultation free",
     </section>"""
 
 
-def page_hero(pill, title, lead, extra=""):
-    return f"""
-    <section class="hero page-hero">
-      <div class="container">
+def page_hero(pill, title, lead, extra="", image=None):
+    copy = f"""
         <div class="hero-copy">
           <p class="pill"><span class="dot" aria-hidden="true"></span>{pill}</p>
           <h1>{title}</h1>
           <p class="lead">{lead}</p>
-        </div>{extra}
+        </div>"""
+    if image:
+        name, alt = image
+        below = f'\n        <div class="page-hero-extra">{extra}\n        </div>' if extra else ''
+        return f"""
+    <section class="hero page-hero">
+      <div class="container page-hero-grid">
+        <div>{copy}
+        </div>
+        <figure class="page-hero-img">{img(name, alt, eager=True)}</figure>{below}
+      </div>
+    </section>"""
+    copy += extra
+    return f"""
+    <section class="hero page-hero">
+      <div class="container">{copy}
       </div>
     </section>"""
 
@@ -418,6 +442,11 @@ def home():
     trust_html = '\n'.join(f'          <li>{ic(i)}<div><strong>{s}</strong><span class="t">{t}</span></div></li>'
                            for i, s, t in trust)
 
+    audience_imgs = {
+        "Homeowners": ("homes-bristol", "A row of colourful terraced houses on a hillside in Bristol"),
+        "Businesses": ("business-warehouse", "Aisle of a warehouse with stock on tall orange racking"),
+        "Landlords": ("landlord-flats", "Red-brick Victorian mansion block of flats in London"),
+    }
     audiences = [
         ("home", "Homeowners", "We get you back into your home as quickly as possible, arranging emergency help and somewhere to stay while it's put right.",
          ["Buildings and contents claims", "Alternative accommodation", "Drying, repairs and reinstatement"], "claims.html#homeowners", "Homeowner claims"),
@@ -426,8 +455,8 @@ def home():
         ("key", "Landlords", "We deal with the insurer and the repairs, and claim for the rent you lose while the property can't be let.",
          ["Loss of rent", "Multi-tenancy properties", "Reinstatement and repairs"], "claims.html#landlords", "Landlord claims"),
     ]
-    aud_html = '\n'.join(f"""          <article class="card">
-            {ic(i, "card-icon")}
+    aud_html = '\n'.join(f"""          <article class="card has-img">
+            {img(*audience_imgs[t], kind="card", cls="card-img")}
             <h3>{t}</h3>
             <p>{p}</p>
             <ul class="ticks">{''.join(f'<li>{x}</li>' for x in ticks)}</ul>
@@ -485,7 +514,10 @@ def home():
     steps_html = '\n'.join(f'          <li class="step"><h3>{t}</h3><p>{p}</p></li>' for t, p in steps)
 
     main = f"""
-    <section class="hero" id="home">
+    <section class="hero hero-video" id="home">
+      <div class="hero-media" aria-hidden="true">
+        <video class="hero-bg" muted loop playsinline preload="none" poster="assets/img/hero-poster-1280.webp" data-src="assets/video/hero-firefighters"></video>
+      </div>
       <div class="container hero-grid">
         <div class="hero-copy">
           <p class="pill"><span class="dot" aria-hidden="true"></span>Independent loss assessors for over 30 years</p>
@@ -493,7 +525,7 @@ def home():
           <p class="lead">When you claim, your insurer appoints a loss adjuster to protect its interests. We protect yours, managing your home or business claim from start to finish so you get everything you're entitled to.</p>
           <div class="hero-actions">
             <a href="contact.html" class="btn btn-primary">Start your claim {svg("arrow")}</a>
-            <a href="{TEL}" class="btn btn-ghost">Call {PHONE}</a>
+            <a href="{TEL}" class="btn btn-outline-light">Call {PHONE}</a>
           </div>
           <ul class="checks">
             <li>Free, no-obligation assessment</li>
@@ -572,6 +604,19 @@ def home():
 {steps_html}
         </ol>
         <p class="note">{svg("info")}<span><strong>The earlier, the better.</strong> Contact us at the start of your claim. Once your insurer's loss adjuster has reported, it can be much harder to challenge their findings.</span></p>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="Independent Claims Consultants in numbers">
+      <div class="container">
+        <span class="eyebrow">By the numbers</span>
+        <h2>Decades of experience, working only for you</h2>
+        <ul>
+          <li><span class="stat-num"><span data-count="30">30</span><span class="unit">+</span></span><span class="t">years managing insurance claims</span></li>
+          <li><span class="stat-num"><span data-count="100">100</span><span class="unit">+</span></span><span class="t">years of family history in loss assessment</span></li>
+          <li><span class="stat-num"><span data-count="3">3</span></span><span class="t">UK offices: Hale, Birmingham and London</span></li>
+          <li><span class="stat-num">4<span class="unit">–</span>6</span><span class="t">weeks to settle a typical straightforward claim</span></li>
+        </ul>
       </div>
     </section>
 
@@ -704,6 +749,12 @@ def claims():
         ("scale", "Full negotiation", "We deal with the insurer so you don't have to."),
     ]
 
+    block_imgs = {
+        "homeowners": ("homes-terrace", "Victorian terraced houses on a street in Oxford"),
+        "businesses": ("business-stock", "Warehouse interior with goods on shelving"),
+        "landlords": ("landlord-flats", "Red-brick Victorian mansion block of flats in London"),
+    }
+
     def block(id_, eyebrow, title, text, items, who, soft=False):
         return f"""
     <section class="section{' section-soft' if soft else ''}" id="{id_}">
@@ -715,6 +766,7 @@ def claims():
             <p>{text}</p>
           </div>
           {arrow_link("contact.html?who=" + who, "Start a " + who.lower() + " claim")}
+          {img(*block_imgs[id_], kind="card", cls="block-img")}
         </div>
         <div class="mini-grid">
 {mini_grid(items)}
@@ -749,7 +801,8 @@ def claims():
     main = page_hero(
         "Claims we handle", "Insurance claims <span>we handle</span>",
         "We represent homeowners, landlords and businesses across the UK, managing every kind of property insurance claim from start to finish.",
-        jump([("homeowners", "Homeowners"), ("businesses", "Businesses"), ("landlords", "Landlords"),
+        image=("inspector", "Assessor in a hard hat and hi-vis vest inspecting a window in an empty room"),
+        extra=jump([("homeowners", "Homeowners"), ("businesses", "Businesses"), ("landlords", "Landlords"),
               ("types", "Claim types"), ("disputed", "Refused claims")]))
     main += block("homeowners", "Homeowners", "Getting you back home",
                   "The aftermath of a fire, flood or break-in can have a huge emotional impact on you and your family, and dealing with an insurance claim on top is a lot to ask. Your dedicated loss assessor takes it on for you.",
@@ -841,7 +894,7 @@ def about():
     main = page_hero(
         "About us", "On your side for <span>over 30 years.</span>",
         "Independent Claims Consultants helps homeowners, landlords and businesses across the UK recover from fire, flood and other disasters, and get everything they're entitled to.",
-        creds)
+        creds, image=("adviser-couple", "An adviser going through paperwork with an older couple in their living room"))
     main += f"""
 
     <section class="section">
@@ -983,6 +1036,11 @@ def advice():
     ]
     gl_html = '\n'.join(f'          <div><dt>{t}</dt><dd>{d}</dd></div>' for t, d in glossary)
 
+    check_imgs = {
+        "after-a-fire": ("fire-damage", "A man sitting in a fire-damaged living room"),
+        "after-a-flood": ("water-damage", "Standing water across the floor of an empty room"),
+    }
+
     def check_section(id_, title, intro, items, soft):
         return f"""
     <section class="section{' section-soft' if soft else ''}" id="{id_}">
@@ -994,6 +1052,7 @@ def advice():
             <p>{intro}</p>
           </div>
           <button type="button" class="btn btn-ghost print-btn no-print" data-print>{svg("printer")} Print this page</button>
+          {img(*check_imgs[id_], cls="block-img no-print")}
         </div>
         <ol class="checklist">
 {checklist(items)}
@@ -1004,7 +1063,8 @@ def advice():
     main = page_hero(
         "Advice centre", "Practical help <span>for your claim</span>",
         "Clear guidance on what to do after a fire or flood, how to deal with your insurer's loss adjuster, and the terms you'll come across along the way.",
-        jump([("after-a-fire", "After a fire"), ("after-a-flood", "After a flood or leak"),
+        image=("agent-documents", "A couple discussing documents with an adviser across a table"),
+        extra=jump([("after-a-fire", "After a fire"), ("after-a-flood", "After a flood or leak"),
               ("loss-adjuster-questions", "Your loss adjuster's questions"), ("adjuster-vs-assessor", "Adjuster vs assessor"),
               ("underinsurance", "Underinsurance"), ("glossary", "Glossary")]))
     main += check_section("after-a-fire", "What to do after a fire",
@@ -1096,7 +1156,8 @@ def faq():
         </div>""" for g, items in FAQS)
     main = page_hero(
         "FAQs", "Frequently asked <span>questions</span>",
-        f'Answers to the questions we\'re asked most often. Can\'t find what you need? Call us on <a href="{TEL}" style="color: var(--accent); font-weight: 600;">{PHONE}</a>.')
+        f'Answers to the questions we\'re asked most often. Can\'t find what you need? Call us on <a href="{TEL}" style="color: var(--accent); font-weight: 600;">{PHONE}</a>.',
+        image=("couple-documents", "A couple sitting at a kitchen table working through paperwork"))
     main += f"""
 
     <section class="section">
@@ -1126,7 +1187,8 @@ def contact():
     adjuster = seg("adjuster", ["Yes", "No", "Not sure"], "adj")
     main = page_hero(
         "Start your claim", "Talk to a loss assessor <span>today</span>",
-        f'Tell us a little about what\'s happened and we\'ll get back to you with a free, no-obligation assessment. Prefer to talk? Call <a href="{TEL}" style="color: var(--accent); font-weight: 600;">{PHONE}</a>.')
+        f'Tell us a little about what\'s happened and we\'ll get back to you with a free, no-obligation assessment. Prefer to talk? Call <a href="{TEL}" style="color: var(--accent); font-weight: 600;">{PHONE}</a>.',
+        image=("adviser-couple-2", "An adviser talking with a couple on their sofa at home"))
     main += f"""
 
     <section class="section" style="padding-top: 0;">

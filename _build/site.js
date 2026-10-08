@@ -125,3 +125,68 @@
 
       show(0, false);
     }
+
+    // Gentle fade-in as sections scroll into view
+    const motionOK = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if ('IntersectionObserver' in window) {
+      const targets = document.querySelectorAll(
+        'main .section-head, main .card, main a.tile, main .step, main .checklist li, main .faq, main .compare-table, ' +
+        'main .trust li, main .mini, main .cta, main .quote, main .stats li, main .glossary div, main .creds li, main .side-card'
+      );
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          el.classList.add('in');
+          io.unobserve(el);
+          // Hand control back to the element's own hover effects once it has appeared
+          const done = () => { el.classList.remove('reveal', 'in'); el.style.transitionDelay = ''; };
+          el.addEventListener('transitionend', done, { once: true });
+          setTimeout(done, 1600);
+        });
+      }, { rootMargin: '0px 0px -8% 0px' });
+      targets.forEach(el => {
+        const siblings = [...el.parentElement.children].filter(c => c.matches(el.tagName));
+        const i = Math.min(siblings.indexOf(el), 5);
+        el.style.transitionDelay = (i > 0 ? i * 80 : 0) + 'ms';
+        el.classList.add('reveal');
+        io.observe(el);
+      });
+
+      // Count-up numbers in the stats band
+      const counters = document.querySelectorAll('[data-count]');
+      const countIO = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          countIO.unobserve(el);
+          const end = +el.dataset.count;
+          if (!motionOK) { el.textContent = end; return; }
+          const start = performance.now();
+          const tick = (now) => {
+            const t = Math.min((now - start) / 1400, 1);
+            el.textContent = Math.round(end * (1 - Math.pow(1 - t, 3)));
+            if (t < 1) requestAnimationFrame(tick);
+          };
+          requestAnimationFrame(tick);
+        });
+      }, { threshold: 0.6 });
+      counters.forEach(el => countIO.observe(el));
+    }
+
+    // Homepage background video: only on larger screens, and not for reduced motion or data saver
+    const heroVideo = document.querySelector('.hero-bg[data-src]');
+    if (heroVideo) {
+      const big = window.matchMedia('(min-width: 769px)').matches;
+      const saveData = navigator.connection && navigator.connection.saveData;
+      if (big && motionOK && !saveData) {
+        [['webm', 'video/webm'], ['mp4', 'video/mp4']].forEach(([ext, type]) => {
+          const source = document.createElement('source');
+          source.src = `${heroVideo.dataset.src}.${ext}`;
+          source.type = type;
+          heroVideo.append(source);
+        });
+        heroVideo.load();
+        heroVideo.play().catch(() => {});
+      }
+    }
