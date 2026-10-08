@@ -1,0 +1,25 @@
+# Permanent redirects for hosts that read a _redirects file (Netlify, Cloudflare Pages).
+# The matching HTML redirect pages are a fallback for hosts that don't.
+/contact-2/  /contact/  301!
+/contact-2  /contact/  301!
+/commercial-claims/  /claims/#businesses  301!
+/commercial-claims  /claims/#businesses  301!
+/domestic-insurance-claim/  /claims/#homeowners  301!
+/domestic-insurance-claim  /claims/#homeowners  301!
+/sample-page/  /  301!
+/sample-page  /  301!
+/services2/  /  301!
+/services2  /  301!
+/services3/  /  301!
+/services3  /  301!
+/call-0161-768765/  /  301!
+/call-0161-768765  /  301!
+/elementor-hf/independent-claims-consultants/  /  301!
+/elementor-hf/independent-claims-consultants  /  301!
+/elementor-hf/footer/  /  301!
+/elementor-hf/footer  /  301!
+/claims.html  /claims/  301!
+/about.html  /about/  301!
+/advice.html  /advice/  301!
+/faq.html  /faq/  301!
+/contact.html  /contact/  301!
