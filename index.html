@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sterling Loss Assessors | Fire &amp; Flood Insurance Claims</title>
-  <meta name="description" content="Independent UK loss assessors helping homeowners and businesses manage fire and flood insurance claims from start to finish.">
+  <title>Independent Claims Consultants | Loss Assessors for Fire &amp; Flood Claims</title>
+  <meta name="description" content="Independent Claims Consultants are UK loss assessors with over 30 years' experience, helping homeowners, landlords and businesses with fire, flood and other insurance claims.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -108,10 +108,11 @@
       gap: 10px;
       color: var(--ink);
       font-weight: 700;
-      font-size: 1.05rem;
+      font-size: 0.98rem;
       letter-spacing: -0.01em;
       text-decoration: none;
     }
+    .logo-text { display: flex; flex-direction: column; line-height: 1.2; }
     .logo-mark {
       display: grid;
       place-items: center;
@@ -121,7 +122,13 @@
       background: var(--accent);
     }
     .logo-mark svg { width: 18px; height: 18px; stroke: #fff; }
-    .logo .light { font-weight: 500; color: var(--muted); }
+    .logo .light {
+      color: var(--muted);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
 
     .nav ul {
       display: flex;
@@ -335,6 +342,7 @@
     .footer-links a { color: var(--muted); font-size: 0.925rem; text-decoration: none; }
     .footer-links a:hover { color: var(--ink); }
     .copyright { width: 100%; color: var(--muted); font-size: 0.85rem; }
+    .legal { width: 100%; margin-top: -8px; color: #94a3b8; font-size: 0.8rem; line-height: 1.6; }
 
     /* ---------- Responsive ---------- */
     @media (max-width: 960px) {
@@ -368,6 +376,12 @@
 
     @media (max-width: 480px) {
       .hero-actions .btn, .cta .btn { width: 100%; }
+    }
+    @media (max-width: 480px) {
+      .site-header .logo .light { display: none; }
+    }
+    @media (max-width: 400px) {
+      .logo { font-size: 0.9rem; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -479,6 +493,25 @@
     .float-badge strong { display: block; color: var(--ink); font-size: 0.9rem; line-height: 1.3; }
     .float-badge span { color: var(--muted); font-size: 0.8rem; }
 
+    .also {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-top: 28px;
+    }
+    .also-label { color: var(--muted); font-size: 0.9rem; font-weight: 600; }
+    .also ul { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+    .also li {
+      padding: 6px 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--ink);
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
     /* Contact */
     .contact-grid {
       display: grid;
@@ -516,7 +549,7 @@
       background: var(--tint);
     }
     .contact-item .ic svg { width: 20px; height: 20px; stroke: var(--accent); }
-    .contact-item strong { display: block; color: var(--ink); font-size: 0.95rem; }
+    .contact-item strong { display: block; color: var(--ink); font-size: 0.95rem; overflow-wrap: anywhere; }
     .contact-item span { color: var(--muted); font-size: 0.925rem; }
 
     .form-card {
@@ -585,11 +618,11 @@
 
   <header class="site-header">
     <div class="container header-inner">
-      <a href="#home" class="logo" aria-label="Sterling Loss Assessors home">
+      <a href="#home" class="logo" aria-label="Independent Claims Consultants home">
         <span class="logo-mark" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </span>
-        <span>Sterling <span class="light">Loss Assessors</span></span>
+        <span class="logo-text">Independent Claims Consultants<span class="light">Loss Assessors</span></span>
       </a>
 
       <button class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
@@ -613,19 +646,19 @@
     <section class="hero" id="home">
       <div class="container hero-grid">
         <div class="hero-copy">
-          <p class="pill"><span class="dot" aria-hidden="true"></span>Independent UK loss assessors</p>
+          <p class="pill"><span class="dot" aria-hidden="true"></span>Independent loss assessors for over 30 years</p>
           <h1>Fire or flood damage? <span>We'll handle your claim.</span></h1>
-          <p class="lead">We work for you, not your insurer, managing your home or business claim from the first call to the final settlement.</p>
+          <p class="lead">When you claim, your insurer appoints a loss adjuster to look after its interests. We look after yours, managing your home or business claim to get you every penny you're entitled to.</p>
           <div class="hero-actions">
             <a href="#contact" class="btn btn-primary">Get in touch
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
             </a>
-            <a href="tel:08000000000" class="btn btn-ghost">Call 0800 000 0000</a>
+            <a href="tel:01619047800" class="btn btn-ghost">Call 0161 904 7800</a>
           </div>
           <ul class="checks">
-            <li>Free initial assessment</li>
-            <li>No win, no fee</li>
-            <li>24/7 emergency line</li>
+            <li>Free, no-obligation assessment</li>
+            <li>We don't get paid until you do</li>
+            <li>FCA regulated</li>
           </ul>
         </div>
 
@@ -669,7 +702,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c1 3 4 5 4 9a4 4 0 0 1-8 0c0-2 1-3 1-3s-3 1-3 5a6 6 0 0 0 12 0c0-6-6-8-6-11z"/></svg>
             </div>
             <h3>Fire damage claims</h3>
-            <p>We assess fire, smoke and soot damage in detail, document every loss and present a thorough claim to your insurer on your behalf.</p>
+            <p>A fire forces a lot of critical decisions, and each one affects your claim. Your dedicated loss assessor guides you through every step, from securing the property to the final settlement.</p>
           </article>
 
           <article class="card">
@@ -677,16 +710,28 @@
               <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.7 6.3 9.5a7 7 0 1 0 11.4 0z"/></svg>
             </div>
             <h3>Flood &amp; water damage</h3>
-            <p>From burst pipes to river flooding, we coordinate drying, repairs and alternative accommodation, and negotiate a fair settlement.</p>
+            <p>We prepare the claim, oversee contractors and negotiate with your insurer, and make sure your property is thoroughly dried and sanitised so damp and dry rot don't follow.</p>
           </article>
 
           <article class="card">
             <div class="card-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg>
             </div>
-            <h3>Full claim management</h3>
-            <p>We handle the paperwork, meetings and negotiations with loss adjusters, and keep you informed at every step until your claim is settled.</p>
+            <h3>Commercial &amp; business interruption</h3>
+            <p>Damage can put your whole business at risk. Our forensic and consequential loss accountants calculate your business interruption claim while we get you trading again.</p>
           </article>
+        </div>
+
+        <div class="also">
+          <span class="also-label">We also handle</span>
+          <ul>
+            <li>Storm damage</li>
+            <li>Water leaks</li>
+            <li>Subsidence</li>
+            <li>Theft</li>
+            <li>Impact damage</li>
+            <li>Loss of rent</li>
+          </ul>
         </div>
       </div>
     </section>
@@ -698,26 +743,26 @@
           <div class="section-head">
             <span class="eyebrow">Contact</span>
             <h2>Talk to an assessor today</h2>
-            <p>Tell us what's happened and we'll get back to you quickly with a free, no-obligation assessment. For emergencies, call us any time.</p>
+            <p>Tell us what's happened and we'll get back to you with a free, no-obligation assessment. Contact us as early as you can, ideally before your insurer's loss adjuster has reported.</p>
           </div>
 
           <ul class="contact-items">
             <li>
-              <a class="contact-item" href="tel:08000000000">
+              <a class="contact-item" href="tel:01619047800">
                 <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span>
-                <div><strong>0800 000 0000</strong><span>24/7 emergency line</span></div>
+                <div><strong>0161 904 7800</strong><span>Monday to Friday, 9am to 5pm</span></div>
               </a>
             </li>
             <li>
-              <a class="contact-item" href="mailto:hello@example.co.uk">
+              <a class="contact-item" href="mailto:nic@independentclaimsconsultants.co.uk">
                 <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg></span>
-                <div><strong>hello@example.co.uk</strong><span>We reply within one working day</span></div>
+                <div><strong>nic@independentclaimsconsultants.co.uk</strong><span>Email us any time</span></div>
               </a>
             </li>
             <li>
               <div class="contact-item">
                 <span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-                <div><strong>123 Example Street, London, AB1 2CD</strong><span>Office open Mon–Fri, 8am–6pm</span></div>
+                <div><strong>Arco House, 86 Woburn Drive, Hale</strong><span>Altrincham, Cheshire WA15 8NE</span></div>
               </div>
             </li>
           </ul>
@@ -747,7 +792,8 @@
               <option>Fire damage – business</option>
               <option>Flood / water damage – home</option>
               <option>Flood / water damage – business</option>
-              <option>Other</option>
+              <option>Business interruption</option>
+              <option>Storm, subsidence, theft or other</option>
             </select>
           </div>
           <div class="field">
@@ -755,7 +801,7 @@
             <textarea id="message" name="message" placeholder="Briefly describe the damage and when it happened"></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Send enquiry</button>
-          <p class="form-note">For emergencies, please call us instead.</p>
+          <p class="form-note">Prefer to talk? Call 0161 904 7800, Monday to Friday, 9am to 5pm.</p>
           <div class="form-success" id="form-success" role="status">Thank you. We'll be in touch shortly.</div>
         </form>
       </div>
@@ -764,18 +810,19 @@
 
   <footer class="site-footer">
     <div class="container footer-inner">
-      <a href="#home" class="logo" aria-label="Sterling Loss Assessors home">
+      <a href="#home" class="logo" aria-label="Independent Claims Consultants home">
         <span class="logo-mark" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </span>
-        <span>Sterling <span class="light">Loss Assessors</span></span>
+        <span class="logo-text">Independent Claims Consultants<span class="light">Loss Assessors</span></span>
       </a>
       <ul class="footer-links">
         <li><a href="#help">How we help</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <p class="copyright">&copy; <span id="year">2026</span> Sterling Loss Assessors. Independent loss assessors working on behalf of policyholders.</p>
+      <p class="copyright">&copy; <span id="year">2026</span> Independent Claims Consultants. Members of the Institute of Public Loss Assessors.</p>
+      <p class="legal">Independent Claims Consultants is the trading name of Insurance Claims Centre UK Limited, a company registered in England No. 3932119. Regulated by the Financial Conduct Authority, FCA Reg No 308042. Registered office: Arco House, 86 Woburn Drive, Hale, Near Altrincham, Cheshire WA15 8NE.</p>
     </div>
   </footer>
 
