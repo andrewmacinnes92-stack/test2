@@ -20,6 +20,40 @@ EMAIL = "nic@independentclaimsconsultants.co.uk"
 SOUTH_OFFICE = "The Coach House, 3 Brooklands Close, Cobham, Surrey KT11 2DR"
 HEAD_OFFICE = "Arco House, 86 Woburn Drive, Hale, Altrincham, Cheshire WA15 8NE"
 
+# The live address of the site. Canonical links, the sitemap and social previews use it.
+SITE = "https://independentclaimsconsultants.com"
+
+# Source name (used in links throughout this file) -> folder the page is published in.
+ROUTES = {
+    "index.html": "",
+    "claims.html": "claims/",
+    "about.html": "about/",
+    "advice.html": "advice/",
+    "faq.html": "faq/",
+    "contact.html": "contact/",
+    "surrey.html": "loss-assessors-surrey/",
+}
+
+# Old addresses (the previous WordPress site and earlier versions of this one) -> new page.
+REDIRECTS = {
+    "contact-2/": "contact/",
+    "commercial-claims/": "claims/#businesses",
+    "domestic-insurance-claim/": "claims/#homeowners",
+    "sample-page/": "",
+    "services2/": "",
+    "services3/": "",
+    "call-0161-768765/": "",
+    "elementor-hf/independent-claims-consultants/": "",
+    "elementor-hf/footer/": "",
+    "claims.html": "claims/",
+    "about.html": "about/",
+    "advice.html": "advice/",
+    "faq.html": "faq/",
+    "contact.html": "contact/",
+}
+
+SITEMAP = []
+
 ICONS = {
     "fire": '<path d="M12 2c1 3 4 5 4 9a4 4 0 0 1-8 0c0-2 1-3 1-3s-3 1-3 5a6 6 0 0 0 12 0c0-6-6-8-6-11z"/>',
     "flood": '<path d="M2 6c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0M2 12c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0M2 18c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0"/>',
@@ -264,7 +298,7 @@ def header(active):
     return f"""  <a class="skip" href="#main">Skip to content</a>
   <div class="topbar">
     <div class="container topbar-inner">
-      <span>Southern office: Cobham, Surrey<span class="sep">·</span>FCA Reg No 308042<span class="sep">·</span>Members of the IPLA</span>
+      <span><a href="surrey.html">Southern office: Cobham, Surrey</a><span class="sep">·</span>FCA Reg No 308042<span class="sep">·</span>Members of the IPLA</span>
       <span><a href="{TEL}">Call {PHONE}</a><span class="sep">·</span>Mon to Fri, 9am to 5pm</span>
     </div>
   </div>
@@ -305,6 +339,7 @@ FOOTER = f"""  <footer class="site-footer">
         <div class="footer-col">
           <h3>Claims</h3>
           <ul>
+            <li><a href="surrey.html">Loss assessors in Surrey</a></li>
             <li><a href="claims.html#homeowners">Homeowners</a></li>
             <li><a href="claims.html#businesses">Businesses</a></li>
             <li><a href="claims.html#landlords">Landlords</a></li>
@@ -371,25 +406,80 @@ EXTRA_CSS = """
     h2[tabindex="-1"]:focus { outline: none; }"""
 
 
-def page(filename, title, description, main, page_css="", schema=None, callbar=True):
+def link_prefix(route):
+    return "../" * route.count("/")
+
+
+def localise_links(doc, prefix):
+    """Turn source links like about.html#team into folder links relative to this page."""
+    def fix(m):
+        attr, name, rest = m.group(1), m.group(2), m.group(3)
+        target = prefix + ROUTES[name + ".html"]
+        return f'{attr}="{target or "./"}{rest}"'
+    names = "|".join(n[:-5] for n in ROUTES)
+    doc = re.sub(rf'(href|action)="({names})\.html([^"]*)"', fix, doc)
+    return re.sub(r'(?<=["(,\s])assets/', prefix + "assets/", doc)
+
+
+def breadcrumbs(filename, label):
+    crumbs = f"""<nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="index.html">Home</a></li><li aria-current="page">{label}</li></ol></nav>
+          """
+    data = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/"},
+            {"@type": "ListItem", "position": 2, "name": label, "item": SITE + "/" + ROUTES[filename]},
+        ],
+    }
+    return crumbs, data
+
+
+def page(filename, title, description, main, page_css="", schema=None, callbar=True, crumb=None,
+         prefix=None, indexable=True):
+    route = ROUTES.get(filename, filename)
+    prefix = link_prefix(route) if prefix is None else prefix
+    url = SITE + "/" + route
     css = (HERE / "base.css").read_text().rstrip("\n") + "\n\n" + (HERE / "components.css").read_text().rstrip("\n")
     js = (HERE / "site.js").read_text().rstrip("\n")
-    schema_tag = ""
-    if schema:
-        schema_tag = ('\n  <script type="application/ld+json">\n'
-                      + json.dumps(schema, indent=2, ensure_ascii=False)
-                      + '\n  </script>')
+    schemas = [s for s in (schema if isinstance(schema, list) else [schema]) if s]
+    if crumb:
+        crumb_html, crumb_data = breadcrumbs(filename, crumb)
+        main = main.replace('<p class="pill">', crumb_html + '<p class="pill">', 1)
+        schemas.append(crumb_data)
+    schema_tag = "".join('\n  <script type="application/ld+json">\n' + json.dumps(s, indent=2, ensure_ascii=False)
+                         + '\n  </script>' for s in schemas)
     if callbar:
         footer_html = FOOTER.replace("<!--CALLBAR-->\n", "")
     else:
         footer_html = FOOTER.split("<!--CALLBAR-->")[0].rstrip()
+    plain_title = html.unescape(title)
+    if indexable:
+        seo = f"""
+  <link rel="canonical" href="{url}">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Independent Claims Consultants">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:title" content="{html.escape(plain_title)}">
+  <meta property="og:description" content="{html.escape(description)}">
+  <meta property="og:url" content="{url}">
+  <meta property="og:image" content="{SITE}/assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">"""
+        SITEMAP.append(url)
+    else:
+        seo = '\n  <meta name="robots" content="noindex">'
     doc = f"""<!DOCTYPE html>
 <html lang="en-GB">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{title}</title>
-  <meta name="description" content="{html.escape(description)}">
+  <meta name="description" content="{html.escape(description)}">{seo}
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <meta name="theme-color" content="#0f766e">
   <script>document.documentElement.classList.add('js');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -415,7 +505,9 @@ def page(filename, title, description, main, page_css="", schema=None, callbar=T
 </body>
 </html>
 """
-    (ROOT / filename).write_text(doc)
+    out = ROOT / (route + "index.html" if route.endswith("/") or route == "" else route)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(localise_links(doc, prefix))
 
 
 # ---------------------------------------------------------------- home
@@ -524,7 +616,7 @@ def home():
       <div class="container hero-grid">
         <div class="hero-copy">
           <p class="pill"><span class="dot" aria-hidden="true"></span>Independent loss assessors for over 30 years</p>
-          <h1>Fire or flood damage? <span>We'll fight for your full settlement.</span></h1>
+          <h1>Fire or flood damage? <span>Independent loss assessors on your side.</span></h1>
           <p class="lead">When you claim, your insurer appoints a loss adjuster to protect its interests. We protect yours, managing your home or business claim from start to finish so you get everything you're entitled to.</p>
           <div class="hero-actions">
             <a href="contact.html" class="btn btn-primary">Start your claim {svg("arrow")}</a>
@@ -701,6 +793,9 @@ def home():
         "@context": "https://schema.org",
         "@type": "ProfessionalService",
         "name": "Independent Claims Consultants",
+        "url": SITE + "/",
+        "logo": SITE + "/assets/apple-touch-icon.png",
+        "image": SITE + "/assets/img/og-image.jpg",
         "legalName": "Insurance Claims Centre UK Limited",
         "description": "Independent loss assessors helping homeowners, landlords and businesses with fire, flood and other insurance claims.",
         "telephone": "+44 161 904 7800",
@@ -728,8 +823,8 @@ def home():
         "openingHours": "Mo-Fr 09:00-17:00",
         "areaServed": "GB",
     }
-    page("index.html", "Loss Assessors in Surrey &amp; the South | Independent Claims Consultants",
-         "Independent loss assessors in Cobham, Surrey, with over 30 years' experience helping homeowners, landlords and businesses with fire, flood and other insurance claims. No win, no fee.",
+    page("index.html", "Loss Assessors Surrey &amp; the South | Independent Claims Consultants",
+         "Independent loss assessors in Cobham, Surrey. Over 30 years helping homeowners, landlords and businesses with fire and flood insurance claims. No win, no fee.",
          main, css, schema)
 
 
@@ -869,9 +964,9 @@ def claims():
       </div>
     </section>
 {cta()}"""
-    page("claims.html", "Insurance Claims We Handle | Independent Claims Consultants",
+    page("claims.html", "Fire, Flood &amp; Property Claims | Independent Claims Consultants",
          "Loss assessors for homeowners, businesses and landlords: fire, flood, escape of water, storm, theft, subsidence, impact damage and business interruption claims.",
-         main)
+         main, crumb="Claims we handle")
 
 
 # ---------------------------------------------------------------- about
@@ -910,7 +1005,7 @@ def about():
     offices_html = '\n'.join(f"""          <article class="card">
             {ic("pin")}
             <h3 style="margin-top: 18px;">{t}</h3>
-            <p>{a}</p>
+            <p>{a}</p>{'' if t != "Southern office" else chr(10) + "            " + arrow_link("surrey.html", "Loss assessors in Surrey")}
           </article>""" for t, a in offices)
 
     main = page_hero(
@@ -990,9 +1085,9 @@ def about():
       </div>
     </section>
 {cta()}"""
-    page("about.html", "About Us | Independent Claims Consultants",
+    page("about.html", "About Our Loss Assessors | Independent Claims Consultants",
          "Independent Claims Consultants: family-run UK loss assessors with over 30 years' experience, members of the Institute of Public Loss Assessors and regulated by the FCA.",
-         main)
+         main, crumb="About us")
 
 
 # ---------------------------------------------------------------- advice
@@ -1162,9 +1257,9 @@ def advice():
       </div>
     </section>
 {cta("Need help with your claim?", "Speak to an experienced loss assessor for free, no-obligation advice. No win, no fee.")}"""
-    page("advice.html", "Insurance Claim Advice Centre | Independent Claims Consultants",
+    page("advice.html", "Insurance Claim Advice | Independent Claims Consultants",
          "What to do after a fire or flood, how to answer your loss adjuster's questions, underinsurance explained and a glossary of insurance claim terms.",
-         main)
+         main, crumb="Advice centre")
 
 
 # ---------------------------------------------------------------- FAQ
@@ -1197,9 +1292,9 @@ def faq():
             for _, items in FAQS for q, a in items
         ],
     }
-    page("faq.html", "Insurance Claim FAQs | Independent Claims Consultants",
+    page("faq.html", "Loss Assessor FAQs | Independent Claims Consultants",
          "Answers to common questions about loss assessors, loss adjusters, claim timescales, refused claims, underinsurance and our no win, no fee service.",
-         main, schema=schema)
+         main, schema=schema, crumb="FAQs")
 
 
 # ---------------------------------------------------------------- contact
@@ -1339,10 +1434,249 @@ def contact():
         </aside>
       </div>
     </section>"""
-    page("contact.html", "Start Your Claim | Independent Claims Consultants",
+    page("contact.html", "Contact Our Loss Assessors | Independent Claims Consultants",
          "Contact our Southern office in Cobham, Surrey for a free, no-obligation assessment of your insurance claim. Call 0161 904 7800 or start your claim online.",
          main, page_css="""
-    @media (max-width: 768px) { body { padding-bottom: 0; } }""", callbar=False)
+    @media (max-width: 768px) { body { padding-bottom: 0; } }""", callbar=False, crumb="Contact")
+
+
+# ---------------------------------------------------------------- Surrey (Southern office)
+
+SURREY_AREAS = [
+    "Cobham", "Esher", "Weybridge", "Walton-on-Thames", "Leatherhead", "Woking", "Guildford", "Epsom",
+    "Kingston upon Thames", "Dorking", "Godalming", "Staines-upon-Thames", "Chertsey", "Camberley", "Farnham", "Reigate",
+]
+
+SURREY_FAQS = [
+    ("Do you cover my part of Surrey?",
+     f"<p>Our Southern office in Cobham works with clients across Surrey and the surrounding areas. If you're not sure whether we cover your town, call us on {PHONE} and we'll let you know.</p>"),
+    ("Will a loss assessor visit my property?",
+     "<p>Yes. Your loss assessor will inspect the damage, review your policy and, where it helps your claim, meet your insurer's loss adjuster at the property.</p>"),
+]
+
+
+def surrey():
+    team = [
+        ("AM", "Andrew MacInnes", "Loss Assessor",
+         "\"Every client is assigned a dedicated loss assessor. Their experience will ensure your claim is run smoothly and efficiently.\""),
+        ("NM", "Neil Munnerley", "Loss Assessor",
+         "One of our dedicated loss assessors, managing claims for homeowners, landlords and businesses from first visit to final settlement."),
+    ]
+    team_html = '\n'.join(f"""          <article class="card member">
+            <span class="avatar" aria-hidden="true">{i}</span>
+            <h3>{n}</h3>
+            <p class="role">{r}</p>
+            <p class="office">{svg("pin")}Southern office, Cobham</p>
+            <p>{q}</p>
+          </article>""" for i, n, r, q in team)
+
+    claims = [
+        ("flood", "Flood", "Parts of Surrey lie close to the Thames, the Wey and the Mole, and homes near these rivers have flooded in wet winters such as 2013–14. We manage flood claims from drying out to final settlement.", "claims.html#flood"),
+        ("droplet", "Escape of water", "Burst pipes and leaks are among the most common home insurance claims, and older properties can hide damage under floors and behind walls. We make sure all of it is found and claimed for.", "claims.html#escape-of-water"),
+        ("fire", "Fire and smoke", "From kitchen fires to serious house fires, we guide you through every decision and make sure smoke and soot damage is fully included in your claim.", "claims.html#fire"),
+        ("storm", "Storm damage", "High winds and falling trees can damage roofs, walls and contents. We arrange emergency works and present a complete claim for the damage.", "claims.html#storm"),
+        ("briefcase", "Business interruption", "For Surrey businesses, our forensic and consequential loss accountants calculate your lost income while your premises are restored.", "claims.html#business-interruption"),
+        ("key", "Landlord claims", "If a let property is damaged, we handle the claim and the reinstatement, and claim for the rent you lose while it can't be let.", "claims.html#landlords"),
+    ]
+    claims_html = '\n'.join(f"""          <article class="card">
+            {ic(i, "card-icon")}
+            <h3>{t}</h3>
+            <p>{p}</p>
+            {arrow_link(href, "Find out more")}
+          </article>""" for i, t, p, href in claims)
+
+    areas_html = ''.join(f'<li>{a}</li>' for a in SURREY_AREAS)
+    faqs = SURREY_FAQS + [faq_lookup(q) for q in ["When should I contact a loss assessor?", "How much do you charge?"]]
+    maps = "https://www.google.com/maps/search/?api=1&query=" + "The+Coach+House+3+Brooklands+Close+Cobham+KT11+2DR"
+
+    quick = """
+        <ul class="creds">
+          <li><strong>Southern office</strong><span>The Coach House, Cobham, Surrey</span></li>
+          <li><strong>Local loss assessors</strong><span>Andrew MacInnes and Neil Munnerley</span></li>
+          <li><strong>No win, no fee</strong><span>Free, no-obligation assessment</span></li>
+        </ul>"""
+    main = page_hero(
+        "Southern office · Cobham, Surrey", "Loss assessors <span>in Surrey</span>",
+        "Our Southern office in Cobham helps homeowners, landlords and businesses across Surrey and the South with fire, flood and other insurance claims. We work for you, not your insurer.",
+        quick, image=("surrey-shere", "Historic cottages on a village street in Shere, Surrey"))
+    main += f"""
+
+    <section class="section">
+      <div class="container split top">
+        <div>
+          <div class="section-head">
+            <span class="eyebrow">Local and independent</span>
+            <h2>A local loss assessor on your side</h2>
+          </div>
+          <div class="prose">
+            <p>When a fire, flood or escape of water damages your property, your insurer appoints a loss adjuster to assess the claim on its behalf. Our loss assessors work for you instead, preparing and negotiating your claim so you receive everything you're entitled to.</p>
+            <p>Being based in Cobham means your loss assessor is close at hand to inspect the damage, meet your insurer's loss adjuster at the property and keep an eye on the repairs as they progress.</p>
+            <p>Our Southern office is part of Independent Claims Consultants, which has managed insurance claims for more than 30 years, with our head office in Hale and a further office in Edgbaston, Birmingham.</p>
+          </div>
+        </div>
+        <aside class="side-card">
+          <h3>Our Southern office</h3>
+          <ul class="contact-list">
+            <li>{ic("pin")}<div><strong>The Coach House, 3 Brooklands Close</strong><span>Cobham, Surrey KT11 2DR</span></div></li>
+            <li>{ic("phone")}<a href="{TEL}"><strong>{PHONE}</strong><span>Monday to Friday, 9am to 5pm</span></a></li>
+            <li>{ic("mail")}<a href="mailto:{EMAIL}"><strong>{EMAIL}</strong><span>Email us any time</span></a></li>
+          </ul>
+          <p style="margin-top: 20px;"><a class="link-arrow" href="{maps}" target="_blank" rel="noopener">Get directions {svg("arrow")}</a></p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="areas">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Areas we cover</span>
+          <h2>Helping clients across Surrey</h2>
+          <p>From our office in Cobham we work with homeowners, landlords and businesses throughout Surrey and the surrounding areas, including:</p>
+        </div>
+        <ul class="areas">{areas_html}</ul>
+        <p class="note">{svg("info")}<span>Not sure if we cover your area? Call us on <a href="{TEL}"><strong>{PHONE}</strong></a> and we'll let you know.</span></p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <span class="eyebrow">Claims we handle</span>
+          <h2>Common claims we help with in Surrey</h2>
+        </div>
+        <div class="grid-3">
+{claims_html}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="head-row">
+          <div class="section-head">
+            <span class="eyebrow">Your local team</span>
+            <h2>Meet our Southern office loss assessors</h2>
+          </div>
+          {arrow_link("about.html#team", "Meet the whole team")}
+        </div>
+        <div class="grid-2">
+{team_html}
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container split top">
+        <div>
+          <div class="section-head">
+            <span class="eyebrow">FAQs</span>
+            <h2>Questions from Surrey clients</h2>
+            <p>Quick answers to what people in Surrey ask us most.</p>
+          </div>
+          {arrow_link("faq.html", "See all FAQs")}
+        </div>
+        <div class="faq">
+{faq_items(faqs)}
+        </div>
+      </div>
+    </section>
+{cta("Talk to a loss assessor in Surrey", "Get your first consultation free with our Southern office team. No win, no fee.")}"""
+
+    schema = [
+        {
+            "@context": "https://schema.org",
+            "@type": "ProfessionalService",
+            "name": "Independent Claims Consultants – Southern Office",
+            "url": SITE + "/" + ROUTES["surrey.html"],
+            "image": SITE + "/assets/img/og-image.jpg",
+            "telephone": "+44 161 904 7800",
+            "email": EMAIL,
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "The Coach House, 3 Brooklands Close",
+                "addressLocality": "Cobham",
+                "addressRegion": "Surrey",
+                "postalCode": "KT11 2DR",
+                "addressCountry": "GB",
+            },
+            "openingHours": "Mo-Fr 09:00-17:00",
+            "areaServed": [{"@type": "Place", "name": f"{a}, Surrey"} for a in SURREY_AREAS[:6]] + [{"@type": "AdministrativeArea", "name": "Surrey"}],
+            "parentOrganization": {"@type": "Organization", "name": "Independent Claims Consultants", "url": SITE + "/"},
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {"@type": "Question", "name": q,
+                 "acceptedAnswer": {"@type": "Answer", "text": re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", a)).strip()}}
+                for q, a in faqs
+            ],
+        },
+    ]
+    page("surrey.html", "Loss Assessors in Surrey | Independent Claims Consultants",
+         "Independent loss assessors in Cobham, Surrey, helping homeowners, landlords and businesses with fire, flood and escape of water claims. No win, no fee.",
+         main, schema=schema, crumb="Loss assessors in Surrey")
+
+
+# ---------------------------------------------------------------- 404, redirects, sitemap, robots
+
+def not_found():
+    main = page_hero(
+        "Page not found", "Sorry, we can't find <span>that page</span>",
+        "The page may have moved when we updated our website. Try one of these instead, or call us if you need help with a claim.",
+        "")
+    main += f"""
+
+    <section class="section" style="padding-top: 0;">
+      <div class="container">
+        <div class="grid-3">
+          <article class="card">{ic("home", "card-icon")}<h3>Homepage</h3><p>Start again from our homepage.</p>{arrow_link("index.html", "Go to the homepage")}</article>
+          <article class="card">{ic("file", "card-icon")}<h3>Claims we handle</h3><p>Fire, flood, escape of water and more.</p>{arrow_link("claims.html", "See claim types")}</article>
+          <article class="card">{ic("phone", "card-icon")}<h3>Start your claim</h3><p>Get a free, no-obligation assessment.</p>{arrow_link("contact.html", "Contact us")}</article>
+        </div>
+      </div>
+    </section>"""
+    page("404.html", "Page Not Found | Independent Claims Consultants",
+         "The page you were looking for could not be found.", main, prefix="/", indexable=False)
+
+
+def redirect_stubs():
+    """Static redirect pages for old addresses. They work on any host, including GitHub Pages."""
+    lines = ["# Permanent redirects for hosts that read a _redirects file (Netlify, Cloudflare Pages).",
+             "# The matching HTML redirect pages are a fallback for hosts that don't."]
+    for old, new in REDIRECTS.items():
+        target = SITE + "/" + new.split("#")[0]
+        rel = (link_prefix(old if old.endswith("/") else "") + new) or "./"
+        stub = f"""<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <title>Page moved | Independent Claims Consultants</title>
+  <link rel="canonical" href="{target}">
+  <meta http-equiv="refresh" content="0; url={rel}">
+  <script>location.replace({json.dumps(rel.split("#")[0])} + (location.search || "") + ({json.dumps("#" + rel.split("#")[1]) if "#" in rel else "location.hash"}));</script>
+</head>
+<body>
+  <p>This page has moved. <a href="{rel}">Continue to the new page</a>.</p>
+</body>
+</html>
+"""
+        out = ROOT / (old + "index.html" if old.endswith("/") else old)
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(stub)
+        lines.append(f"/{old}  /{new}  301!")
+        if old.endswith("/"):
+            lines.append(f"/{old[:-1]}  /{new}  301!")
+    (ROOT / "_redirects").write_text("\n".join(lines) + "\n")
+
+
+def sitemap_and_robots():
+    today = __import__("datetime").date.today().isoformat()
+    urls = "\n".join(f"  <url><loc>{u}</loc><lastmod>{today}</lastmod></url>" for u in SITEMAP)
+    (ROOT / "sitemap.xml").write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls + "\n</urlset>\n")
+    (ROOT / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
 
 
 if __name__ == "__main__":
@@ -1352,4 +1686,8 @@ if __name__ == "__main__":
     advice()
     faq()
     contact()
-    print("Built: index, claims, about, advice, faq, contact")
+    surrey()
+    not_found()
+    redirect_stubs()
+    sitemap_and_robots()
+    print(f"Built {len(SITEMAP)} pages, a 404 page and {len(REDIRECTS)} redirects")

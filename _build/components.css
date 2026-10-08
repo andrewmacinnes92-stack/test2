@@ -701,3 +701,33 @@
     @media (max-width: 768px) {
       .hero-media::after { background: rgba(11, 18, 32, 0.8); }
     }
+
+    /* ---------- Breadcrumbs ---------- */
+    .crumbs { margin-bottom: 18px; font-size: 0.875rem; }
+    .crumbs ol { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; color: var(--muted); }
+    .crumbs li + li::before { content: "›"; margin-right: 6px; color: #94a3b8; }
+    .crumbs a { color: var(--accent); font-weight: 600; text-decoration: none; }
+    .crumbs a:hover { text-decoration: underline; }
+
+    /* ---------- Areas list (location pages) ---------- */
+    .areas { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; padding: 0; list-style: none; }
+    .areas li {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--ink);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+    .areas li::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-bright);
+    }
+    .note a { color: var(--accent); }
