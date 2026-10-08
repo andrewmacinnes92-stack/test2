@@ -981,6 +981,83 @@
     @media (max-width: 960px) { .stats ul { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 480px) { .stats { padding: 64px 0; } .stats li { padding: 22px 18px; } }
 
+    /* ---------- Photos ---------- */
+    .page-hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center; }
+    .page-hero-img { position: relative; isolation: isolate; margin: 0 18px 18px 0; }
+    .page-hero-extra { grid-column: 1 / -1; }
+    .page-hero-extra .creds, .page-hero-extra .jump { max-width: none; margin-top: 0; }
+    .page-hero-img img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 24px;
+      box-shadow: 0 30px 60px -24px rgba(15, 23, 42, 0.35);
+    }
+    .page-hero-img::before {
+      content: "";
+      position: absolute;
+      inset: 18px -18px -18px 18px;
+      z-index: -1;
+      border-radius: 24px;
+      background: linear-gradient(135deg, var(--tint-line), rgba(20, 184, 166, 0.05));
+    }
+    .card.has-img { overflow: hidden; }
+    .card-img {
+      display: block;
+      width: calc(100% + 64px);
+      max-width: none;
+      height: auto;
+      margin: -32px -32px 24px;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .card.has-img:hover .card-img { transform: scale(1.04); }
+    .block-img {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin-top: 32px;
+      border-radius: 20px;
+      object-fit: cover;
+    }
+
+    /* ---------- Homepage video hero ---------- */
+    .hero-video { background: var(--ink); color: #fff; }
+    .hero-video::before { display: none; }
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      background: #0b1220 url("assets/img/hero-poster-800.webp") center / cover no-repeat;
+    }
+    .hero-bg { display: none; width: 100%; height: 100%; object-fit: cover; }
+    .hero-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(11, 18, 32, 0.92) 0%, rgba(11, 18, 32, 0.78) 45%, rgba(11, 18, 32, 0.45) 100%),
+        linear-gradient(0deg, rgba(11, 18, 32, 0.5), transparent 40%);
+    }
+    .hero-video h1 { color: #fff; }
+    .hero-video h1 span { color: #5eead4; }
+    .hero-video .lead { color: rgba(255, 255, 255, 0.82); }
+    .hero-video .pill { border-color: rgba(255, 255, 255, 0.2); background: rgba(255, 255, 255, 0.08); color: #fff; }
+    .hero-video .checks { color: rgba(255, 255, 255, 0.9); }
+    .hero-video .checks li::before { background-color: rgba(94, 234, 212, 0.18); }
+    @media (min-width: 769px) {
+      .hero-media { background-image: url("assets/img/hero-poster-1280.webp"); }
+      .hero-bg { display: block; }
+    }
+    @media (max-width: 960px) {
+      .page-hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .page-hero-img { max-width: 560px; }
+      .page-hero-img::before { inset: 12px -12px -12px 12px; }
+    }
+    @media (max-width: 768px) {
+      .hero-media::after { background: rgba(11, 18, 32, 0.8); }
+    }
+
     .skip {
       position: absolute;
       top: -100px;
@@ -1043,13 +1120,18 @@
 
   <main id="main">
     <section class="hero page-hero">
-      <div class="container">
+      <div class="container page-hero-grid">
+        <div>
         <div class="hero-copy">
           <p class="pill"><span class="dot" aria-hidden="true"></span>Advice centre</p>
           <h1>Practical help <span>for your claim</span></h1>
           <p class="lead">Clear guidance on what to do after a fire or flood, how to deal with your insurer's loss adjuster, and the terms you'll come across along the way.</p>
         </div>
+        </div>
+        <figure class="page-hero-img"><img class="" src="assets/img/agent-documents-640.webp" srcset="assets/img/agent-documents-640.webp 640w, assets/img/agent-documents-1100.webp 1100w" sizes="(max-width: 960px) 100vw, 540px" width="1100" height="825" fetchpriority="high" decoding="async" alt="A couple discussing documents with an adviser across a table"></figure>
+        <div class="page-hero-extra">
         <nav class="jump" aria-label="On this page"><a href="#after-a-fire">After a fire</a><a href="#after-a-flood">After a flood or leak</a><a href="#loss-adjuster-questions">Your loss adjuster's questions</a><a href="#adjuster-vs-assessor">Adjuster vs assessor</a><a href="#underinsurance">Underinsurance</a><a href="#glossary">Glossary</a></nav>
+        </div>
       </div>
     </section>
     <section class="section" id="after-a-fire">
@@ -1061,6 +1143,7 @@
             <p>The first few days after a fire are overwhelming. These steps protect you, your property and your claim.</p>
           </div>
           <button type="button" class="btn btn-ghost print-btn no-print" data-print><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><rect x="2" y="9" width="20" height="9" rx="2"/><path d="M6 14h12v8H6z"/></svg> Print this page</button>
+          <img class="block-img no-print" src="assets/img/fire-damage-640.webp" srcset="assets/img/fire-damage-640.webp 640w, assets/img/fire-damage-1100.webp 1100w" sizes="(max-width: 960px) 100vw, 540px" width="1100" height="825" loading="lazy" decoding="async" alt="A man sitting in a fire-damaged living room">
         </div>
         <ol class="checklist">
             <li><div><strong>Make sure everyone is safe</strong><span>Don't go back inside until the fire service tells you it's safe.</span></div></li>
@@ -1082,6 +1165,7 @@
             <p>Water damage spreads quickly. Acting fast limits the damage and protects your claim.</p>
           </div>
           <button type="button" class="btn btn-ghost print-btn no-print" data-print><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V2h12v7"/><rect x="2" y="9" width="20" height="9" rx="2"/><path d="M6 14h12v8H6z"/></svg> Print this page</button>
+          <img class="block-img no-print" src="assets/img/water-damage-640.webp" srcset="assets/img/water-damage-640.webp 640w, assets/img/water-damage-1100.webp 1100w" sizes="(max-width: 960px) 100vw, 540px" width="1100" height="825" loading="lazy" decoding="async" alt="Standing water across the floor of an empty room">
         </div>
         <ol class="checklist">
             <li><div><strong>Stay safe</strong><span>Avoid floodwater, which can be contaminated. Only turn off the electricity at the mains if it's safe to do so.</span></div></li>
@@ -1456,6 +1540,23 @@
         });
       }, { threshold: 0.6 });
       counters.forEach(el => countIO.observe(el));
+    }
+
+    // Homepage background video: only on larger screens, and not for reduced motion or data saver
+    const heroVideo = document.querySelector('.hero-bg[data-src]');
+    if (heroVideo) {
+      const big = window.matchMedia('(min-width: 769px)').matches;
+      const saveData = navigator.connection && navigator.connection.saveData;
+      if (big && motionOK && !saveData) {
+        [['webm', 'video/webm'], ['mp4', 'video/mp4']].forEach(([ext, type]) => {
+          const source = document.createElement('source');
+          source.src = `${heroVideo.dataset.src}.${ext}`;
+          source.type = type;
+          heroVideo.append(source);
+        });
+        heroVideo.load();
+        heroVideo.play().catch(() => {});
+      }
     }
   </script>
 </body>

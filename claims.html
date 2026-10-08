@@ -981,6 +981,83 @@
     @media (max-width: 960px) { .stats ul { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 480px) { .stats { padding: 64px 0; } .stats li { padding: 22px 18px; } }
 
+    /* ---------- Photos ---------- */
+    .page-hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center; }
+    .page-hero-img { position: relative; isolation: isolate; margin: 0 18px 18px 0; }
+    .page-hero-extra { grid-column: 1 / -1; }
+    .page-hero-extra .creds, .page-hero-extra .jump { max-width: none; margin-top: 0; }
+    .page-hero-img img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 24px;
+      box-shadow: 0 30px 60px -24px rgba(15, 23, 42, 0.35);
+    }
+    .page-hero-img::before {
+      content: "";
+      position: absolute;
+      inset: 18px -18px -18px 18px;
+      z-index: -1;
+      border-radius: 24px;
+      background: linear-gradient(135deg, var(--tint-line), rgba(20, 184, 166, 0.05));
+    }
+    .card.has-img { overflow: hidden; }
+    .card-img {
+      display: block;
+      width: calc(100% + 64px);
+      max-width: none;
+      height: auto;
+      margin: -32px -32px 24px;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .card.has-img:hover .card-img { transform: scale(1.04); }
+    .block-img {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin-top: 32px;
+      border-radius: 20px;
+      object-fit: cover;
+    }
+
+    /* ---------- Homepage video hero ---------- */
+    .hero-video { background: var(--ink); color: #fff; }
+    .hero-video::before { display: none; }
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      background: #0b1220 url("assets/img/hero-poster-800.webp") center / cover no-repeat;
+    }
+    .hero-bg { display: none; width: 100%; height: 100%; object-fit: cover; }
+    .hero-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(11, 18, 32, 0.92) 0%, rgba(11, 18, 32, 0.78) 45%, rgba(11, 18, 32, 0.45) 100%),
+        linear-gradient(0deg, rgba(11, 18, 32, 0.5), transparent 40%);
+    }
+    .hero-video h1 { color: #fff; }
+    .hero-video h1 span { color: #5eead4; }
+    .hero-video .lead { color: rgba(255, 255, 255, 0.82); }
+    .hero-video .pill { border-color: rgba(255, 255, 255, 0.2); background: rgba(255, 255, 255, 0.08); color: #fff; }
+    .hero-video .checks { color: rgba(255, 255, 255, 0.9); }
+    .hero-video .checks li::before { background-color: rgba(94, 234, 212, 0.18); }
+    @media (min-width: 769px) {
+      .hero-media { background-image: url("assets/img/hero-poster-1280.webp"); }
+      .hero-bg { display: block; }
+    }
+    @media (max-width: 960px) {
+      .page-hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .page-hero-img { max-width: 560px; }
+      .page-hero-img::before { inset: 12px -12px -12px 12px; }
+    }
+    @media (max-width: 768px) {
+      .hero-media::after { background: rgba(11, 18, 32, 0.8); }
+    }
+
     .skip {
       position: absolute;
       top: -100px;
@@ -1043,13 +1120,18 @@
 
   <main id="main">
     <section class="hero page-hero">
-      <div class="container">
+      <div class="container page-hero-grid">
+        <div>
         <div class="hero-copy">
           <p class="pill"><span class="dot" aria-hidden="true"></span>Claims we handle</p>
           <h1>Insurance claims <span>we handle</span></h1>
           <p class="lead">We represent homeowners, landlords and businesses across the UK, managing every kind of property insurance claim from start to finish.</p>
         </div>
+        </div>
+        <figure class="page-hero-img"><img class="" src="assets/img/inspector-640.webp" srcset="assets/img/inspector-640.webp 640w, assets/img/inspector-1100.webp 1100w" sizes="(max-width: 960px) 100vw, 540px" width="1100" height="825" fetchpriority="high" decoding="async" alt="Assessor in a hard hat and hi-vis vest inspecting a window in an empty room"></figure>
+        <div class="page-hero-extra">
         <nav class="jump" aria-label="On this page"><a href="#homeowners">Homeowners</a><a href="#businesses">Businesses</a><a href="#landlords">Landlords</a><a href="#types">Claim types</a><a href="#disputed">Refused claims</a></nav>
+        </div>
       </div>
     </section>
     <section class="section" id="homeowners">
@@ -1061,6 +1143,7 @@
             <p>The aftermath of a fire, flood or break-in can have a huge emotional impact on you and your family, and dealing with an insurance claim on top is a lot to ask. Your dedicated loss assessor takes it on for you.</p>
           </div>
           <a class="link-arrow" href="contact.html?who=Homeowner">Start a homeowner claim <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+          <img class="block-img" src="assets/img/homes-terrace-480.webp" srcset="assets/img/homes-terrace-480.webp 480w, assets/img/homes-terrace-800.webp 800w" sizes="(max-width: 960px) 100vw, 380px" width="800" height="500" loading="lazy" decoding="async" alt="Victorian terraced houses on a street in Oxford">
         </div>
         <div class="mini-grid">
             <div class="mini"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span><div><strong>Emergency help</strong><p>We secure your property and organise urgent works.</p></div></div>
@@ -1081,6 +1164,7 @@
             <p>Damage to your premises can put your whole business at risk. Insurers won't pay until they're satisfied they're liable and that you've met your policy conditions, and delays can hit cash flow hard. We take control of the claim so you can focus on your customers.</p>
           </div>
           <a class="link-arrow" href="contact.html?who=Business">Start a business claim <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+          <img class="block-img" src="assets/img/business-stock-480.webp" srcset="assets/img/business-stock-480.webp 480w, assets/img/business-stock-800.webp 800w" sizes="(max-width: 960px) 100vw, 380px" width="800" height="500" loading="lazy" decoding="async" alt="Warehouse interior with goods on shelving">
         </div>
         <div class="mini-grid">
             <div class="mini"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2c1 3 4 5 4 9a4 4 0 0 1-8 0c0-2 1-3 1-3s-3 1-3 5a6 6 0 0 0 12 0c0-6-6-8-6-11z"/></svg></span><div><strong>Commercial fire and flood</strong><p>Complete claims management for damaged premises.</p></div></div>
@@ -1101,6 +1185,7 @@
             <p>When a let property is damaged, you're dealing with tenants, lost rent and your insurer all at once. We handle the claim and the reinstatement so the property can be lived in again.</p>
           </div>
           <a class="link-arrow" href="contact.html?who=Landlord">Start a landlord claim <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+          <img class="block-img" src="assets/img/landlord-flats-480.webp" srcset="assets/img/landlord-flats-480.webp 480w, assets/img/landlord-flats-800.webp 800w" sizes="(max-width: 960px) 100vw, 380px" width="800" height="500" loading="lazy" decoding="async" alt="Red-brick Victorian mansion block of flats in London">
         </div>
         <div class="mini-grid">
             <div class="mini"><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 7a5 5 0 0 0-8.5-1.5C7.6 6.6 8 9 8.5 11c.6 2.5 0 6-2.5 9h12"/><path d="M6 13h8"/></svg></span><div><strong>Loss of rent</strong><p>We claim for the rent you lose while the property can't be let.</p></div></div>
@@ -1435,6 +1520,23 @@
         });
       }, { threshold: 0.6 });
       counters.forEach(el => countIO.observe(el));
+    }
+
+    // Homepage background video: only on larger screens, and not for reduced motion or data saver
+    const heroVideo = document.querySelector('.hero-bg[data-src]');
+    if (heroVideo) {
+      const big = window.matchMedia('(min-width: 769px)').matches;
+      const saveData = navigator.connection && navigator.connection.saveData;
+      if (big && motionOK && !saveData) {
+        [['webm', 'video/webm'], ['mp4', 'video/mp4']].forEach(([ext, type]) => {
+          const source = document.createElement('source');
+          source.src = `${heroVideo.dataset.src}.${ext}`;
+          source.type = type;
+          heroVideo.append(source);
+        });
+        heroVideo.load();
+        heroVideo.play().catch(() => {});
+      }
     }
   </script>
 </body>

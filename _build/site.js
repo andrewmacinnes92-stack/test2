@@ -173,3 +173,20 @@
       }, { threshold: 0.6 });
       counters.forEach(el => countIO.observe(el));
     }
+
+    // Homepage background video: only on larger screens, and not for reduced motion or data saver
+    const heroVideo = document.querySelector('.hero-bg[data-src]');
+    if (heroVideo) {
+      const big = window.matchMedia('(min-width: 769px)').matches;
+      const saveData = navigator.connection && navigator.connection.saveData;
+      if (big && motionOK && !saveData) {
+        [['webm', 'video/webm'], ['mp4', 'video/mp4']].forEach(([ext, type]) => {
+          const source = document.createElement('source');
+          source.src = `${heroVideo.dataset.src}.${ext}`;
+          source.type = type;
+          heroVideo.append(source);
+        });
+        heroVideo.load();
+        heroVideo.play().catch(() => {});
+      }
+    }
