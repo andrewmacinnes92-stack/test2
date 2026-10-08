@@ -448,6 +448,7 @@
     }
 
     .wizard-progress { display: flex; gap: 8px; margin: 0 0 28px; padding: 0; list-style: none; }
+    .wizard-progress[hidden] { display: none; }
     .wizard-progress li { flex: 1; color: var(--muted); font-size: 0.8rem; font-weight: 600; }
     .wizard-progress li::before {
       content: "";
@@ -472,6 +473,7 @@
     .summary dt { color: var(--muted); font-size: 0.9rem; }
     .summary dd { margin: 0; color: var(--ink); font-size: 0.9rem; font-weight: 600; text-align: right; overflow-wrap: anywhere; }
     .form-note { margin-top: 14px; color: var(--muted); font-size: 0.85rem; text-align: center; }
+    .form-error { margin-top: 14px; padding: 12px 14px; border-radius: 10px; background: #fdecec; color: #8a1c1c; font-size: 0.9rem; }
     .sent { text-align: center; padding: 12px 0; }
     .sent .ic { width: 56px; height: 56px; margin: 0 auto 18px; border-radius: 50%; }
     .sent .ic svg { width: 26px; height: 26px; }
