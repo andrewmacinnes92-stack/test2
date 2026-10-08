@@ -1135,6 +1135,17 @@
     }
     .note a { color: var(--accent); }
 
+    /* ---------- Claim pages ---------- */
+    .mini-grid.three { grid-template-columns: repeat(3, 1fr); }
+    .checklist.ticklist li::before {
+      content: "";
+      background: var(--tint) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230f766e' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / 14px no-repeat;
+    }
+    .note a { font-weight: 600; }
+    @media (max-width: 960px) { .mini-grid.three { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 768px) { .mini-grid.three { grid-template-columns: 1fr; } }
+    .block-links { display: flex; flex-wrap: wrap; gap: 12px 28px; }
+
     .skip {
       position: absolute;
       top: -100px;
@@ -1372,12 +1383,12 @@
           <h3>Claims</h3>
           <ul>
             <li><a href="../loss-assessors-surrey/">Loss assessors in Surrey</a></li>
-            <li><a href="../claims/#homeowners">Homeowners</a></li>
-            <li><a href="../claims/#businesses">Businesses</a></li>
-            <li><a href="../claims/#landlords">Landlords</a></li>
-            <li><a href="../claims/#fire">Fire claims</a></li>
-            <li><a href="../claims/#flood">Flood claims</a></li>
-            <li><a href="../claims/#business-interruption">Business interruption</a></li>
+            <li><a href="../domestic-insurance-claim/">Homeowners</a></li>
+            <li><a href="../commercial-claims/">Businesses</a></li>
+            <li><a href="../landlord-insurance-claims/">Landlords</a></li>
+            <li><a href="../fire-damage-claims/">Fire claims</a></li>
+            <li><a href="../flood-damage-claims/">Flood claims</a></li>
+            <li><a href="../business-interruption-claims/">Business interruption</a></li>
           </ul>
         </div>
         <div class="footer-col">
