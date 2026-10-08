@@ -4,7 +4,8 @@ The site is built for `https://independentclaimsconsultants.com` (no `www`), whi
 
 ## 1. Before switching
 
-- Pick a host. Netlify or Cloudflare Pages (both free) read the `_redirects` file and send proper permanent (301) redirects for the old addresses. GitHub Pages can host the site too, using the HTML redirect pages that are generated as a fallback.
+- **The site is going on the existing HostGator hosting: follow `_build/HOSTGATOR.md`.** The `.htaccess` file handles HTTPS, the www redirect and the old WordPress addresses.
+- (Alternative) Pick a host. Netlify or Cloudflare Pages (both free) read the `_redirects` file and send proper permanent (301) redirects for the old addresses. GitHub Pages can host the site too, using the HTML redirect pages that are generated as a fallback.
 - Rebuild: `python3 _build/build.py`
 
 ## 2. On the day
@@ -39,7 +40,7 @@ The site is built for `https://independentclaimsconsultants.com` (no `www`), whi
 | `/contact/` | Start your claim |
 | `/loss-assessors-surrey/` | Southern office (Cobham) location page |
 | `/loss-assessors-elmbridge/`, `/loss-assessors-guildford/`, `/loss-assessors-woking/`, `/loss-assessors-epsom-leatherhead/`, `/loss-assessors-london/` | Local area pages for the Southern office |
-| `/loss-assessors-sussex/`, `/loss-assessors-kent/`, `/loss-assessors-hampshire/`, `/loss-assessors-essex/`, `/loss-assessors-berkshire/` | County pages for the Southern office |
+| `/loss-assessors-sussex/`, `/loss-assessors-kent/`, `/loss-assessors-hampshire/`, `/loss-assessors-essex/`, `/loss-assessors-berkshire/`, `/loss-assessors-oxfordshire/`, `/loss-assessors-buckinghamshire/`, `/loss-assessors-hertfordshire/`, `/loss-assessors-wiltshire/`, `/loss-assessors-dorset/`, `/loss-assessors-devon-cornwall/` | County pages for the Southern office |
 | `/loss-assessors-manchester/` | Head office (Hale) location page |
 | `/404.html` | Page not found |
 | `/sitemap.xml`, `/robots.txt` | For search engines |
