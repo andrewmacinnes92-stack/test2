@@ -29,7 +29,7 @@ EMAIL = "nic@independentclaimsconsultants.co.uk"
 FORM_TO = "andy@independentclaimsconsultants.com"
 FORM_CC = EMAIL
 FORM_ENDPOINT = "https://formsubmit.co/" + FORM_TO
-SOUTH_OFFICE = "The Coach House, 3 Brooklands Close, Cobham, Surrey KT11 2DR"
+SOUTH_OFFICE = "Cobham, Surrey"
 HEAD_OFFICE = "Arco House, 86 Woburn Drive, Hale, Altrincham, Cheshire WA15 8NE"
 
 # The live address of the site. Canonical links, the sitemap and social previews use it.
@@ -670,8 +670,8 @@ def home():
       <div class="container hero-grid">
         <div class="hero-copy">
           <p class="pill"><span class="dot" aria-hidden="true"></span>Independent loss assessors for over 30 years</p>
-          <h1>Fire or flood damage? <span>Independent loss assessors on your side.</span></h1>
-          <p class="lead">When you claim, your insurer appoints a loss adjuster to protect its interests. We protect yours, managing your home or business claim from start to finish so you get everything you're entitled to.</p>
+          <h1>Fire or flood damage? <span>Expert help with your insurance claim.</span></h1>
+          <p class="lead">We help homeowners, landlords and businesses recover from fire, flood and other damage. We manage your claim from start to finish, so you can focus on getting back to normal while we make sure you receive everything you're entitled to.</p>
           <div class="hero-actions">
             <a href="contact.html" class="btn btn-primary">Start your claim {svg("arrow")}</a>
             <a href="{TEL}" class="btn btn-outline-light">Call {PHONE}</a>
@@ -869,10 +869,8 @@ def home():
         "email": EMAIL,
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "The Coach House, 3 Brooklands Close",
             "addressLocality": "Cobham",
             "addressRegion": "Surrey",
-            "postalCode": "KT11 2DR",
             "addressCountry": "GB",
         },
         "parentOrganization": {
@@ -1094,7 +1092,7 @@ def about():
           <div class="prose">
             <p>It's over 100 years since the Castleton family first entered the complex and specialised world of loss assessment. It was at the family's instigation that the Institute of Public Loss Assessors was established, and Nic Castleton's grandfather was chosen as its president.</p>
             <p>Nic founded Independent Claims Consultants three decades ago. Since then, the firm has helped individuals and businesses recover from a wide range of disasters, with every client assigned a dedicated loss assessor.</p>
-            <p>When you make a claim, your insurer appoints a loss adjuster to work in its interests. We work only in yours, using our expertise to get you the best possible settlement.</p>
+            <p>Today we bring that experience to every claim we manage, working with insurers and their loss adjusters to get our clients the best possible settlement.</p>
           </div>
         </div>
 
@@ -1856,7 +1854,7 @@ def contact():
             <ul class="contact-list">
               <li>{ic("phone")}<a href="{TEL}"><strong>{PHONE}</strong><span>Monday to Friday, 9am to 5pm</span></a></li>
               <li>{ic("mail")}<a href="mailto:{EMAIL}"><strong>{EMAIL}</strong><span>Email us any time</span></a></li>
-              <li>{ic("pin")}<div><strong>The Coach House, 3 Brooklands Close</strong><span>Cobham, Surrey KT11 2DR</span></div></li>
+              <li>{ic("pin")}<div><strong>Cobham, Surrey</strong><span>Southern office</span></div></li>
             </ul>
           </div>
           <div class="side-card">
@@ -2082,15 +2080,13 @@ def south_team_html():
 
 
 def south_office_card():
-    maps = "https://www.google.com/maps/search/?api=1&query=" + "The+Coach+House+3+Brooklands+Close+Cobham+KT11+2DR"
     return f"""<aside class="side-card">
           <h3>Our Southern office</h3>
           <ul class="contact-list">
-            <li>{ic("pin")}<div><strong>The Coach House, 3 Brooklands Close</strong><span>Cobham, Surrey KT11 2DR</span></div></li>
+            <li>{ic("pin")}<div><strong>Cobham, Surrey</strong><span>Southern office</span></div></li>
             <li>{ic("phone")}<a href="{TEL}"><strong>{PHONE}</strong><span>Monday to Friday, 9am to 5pm</span></a></li>
             <li>{ic("mail")}<a href="mailto:{EMAIL}"><strong>{EMAIL}</strong><span>Email us any time</span></a></li>
           </ul>
-          <p style="margin-top: 20px;"><a class="link-arrow" href="{maps}" target="_blank" rel="noopener">Get directions {svg("arrow")}</a></p>
         </aside>"""
 
 
@@ -2116,11 +2112,10 @@ def surrey():
     region_pages = {r: t["key"] for t in TOWNS if not t.get("in_surrey", True) for r in t.get("regions", [t["place"]])}
     regions_html = ''.join(f'<li><a href="{region_pages[a]}">{a}</a></li>' if a in region_pages else f'<li>{a}</li>' for a in SOUTH_REGIONS if a != "Surrey")
     faqs = SURREY_FAQS + [faq_lookup(q) for q in ["When should I contact a loss assessor?", "How much do you charge?"]]
-    maps = "https://www.google.com/maps/search/?api=1&query=" + "The+Coach+House+3+Brooklands+Close+Cobham+KT11+2DR"
 
     quick = """
         <ul class="creds">
-          <li><strong>Southern office</strong><span>The Coach House, Cobham, Surrey</span></li>
+          <li><strong>Southern office</strong><span>Cobham, Surrey</span></li>
           <li><strong>Local loss assessors</strong><span>Andrew MacInnes and Neil Munnerley</span></li>
           <li><strong>No win, no fee</strong><span>Free, no-obligation assessment</span></li>
         </ul>"""
@@ -2138,7 +2133,7 @@ def surrey():
             <h2>A local loss assessor on your side</h2>
           </div>
           <div class="prose">
-            <p>When a fire, flood or escape of water damages your property, your insurer appoints a loss adjuster to assess the claim on its behalf. Our loss assessors work for you instead, preparing and negotiating your claim so you receive everything you're entitled to.</p>
+            <p>When a fire, flood or escape of water damages your property, our loss assessors take the stress out of the claim. We prepare, present and negotiate it for you, working with your insurer so you receive everything you're entitled to.</p>
             <p>Being based in Cobham means your loss assessor is close at hand to inspect the damage, meet your insurer's loss adjuster at the property and keep an eye on the repairs as they progress.</p>
             <p>Our Southern office is part of Independent Claims Consultants, which has managed insurance claims for more than 30 years, with our head office in Hale, Cheshire.</p>
           </div>
@@ -2146,11 +2141,10 @@ def surrey():
         <aside class="side-card">
           <h3>Our Southern office</h3>
           <ul class="contact-list">
-            <li>{ic("pin")}<div><strong>The Coach House, 3 Brooklands Close</strong><span>Cobham, Surrey KT11 2DR</span></div></li>
+            <li>{ic("pin")}<div><strong>Cobham, Surrey</strong><span>Southern office</span></div></li>
             <li>{ic("phone")}<a href="{TEL}"><strong>{PHONE}</strong><span>Monday to Friday, 9am to 5pm</span></a></li>
             <li>{ic("mail")}<a href="mailto:{EMAIL}"><strong>{EMAIL}</strong><span>Email us any time</span></a></li>
           </ul>
-          <p style="margin-top: 20px;"><a class="link-arrow" href="{maps}" target="_blank" rel="noopener">Get directions {svg("arrow")}</a></p>
         </aside>
       </div>
     </section>
@@ -2224,10 +2218,8 @@ def surrey():
             "email": EMAIL,
             "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "The Coach House, 3 Brooklands Close",
                 "addressLocality": "Cobham",
                 "addressRegion": "Surrey",
-                "postalCode": "KT11 2DR",
                 "addressCountry": "GB",
             },
             "openingHours": "Mo-Fr 09:00-17:00",
@@ -2365,8 +2357,7 @@ def town_page(t):
                 "name": "Independent Claims Consultants – Southern Office",
                 "url": SITE + "/" + ROUTES["surrey.html"],
                 "telephone": "+44 161 904 7800",
-                "address": {"@type": "PostalAddress", "streetAddress": "The Coach House, 3 Brooklands Close",
-                            "addressLocality": "Cobham", "addressRegion": "Surrey", "postalCode": "KT11 2DR",
+                "address": {"@type": "PostalAddress", "addressLocality": "Cobham", "addressRegion": "Surrey",
                             "addressCountry": "GB"},
             },
         },
@@ -2451,7 +2442,7 @@ def manchester():
             <h2>Your local loss assessors in the North West</h2>
           </div>
           <div class="prose">
-            <p>When a fire, flood or escape of water damages your property, your insurer appoints a loss adjuster to assess the claim on its behalf. Our loss assessors work for you instead, preparing and negotiating your claim so you receive everything you're entitled to.</p>
+            <p>When a fire, flood or escape of water damages your property, our loss assessors take the stress out of the claim. We prepare, present and negotiate it for you, working with your insurer so you receive everything you're entitled to.</p>
             <p>Independent Claims Consultants has managed insurance claims for more than 30 years, and our head office is in Hale, near Altrincham. Being close by means your loss assessor can inspect the damage, meet your insurer's loss adjuster at the property and keep an eye on the repairs.</p>
             <p>Our team is led by Managing Director Nic Castleton, whose family has worked in loss assessment for over 100 years and helped establish the Institute of Public Loss Assessors.</p>
           </div>
@@ -2463,7 +2454,6 @@ def manchester():
             <li>{ic("phone")}<a href="{TEL}"><strong>{PHONE}</strong><span>Monday to Friday, 9am to 5pm</span></a></li>
             <li>{ic("mail")}<a href="mailto:{EMAIL}"><strong>{EMAIL}</strong><span>Email us any time</span></a></li>
           </ul>
-          <p style="margin-top: 20px;"><a class="link-arrow" href="{maps}" target="_blank" rel="noopener">Get directions {svg("arrow")}</a></p>
         </aside>
       </div>
     </section>

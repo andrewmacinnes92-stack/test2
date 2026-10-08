@@ -17,8 +17,8 @@ The profile is what puts you in Google Maps and in the map results for searches 
 | Business name | Independent Claims Consultants |
 | Primary category | Start typing "adjuster" and choose the closest match, such as "Insurance adjuster" or "Public adjuster". If neither appears, choose "Insurance agency". |
 | Additional categories | "Insurance claims service" and "Consultant", if offered |
-| Do customers visit? | Yes, if clients can come to The Coach House by appointment. Otherwise choose No, and the address is hidden. |
-| Address | The Coach House, 3 Brooklands Close, Cobham, Surrey KT11 2DR |
+| Do customers visit? | Choose **No**. The website only shows "Cobham, Surrey" for now, and choosing No keeps the street address hidden on Google too. |
+| Address | The Coach House, 3 Brooklands Close, Cobham, Surrey KT11 2DR. Google needs this for verification, but it won't be shown publicly. |
 | Service areas | London, Surrey, Sussex, Kent, Essex, Hertfordshire, Berkshire, Buckinghamshire, Oxfordshire, Hampshire, Wiltshire, Dorset, Somerset, Devon, Cornwall. Google allows up to 20. |
 | Phone | 0161 904 7800, or a local Cobham number later |
 | Website | https://independentclaimsconsultants.com/loss-assessors-surrey/ |
@@ -54,7 +54,7 @@ Add each one under **Services**. Use the first sentence of each claim page as th
 
 Add at least:
 - the logo
-- a photo of The Coach House from outside
+- a photo of the office from outside, if you're happy to show it
 - photos of Andrew and Neil
 - a few photos taken on jobs, with the client's permission
 

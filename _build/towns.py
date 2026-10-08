@@ -1,312 +1,586 @@
-"""Local area pages served by the Southern office in Cobham. Rendered by town_page() in build.py."""
+"""Local area and county pages served by the Southern office in Cobham. Rendered by town_page() in build.py."""
 
 TOWNS = [
-    {
-        "key": "elmbridge.html",
-        "route": "loss-assessors-elmbridge/",
-        "place": "Cobham, Esher and Elmbridge",
-        "short": "Elmbridge",
-        "title": "Loss Assessors in Cobham & Esher | Independent Claims Consultants",
-        "desc": "Local loss assessors based in Cobham, helping homeowners, landlords and businesses in Esher, Weybridge, Walton and across Elmbridge. No win, no fee.",
-        "h1": "Loss assessors in <span>Cobham, Esher and Elmbridge</span>",
-        "lead": "Our Southern office is in Cobham, so if you live or work in Elmbridge, your loss assessor is just down the road.",
-        "image": ("inspector", "A loss assessor inspecting a window frame at a property"),
-        "intro": [
-            "When fire, flood or escape of water damages your home or business, your insurer appoints a loss adjuster to look after its interests. We look after yours, preparing and negotiating your claim so you get everything you're entitled to.",
-            "Our office at The Coach House in Cobham puts us at the heart of Elmbridge. We can be with you quickly to inspect the damage, meet your insurer's loss adjuster and keep an eye on the repairs as they progress.",
-            "Many homes in the area are large, individually designed or finished to a high standard. That makes it especially important that the full cost of putting things right, including specialist materials and contents, is included in your claim.",
-        ],
-        "areas": ["Cobham", "Stoke d'Abernon", "Oxshott", "Esher", "Claygate", "Hersham", "Weybridge",
-                  "Walton-on-Thames", "East and West Molesey", "Thames Ditton", "Hinchley Wood", "Byfleet"],
-        "claims": [
-            ("flood", "River flooding", "The Thames runs along the north of the borough and the Mole flows through Cobham. Homes near both rivers can be at risk in very wet winters.", "flood.html"),
-            ("droplet", "Escape of water", "Leaks from bathrooms, heating systems and appliances can damage expensive flooring, kitchens and finishes. We make sure the full cost is claimed.", "escape.html"),
-            ("pound", "High-value homes and contents", "Bespoke features, art, jewellery and designer furniture are easy to undervalue. We check your cover and present every item properly.", "a-under.html"),
-            ("fire", "Fire and smoke", "From kitchen fires to serious house fires, we arrange emergency help, alternative accommodation and a complete claim for the damage.", "fire.html"),
-        ],
-        "faqs": [
-            ("How quickly can you visit a property in Elmbridge?",
-             "<p>Our Southern office is in Cobham, so we're close to every part of Elmbridge. Call us and we'll arrange a visit as soon as we can.</p>"),
-            ("My home is high value. Could I be underinsured?",
-             "<p>It's possible. Larger and individually designed homes can cost far more to rebuild than people expect, and valuable contents are easy to undervalue. If you're worried, talk to us as early as possible. <a href=\"a-under.html\">Read our guide to underinsurance</a>.</p>"),
-        ],
-    },
-    {
-        "key": "guildford.html",
-        "route": "loss-assessors-guildford/",
-        "place": "Guildford",
-        "short": "Guildford",
-        "title": "Loss Assessors in Guildford | Independent Claims Consultants",
-        "desc": "Independent loss assessors for Guildford and the surrounding villages, helping with fire, flood and escape of water insurance claims. No win, no fee.",
-        "h1": "Loss assessors <span>in Guildford</span>",
-        "lead": "From our Southern office in Cobham we help homeowners, landlords and businesses in Guildford and its surrounding villages make the most of their insurance claims.",
-        "image": ("surrey-shere", "Historic timber-framed cottages in Shere, a village near Guildford"),
-        "intro": [
-            "After a fire, flood or major leak, your insurer appoints a loss adjuster to act on its behalf. We act on yours. We prepare, present and negotiate your claim, and deal with your insurer so you don't have to.",
-            "Guildford is a short drive from our office in Cobham, so your loss assessor can inspect the damage, meet your insurer's loss adjuster at the property and oversee the repairs.",
-            "The town and its villages have many older and listed buildings. Repairing them properly can call for specialist trades and traditional materials, and those costs need to be reflected in your claim from the start.",
-        ],
-        "areas": ["Guildford town centre", "Burpham", "Merrow", "Onslow Village", "Stoughton", "Shalford",
-                  "Shere", "Send", "Ripley", "Compton", "Godalming", "Cranleigh"],
-        "claims": [
-            ("flood", "Flood", "The River Wey runs through the centre of Guildford, and properties near it have flooded in very wet winters. We manage flood claims from drying out to final settlement.", "flood.html"),
-            ("home", "Older and listed buildings", "Period properties need the right specialists and materials. We make sure your claim covers like-for-like repairs, not a cheaper alternative.", "home-claims.html"),
-            ("key", "Landlords and shared houses", "If a let property is damaged, we handle the claim and the repairs, and claim for the rent you lose while it can't be let.", "landlords.html"),
-            ("briefcase", "Town centre businesses", "For shops, restaurants and offices, our forensic and consequential loss accountants calculate your business interruption loss.", "bi.html"),
-        ],
-        "faqs": [
-            ("Do you cover Guildford and the villages around it?",
-             f"<p>Yes. Our Southern office in Cobham covers Guildford and its villages, the rest of Surrey and the whole of the South of England.</p>"),
-            ("My home is a listed building. Can you help with the claim?",
-             "<p>Yes. Repairs to listed and older buildings often need specialist trades, traditional materials and the right consents. We make sure your claim reflects the true cost of doing the work properly.</p>"),
-        ],
-    },
-    {
-        "key": "woking.html",
-        "route": "loss-assessors-woking/",
-        "place": "Woking",
-        "short": "Woking",
-        "title": "Loss Assessors in Woking | Independent Claims Consultants",
-        "desc": "Independent loss assessors helping homeowners, landlords and businesses in Woking, Byfleet and West Byfleet with property insurance claims. No win, no fee.",
-        "h1": "Loss assessors <span>in Woking</span>",
-        "lead": "Our Southern office in Cobham is close to Woking. We help local homeowners, landlords and businesses get their claims settled properly.",
-        "image": ("homes-terrace", "A row of Victorian terraced houses"),
-        "intro": [
-            "When your property is damaged, your insurer appoints a loss adjuster to protect its interests. As your loss assessor, we work only for you. We prepare and negotiate your claim and handle the insurer for you.",
-            "Woking is just a few miles from our office in Cobham, so we can be with you quickly to inspect the damage and meet your insurer's loss adjuster at the property.",
-            "From Victorian and Edwardian houses to newer flats in the town centre, every type of property brings its own challenges. We make sure nothing is missed.",
-        ],
-        "areas": ["Woking town centre", "Horsell", "Knaphill", "St Johns", "Goldsworth Park", "Old Woking",
-                  "Pyrford", "Byfleet", "West Byfleet", "Sheerwater", "Mayford", "Brookwood"],
-        "claims": [
-            ("droplet", "Leaks in flats", "Water from a flat above can damage several homes at once. We work out whose insurance should pay and claim for all the damage.", "escape.html"),
-            ("flood", "Flood", "Parts of Byfleet and Old Woking lie close to the River Wey. We manage flood claims from drying out to final settlement.", "flood.html"),
-            ("fire", "Fire and smoke", "We arrange emergency help and alternative accommodation, and make sure smoke and soot damage is fully included in your claim.", "fire.html"),
-            ("key", "Landlord claims", "We handle the claim and the reinstatement, and claim for the rent you lose while the property can't be let.", "landlords.html"),
-        ],
-        "faqs": [
-            ("How far is your office from Woking?",
-             "<p>Our Southern office is in Cobham, only a few miles away. We can visit your property to inspect the damage and meet your insurer's loss adjuster.</p>"),
-            ("Water from the flat above has damaged my home. What should I do?",
-             "<p>Stop the water if you can, take photos and report it to your insurer and the building's managing agent or freeholder. Who pays can depend on the lease and the buildings policy. We can sort this out for you and claim for all the damage.</p>"),
-        ],
-    },
-    {
-        "key": "epsom.html",
-        "route": "loss-assessors-epsom-leatherhead/",
-        "place": "Epsom, Leatherhead and Dorking",
-        "short": "Epsom and Leatherhead",
-        "title": "Loss Assessors in Epsom & Leatherhead | Independent Claims Consultants",
-        "desc": "Local loss assessors helping homeowners, landlords and businesses in Epsom, Ewell, Ashtead, Leatherhead, Bookham and Dorking. No win, no fee.",
-        "h1": "Loss assessors in <span>Epsom, Leatherhead and Dorking</span>",
-        "lead": "From our Southern office in Cobham we help clients across Epsom and Ewell and Mole Valley with fire, flood, storm and escape of water claims.",
-        "image": ("box-hill", "View across the Surrey Hills from Box Hill at sunset"),
-        "intro": [
-            "When something goes wrong at your property, your insurer appoints a loss adjuster to protect its interests. We protect yours. We prepare, present and negotiate your claim so you receive your full entitlement.",
-            "Leatherhead, Epsom and Dorking are all close to our office in Cobham, so we can inspect the damage, meet your insurer's loss adjuster and oversee the repairs.",
-            "The area mixes busy towns with rural villages and wooded hills. That means we see everything from flooded kitchens to storm-damaged roofs and outbuildings.",
-        ],
-        "areas": ["Epsom", "Ewell", "Ashtead", "Leatherhead", "Fetcham", "Great Bookham", "Effingham",
-                  "Headley", "Mickleham", "Dorking", "Brockham", "Banstead"],
-        "claims": [
-            ("flood", "River flooding", "The River Mole flows through Leatherhead and past Dorking, and homes near it can be at risk in very wet winters.", "flood.html"),
-            ("storm", "Storm and fallen trees", "High winds can bring trees down onto roofs, cars and outbuildings. We arrange emergency works and claim for all the damage.", "storm.html"),
-            ("droplet", "Escape of water", "Burst pipes and hidden leaks are among the most common claims. We make sure all the damage is found and included.", "escape.html"),
-            ("fire", "Fire and smoke", "We guide you through every decision after a fire and make sure smoke and soot damage is fully claimed for.", "fire.html"),
-        ],
-        "faqs": [
-            ("A tree fell on my house in a storm. Am I covered?",
-             "<p>Storm damage is covered by most home insurance policies, and that usually includes damage caused by a falling tree. The cost of removing the tree may be limited, so check your policy. We can make sure everything is included in your claim.</p>"),
-            ("Do you cover villages around Dorking and Leatherhead?",
-             "<p>Yes. We cover every town and village across Mole Valley and Epsom and Ewell, and our Southern office covers the whole of the South of England.</p>"),
-        ],
-    },
-    {
-        "key": "london.html",
-        "in_surrey": False,
-        "route": "loss-assessors-london/",
-        "place": "London",
-        "short": "London",
-        "title": "Loss Assessors in London | Independent Claims Consultants",
-        "desc": "Independent loss assessors helping London homeowners, flat owners, landlords and businesses with fire, flood and escape of water claims. No win, no fee.",
-        "h1": "Loss assessors <span>in London</span>",
-        "lead": "Our Southern office in Cobham helps homeowners, flat owners, landlords and businesses right across London with property insurance claims.",
-        "image": ("london-thames", "Tower Bridge and the River Thames in London from above"),
-        "intro": [
-            "After a fire, flood or escape of water, your insurer will often appoint a loss adjuster to look after its interests. We work only for you. We prepare and negotiate your claim and deal with your insurer so you can focus on getting back to normal.",
-            "Our Southern office in Cobham is close to south-west London, and our loss assessors work right across the capital.",
-            "London claims bring their own challenges, from leaks between flats and shared buildings insurance to basements and busy commercial premises. We know how to deal with all of them.",
-        ],
-        "areas": ["Kingston upon Thames", "Richmond", "Wimbledon", "Putney", "Wandsworth", "Sutton",
-                  "Surbiton", "Twickenham", "Fulham", "Chelsea", "Clapham", "Central London"],
-        "claims": [
-            ("droplet", "Leaks between flats", "Water from a neighbouring flat can damage several homes. We work out whose policy should pay and claim for all the damage.", "escape.html"),
-            ("flood", "Surface water and basement flooding", "Heavy downpours can overwhelm drains, as they did in parts of London in July 2021. Basements and lower floors are often hit hardest.", "flood.html"),
-            ("key", "Landlords and HMOs", "We handle the claim and the repairs for let properties, and claim for the rent you lose while a property can't be let.", "landlords.html"),
-            ("briefcase", "Shops, restaurants and offices", "Our forensic and consequential loss accountants calculate your business interruption loss while your premises are restored.", "commercial.html"),
-        ],
-        "faqs": [
-            ("I own a flat. Whose insurance covers the damage?",
-             "<p>In many blocks, the building itself is insured under a policy arranged by the freeholder or managing agent, while your own contents policy covers your belongings. It depends on your lease. We can work out which policies apply and claim under all of them.</p>"),
-            ("Do you cover all of London?",
-             "<p>Yes. Our Southern office in Cobham is close to south-west London, and we work with clients right across the capital.</p>"),
-        ],
-    },
-    {
-        "key": "sussex.html",
-        "in_surrey": False,
-        "route": "loss-assessors-sussex/",
-        "place": "Sussex",
-        "short": "Sussex",
-        "title": "Loss Assessors in Sussex | Independent Claims Consultants",
-        "desc": "Independent loss assessors helping homeowners, landlords and businesses in Brighton, Worthing, Crawley, Chichester and across Sussex. No win, no fee.",
-        "h1": "Loss assessors <span>in Sussex</span>",
-        "lead": "We help homeowners, landlords and businesses across East and West Sussex with fire, flood, storm and escape of water claims.",
-        "image": ("brighton-pier", "Brighton Palace Pier on a sunny day"),
-        "intro": [
-            "When your property is damaged, your insurer appoints a loss adjuster to protect its interests. We work only for you. We prepare, present and negotiate your claim so you receive everything you're entitled to.",
-            "Our Southern office in Cobham covers the whole of the South of England, so your loss assessor will come to you to inspect the damage, meet your insurer's loss adjuster at the property and keep an eye on the repairs.",
-            "From seafront flats and Regency terraces to country homes and town-centre businesses, Sussex has every kind of property. Each brings its own challenges, and we make sure nothing is missed from your claim.",
-        ],
-        "areas": ["Brighton and Hove", "Worthing", "Crawley", "Horsham", "Chichester", "Bognor Regis",
-                  "Eastbourne", "Hastings", "Lewes", "Haywards Heath", "Burgess Hill", "East Grinstead"],
-        "claims": [
-            ("storm", "Coastal storms", "Strong winds and driving rain off the Channel can damage roofs, windows and seafront properties. We arrange emergency works and claim for all the damage.", "storm.html"),
-            ("flood", "River flooding", "Towns on Sussex rivers have flooded before, including Lewes and Uckfield in October 2000. We manage flood claims from drying out to final settlement.", "flood.html"),
-            ("key", "Flats, lets and shared houses", "Leaks between flats and damage to let properties are common claims. We work out whose policy should pay, and claim for lost rent too.", "landlords.html"),
-            ("fire", "Fire and smoke", "From kitchen fires to serious house fires, we arrange emergency help and make sure smoke and soot damage is fully claimed for.", "fire.html"),
-        ],
-        "faqs": [
-            ("Do you cover all of Sussex?",
-             "<p>Yes. Our Southern office covers East and West Sussex, along with the rest of the South of England. Your loss assessor will visit your property.</p>"),
-            ("Storm damage has let water into my home. What should I do?",
-             "<p>Make the property safe, stop more water getting in if you can, and take photos of all the damage. Report it to your insurer straight away. We can arrange emergency repairs and make sure the water damage inside is included in your claim.</p>"),
-        ],
-    },
-    {
-        "key": "kent.html",
-        "in_surrey": False,
-        "route": "loss-assessors-kent/",
-        "place": "Kent",
-        "short": "Kent",
-        "title": "Loss Assessors in Kent | Independent Claims Consultants",
-        "desc": "Independent loss assessors helping homeowners, landlords and businesses in Maidstone, Canterbury, Tunbridge Wells, Sevenoaks and across Kent. No win, no fee.",
-        "h1": "Loss assessors <span>in Kent</span>",
-        "lead": "We help homeowners, landlords and businesses across Kent with fire, flood, storm, subsidence and escape of water claims.",
-        "image": ("storm-rain", "Heavy rain running down a window during a storm"),
-        "intro": [
-            "After a fire, flood or major leak, your insurer appoints a loss adjuster to act on its behalf. We act on yours. We prepare and negotiate your claim and deal with your insurer, so you don't have to.",
-            "Our Southern office in Cobham covers the whole of the South of England, so your loss assessor will come to you to inspect the damage, meet your insurer's loss adjuster at the property and keep an eye on the repairs.",
-            "Kent's mix of historic towns, coastal communities, rural villages and busy commercial areas means we see every kind of claim, from flooded homes to damaged warehouses.",
-        ],
-        "areas": ["Maidstone", "Canterbury", "Tunbridge Wells", "Tonbridge", "Sevenoaks", "Ashford",
-                  "Dartford", "Gravesend", "Medway towns", "Folkestone", "Dover", "Thanet"],
-        "claims": [
-            ("flood", "River flooding", "The River Medway and its tributaries have flooded homes and businesses, including in Yalding over Christmas 2013. We manage flood claims from drying out to final settlement.", "flood.html"),
-            ("subsidence", "Subsidence", "Clay soils shrink in dry summers and swell in wet winters, which can cause cracking. We investigate the cause and manage the claim through to repair.", "subsidence.html"),
-            ("storm", "Storm damage", "Exposed coastal and rural properties can take the brunt of winter storms. We arrange emergency works and claim for all the damage.", "storm.html"),
-            ("building", "Commercial premises", "For warehouses, shops and offices, we handle the building, stock and business interruption parts of your claim together.", "commercial.html"),
-        ],
-        "faqs": [
-            ("Do you cover all of Kent?",
-             "<p>Yes. Our Southern office covers the whole of Kent, along with the rest of the South of England. Your loss assessor will visit your property.</p>"),
-            ("I've noticed cracks in my walls. Could it be subsidence?",
-             "<p>It could be, especially on clay soils after a dry summer, but cracks have many causes. Note when you first saw them and take photos, then contact your insurer. <a href=\"subsidence.html\">Read more about subsidence claims</a>.</p>"),
-        ],
-    },
-    {
-        "key": "hampshire.html",
-        "in_surrey": False,
-        "route": "loss-assessors-hampshire/",
-        "place": "Hampshire",
-        "short": "Hampshire",
-        "title": "Loss Assessors in Hampshire | Independent Claims Consultants",
-        "desc": "Independent loss assessors helping homeowners, landlords and businesses in Southampton, Portsmouth, Winchester, Basingstoke and across Hampshire. No win, no fee.",
-        "h1": "Loss assessors <span>in Hampshire</span>",
-        "lead": "We help homeowners, landlords and businesses across Hampshire with fire, flood, storm and escape of water claims.",
-        "image": ("portsmouth-tower", "The Spinnaker Tower in Portsmouth against a blue sky"),
-        "intro": [
-            "When your property is damaged, your insurer appoints a loss adjuster to look after its interests. As your loss assessor, we look after yours, preparing and negotiating your claim so you get your full entitlement.",
-            "Our Southern office in Cobham covers the whole of the South of England, so your loss assessor will come to you to inspect the damage, meet your insurer's loss adjuster at the property and keep an eye on the repairs.",
-            "From city flats in Southampton and Portsmouth to period homes in Winchester and thatched cottages in the villages, we make sure your claim reflects the true cost of putting your property right.",
-        ],
-        "areas": ["Southampton", "Portsmouth", "Winchester", "Basingstoke", "Andover", "Eastleigh",
-                  "Fareham", "Havant", "Farnborough", "Aldershot", "Petersfield", "Lymington"],
-        "claims": [
-            ("flood", "Groundwater and river flooding", "In very wet winters, rising groundwater and chalk streams can flood homes, sometimes for weeks, as happened in parts of Hampshire in 2013–14.", "flood.html"),
-            ("fire", "Fire, including thatched homes", "Fires in older and thatched properties need specialist trades and materials. We make sure your claim covers like-for-like repairs.", "fire.html"),
-            ("storm", "Coastal storms", "Properties along the coast can be hit hard by wind and driving rain. We arrange emergency works and claim for all the damage.", "storm.html"),
-            ("key", "Landlords and shared houses", "We handle claims for let properties, including student lets, and claim for the rent you lose while a property can't be let.", "landlords.html"),
-        ],
-        "faqs": [
-            ("Do you cover all of Hampshire?",
-             "<p>Yes. Our Southern office covers the whole of Hampshire and the Isle of Wight, along with the rest of the South of England. Your loss assessor will visit your property.</p>"),
-            ("My home has a thatched roof. Can you help after a fire?",
-             "<p>Yes. Thatched and older properties need specialist thatchers and traditional materials, which can cost more and take longer. We make sure your claim reflects that, and arrange alternative accommodation if you can't live at home.</p>"),
-        ],
-    },
-    {
-        "key": "essex.html",
-        "in_surrey": False,
-        "route": "loss-assessors-essex/",
-        "place": "Essex",
-        "short": "Essex",
-        "title": "Loss Assessors in Essex | Independent Claims Consultants",
-        "desc": "Independent loss assessors helping homeowners, landlords and businesses in Chelmsford, Colchester, Southend, Basildon and across Essex. No win, no fee.",
-        "h1": "Loss assessors <span>in Essex</span>",
-        "lead": "We help homeowners, landlords and businesses across Essex with fire, flood, subsidence, storm and escape of water claims.",
-        "image": ("homes-terrace", "A row of Victorian terraced houses"),
-        "intro": [
-            "After your property is damaged, your insurer appoints a loss adjuster to act for it. We act for you. We prepare, present and negotiate your claim, and deal with your insurer from start to finish.",
-            "Our Southern office in Cobham covers the whole of the South of England, so your loss assessor will come to you to inspect the damage, meet your insurer's loss adjuster at the property and keep an eye on the repairs.",
-            "Whether it's a family home, a let property or a business, we make sure every part of the loss is identified and included in your claim.",
-        ],
-        "areas": ["Chelmsford", "Colchester", "Southend-on-Sea", "Basildon", "Brentwood", "Billericay",
-                  "Harlow", "Braintree", "Witham", "Maldon", "Saffron Walden", "Clacton-on-Sea"],
-        "claims": [
-            ("subsidence", "Subsidence", "Much of Essex sits on clay, which shrinks in dry summers and can cause cracking. We investigate the cause and manage the claim through to repair.", "subsidence.html"),
-            ("flood", "Coastal and surface water flooding", "Low-lying coastal areas and heavy downpours can both flood homes and businesses. We manage flood claims from drying out to final settlement.", "flood.html"),
-            ("droplet", "Escape of water", "Burst pipes and hidden leaks are among the most common claims. We make sure all the damage is found and claimed for.", "escape.html"),
-            ("briefcase", "Business interruption", "Our forensic and consequential loss accountants calculate your lost income while your premises are restored.", "bi.html"),
-        ],
-        "faqs": [
-            ("Do you cover all of Essex?",
-             "<p>Yes. Our Southern office covers the whole of Essex, along with the rest of the South of England. Your loss assessor will visit your property.</p>"),
-            ("My insurer says my cracks are not subsidence. Can you help?",
-             "<p>Yes. Insurers sometimes put cracking down to settlement, shrinkage or wear and tear. We can look at the evidence, arrange the right investigations and challenge the decision where it's wrong.</p>"),
-        ],
-    },
-    {
-        "key": "berkshire.html",
-        "in_surrey": False,
-        "route": "loss-assessors-berkshire/",
-        "place": "Berkshire",
-        "short": "Berkshire",
-        "title": "Loss Assessors in Berkshire | Independent Claims Consultants",
-        "desc": "Independent loss assessors helping homeowners, landlords and businesses in Reading, Windsor, Maidenhead, Bracknell, Newbury and across Berkshire. No win, no fee.",
-        "h1": "Loss assessors <span>in Berkshire</span>",
-        "lead": "We help homeowners, landlords and businesses across Berkshire and the Thames Valley with fire, flood and escape of water claims.",
-        "image": ("windsor-street", "A street in Windsor with the castle walls above"),
-        "intro": [
-            "When something goes wrong at your property, your insurer appoints a loss adjuster to protect its interests. We protect yours, preparing and negotiating your claim so you receive everything you're entitled to.",
-            "Our Southern office in Cobham covers the whole of the South of England, so your loss assessor will come to you to inspect the damage, meet your insurer's loss adjuster at the property and keep an eye on the repairs.",
-            "Berkshire is close to our office in Cobham. From riverside homes to business parks, we know the claims the area brings.",
-        ],
-        "areas": ["Reading", "Windsor", "Maidenhead", "Slough", "Bracknell", "Wokingham",
-                  "Newbury", "Thatcham", "Ascot", "Sandhurst", "Datchet", "Hungerford"],
-        "claims": [
-            ("flood", "Thames flooding", "Riverside towns and villages such as Datchet and Wraysbury flooded in early 2014. We manage flood claims from drying out to final settlement.", "flood.html"),
-            ("building", "Offices and business parks", "For offices, warehouses and shops, we handle the building, contents and business interruption parts of your claim together.", "commercial.html"),
-            ("droplet", "Escape of water", "Burst pipes and leaks from bathrooms and appliances are among the most common claims. We make sure all the damage is found and included.", "escape.html"),
-            ("fire", "Fire and smoke", "We arrange emergency help and alternative accommodation, and make sure smoke and soot damage is fully claimed for.", "fire.html"),
-        ],
-        "faqs": [
-            ("Do you cover all of Berkshire?",
-             "<p>Yes. Our Southern office covers the whole of Berkshire, along with the rest of the South of England. Your loss assessor will visit your property.</p>"),
-            ("Can you help my business after a flood?",
-             "<p>Yes. We handle the damage to your premises, stock and equipment, and our forensic and consequential loss accountants calculate your business interruption loss.</p>"),
-        ],
-    },
+    {'key': 'elmbridge.html',
+     'route': 'loss-assessors-elmbridge/',
+     'place': 'Cobham, Esher and Elmbridge',
+     'short': 'Elmbridge',
+     'title': 'Loss Assessors in Cobham & Esher | Independent Claims Consultants',
+     'desc': 'Local loss assessors based in Cobham, helping homeowners, landlords and businesses in Esher, '
+             'Weybridge, Walton and across Elmbridge. No win, no fee.',
+     'h1': 'Loss assessors in <span>Cobham, Esher and Elmbridge</span>',
+     'lead': 'Our Southern office is in Cobham, so if you live or work in Elmbridge, your loss assessor is just '
+             'down the road.',
+     'image': ('inspector', 'A loss assessor inspecting a window frame at a property'),
+     'intro': ['When fire, flood or a major leak damages your property, we take the stress out of the claim. We '
+               'prepare, present and negotiate it for you, working with your insurer so you receive everything '
+               "you're entitled to.",
+               'Our office in Cobham puts us at the heart of Elmbridge. We can be with you quickly to inspect '
+               "the damage, meet your insurer's loss adjuster and keep an eye on the repairs as they progress.",
+               'Many homes in the area are large, individually designed or finished to a high standard. That '
+               'makes it especially important that the full cost of putting things right, including specialist '
+               'materials and contents, is included in your claim.'],
+     'areas': ['Cobham',
+               "Stoke d'Abernon",
+               'Oxshott',
+               'Esher',
+               'Claygate',
+               'Hersham',
+               'Weybridge',
+               'Walton-on-Thames',
+               'East and West Molesey',
+               'Thames Ditton',
+               'Hinchley Wood',
+               'Byfleet'],
+     'claims': [('flood',
+                 'River flooding',
+                 'The Thames runs along the north of the borough and the Mole flows through Cobham. Homes near '
+                 'both rivers can be at risk in very wet winters.',
+                 'flood.html'),
+                ('droplet',
+                 'Escape of water',
+                 'Leaks from bathrooms, heating systems and appliances can damage expensive flooring, kitchens '
+                 'and finishes. We make sure the full cost is claimed.',
+                 'escape.html'),
+                ('pound',
+                 'High-value homes and contents',
+                 'Bespoke features, art, jewellery and designer furniture are easy to undervalue. We check your '
+                 'cover and present every item properly.',
+                 'a-under.html'),
+                ('fire',
+                 'Fire and smoke',
+                 'From kitchen fires to serious house fires, we arrange emergency help, alternative '
+                 'accommodation and a complete claim for the damage.',
+                 'fire.html')],
+     'faqs': [('How quickly can you visit a property in Elmbridge?',
+               "<p>Our Southern office is in Cobham, so we're close to every part of Elmbridge. Call us and "
+               "we'll arrange a visit as soon as we can.</p>"),
+              ('My home is high value. Could I be underinsured?',
+               "<p>It's possible. Larger and individually designed homes can cost far more to rebuild than "
+               "people expect, and valuable contents are easy to undervalue. If you're worried, talk to us as "
+               'early as possible. <a href="a-under.html">Read our guide to underinsurance</a>.</p>')]},
+    {'key': 'guildford.html',
+     'route': 'loss-assessors-guildford/',
+     'place': 'Guildford',
+     'short': 'Guildford',
+     'title': 'Loss Assessors in Guildford | Independent Claims Consultants',
+     'desc': 'Independent loss assessors for Guildford and the surrounding villages, helping with fire, flood '
+             'and escape of water insurance claims. No win, no fee.',
+     'h1': 'Loss assessors <span>in Guildford</span>',
+     'lead': 'From our Southern office in Cobham we help homeowners, landlords and businesses in Guildford and '
+             'its surrounding villages make the most of their insurance claims.',
+     'image': ('surrey-shere', 'Historic timber-framed cottages in Shere, a village near Guildford'),
+     'intro': ['Dealing with damage to your property is hard enough. We manage your insurance claim from start '
+               'to finish, preparing and presenting it in full and working with your insurer, so you can focus '
+               'on getting back to normal.',
+               'Guildford is a short drive from our office in Cobham, so your loss assessor can inspect the '
+               "damage, meet your insurer's loss adjuster at the property and oversee the repairs.",
+               'The town and its villages have many older and listed buildings. Repairing them properly can call '
+               'for specialist trades and traditional materials, and those costs need to be reflected in your '
+               'claim from the start.'],
+     'areas': ['Guildford town centre',
+               'Burpham',
+               'Merrow',
+               'Onslow Village',
+               'Stoughton',
+               'Shalford',
+               'Shere',
+               'Send',
+               'Ripley',
+               'Compton',
+               'Godalming',
+               'Cranleigh'],
+     'claims': [('flood',
+                 'Flood',
+                 'The River Wey runs through the centre of Guildford, and properties near it have flooded in '
+                 'very wet winters. We manage flood claims from drying out to final settlement.',
+                 'flood.html'),
+                ('home',
+                 'Older and listed buildings',
+                 'Period properties need the right specialists and materials. We make sure your claim covers '
+                 'like-for-like repairs, not a cheaper alternative.',
+                 'home-claims.html'),
+                ('key',
+                 'Landlords and shared houses',
+                 'If a let property is damaged, we handle the claim and the repairs, and claim for the rent you '
+                 "lose while it can't be let.",
+                 'landlords.html'),
+                ('briefcase',
+                 'Town centre businesses',
+                 'For shops, restaurants and offices, our forensic and consequential loss accountants calculate '
+                 'your business interruption loss.',
+                 'bi.html')],
+     'faqs': [('Do you cover Guildford and the villages around it?',
+               '<p>Yes. Our Southern office in Cobham covers Guildford and its villages, the rest of Surrey and '
+               'the whole of the South of England.</p>'),
+              ('My home is a listed building. Can you help with the claim?',
+               '<p>Yes. Repairs to listed and older buildings often need specialist trades, traditional '
+               'materials and the right consents. We make sure your claim reflects the true cost of doing the '
+               'work properly.</p>')]},
+    {'key': 'woking.html',
+     'route': 'loss-assessors-woking/',
+     'place': 'Woking',
+     'short': 'Woking',
+     'title': 'Loss Assessors in Woking | Independent Claims Consultants',
+     'desc': 'Independent loss assessors helping homeowners, landlords and businesses in Woking, Byfleet and '
+             'West Byfleet with property insurance claims. No win, no fee.',
+     'h1': 'Loss assessors <span>in Woking</span>',
+     'lead': 'Our Southern office in Cobham is close to Woking. We help local homeowners, landlords and '
+             'businesses get their claims settled properly.',
+     'image': ('homes-terrace', 'A row of Victorian terraced houses'),
+     'intro': ['As your loss assessor, we handle every part of your claim for you, from the first visit to the '
+               'final settlement. We make sure nothing is missed, so you receive your full entitlement.',
+               'Woking is just a few miles from our office in Cobham, so we can be with you quickly to inspect '
+               "the damage and meet your insurer's loss adjuster at the property.",
+               'From Victorian and Edwardian houses to newer flats in the town centre, every type of property '
+               'brings its own challenges. We make sure nothing is missed.'],
+     'areas': ['Woking town centre',
+               'Horsell',
+               'Knaphill',
+               'St Johns',
+               'Goldsworth Park',
+               'Old Woking',
+               'Pyrford',
+               'Byfleet',
+               'West Byfleet',
+               'Sheerwater',
+               'Mayford',
+               'Brookwood'],
+     'claims': [('droplet',
+                 'Leaks in flats',
+                 'Water from a flat above can damage several homes at once. We work out whose insurance should '
+                 'pay and claim for all the damage.',
+                 'escape.html'),
+                ('flood',
+                 'Flood',
+                 'Parts of Byfleet and Old Woking lie close to the River Wey. We manage flood claims from drying '
+                 'out to final settlement.',
+                 'flood.html'),
+                ('fire',
+                 'Fire and smoke',
+                 'We arrange emergency help and alternative accommodation, and make sure smoke and soot damage '
+                 'is fully included in your claim.',
+                 'fire.html'),
+                ('key',
+                 'Landlord claims',
+                 'We handle the claim and the reinstatement, and claim for the rent you lose while the property '
+                 "can't be let.",
+                 'landlords.html')],
+     'faqs': [('How far is your office from Woking?',
+               '<p>Our Southern office is in Cobham, only a few miles away. We can visit your property to '
+               "inspect the damage and meet your insurer's loss adjuster.</p>"),
+              ('Water from the flat above has damaged my home. What should I do?',
+               "<p>Stop the water if you can, take photos and report it to your insurer and the building's "
+               'managing agent or freeholder. Who pays can depend on the lease and the buildings policy. We can '
+               'sort this out for you and claim for all the damage.</p>')]},
+    {'key': 'epsom.html',
+     'route': 'loss-assessors-epsom-leatherhead/',
+     'place': 'Epsom, Leatherhead and Dorking',
+     'short': 'Epsom and Leatherhead',
+     'title': 'Loss Assessors in Epsom & Leatherhead | Independent Claims Consultants',
+     'desc': 'Local loss assessors helping homeowners, landlords and businesses in Epsom, Ewell, Ashtead, '
+             'Leatherhead, Bookham and Dorking. No win, no fee.',
+     'h1': 'Loss assessors in <span>Epsom, Leatherhead and Dorking</span>',
+     'lead': 'From our Southern office in Cobham we help clients across Epsom and Ewell and Mole Valley with '
+             'fire, flood, storm and escape of water claims.',
+     'image': ('box-hill', 'View across the Surrey Hills from Box Hill at sunset'),
+     'intro': ['After a fire, flood or escape of water, we make the claims process as smooth as possible. We '
+               "prepare and negotiate your claim and keep everything moving, so you don't have to.",
+               'Leatherhead, Epsom and Dorking are all close to our office in Cobham, so we can inspect the '
+               "damage, meet your insurer's loss adjuster and oversee the repairs.",
+               'The area mixes busy towns with rural villages and wooded hills. That means we see everything '
+               'from flooded kitchens to storm-damaged roofs and outbuildings.'],
+     'areas': ['Epsom',
+               'Ewell',
+               'Ashtead',
+               'Leatherhead',
+               'Fetcham',
+               'Great Bookham',
+               'Effingham',
+               'Headley',
+               'Mickleham',
+               'Dorking',
+               'Brockham',
+               'Banstead'],
+     'claims': [('flood',
+                 'River flooding',
+                 'The River Mole flows through Leatherhead and past Dorking, and homes near it can be at risk in '
+                 'very wet winters.',
+                 'flood.html'),
+                ('storm',
+                 'Storm and fallen trees',
+                 'High winds can bring trees down onto roofs, cars and outbuildings. We arrange emergency works '
+                 'and claim for all the damage.',
+                 'storm.html'),
+                ('droplet',
+                 'Escape of water',
+                 'Burst pipes and hidden leaks are among the most common claims. We make sure all the damage is '
+                 'found and included.',
+                 'escape.html'),
+                ('fire',
+                 'Fire and smoke',
+                 'We guide you through every decision after a fire and make sure smoke and soot damage is fully '
+                 'claimed for.',
+                 'fire.html')],
+     'faqs': [('A tree fell on my house in a storm. Am I covered?',
+               '<p>Storm damage is covered by most home insurance policies, and that usually includes damage '
+               'caused by a falling tree. The cost of removing the tree may be limited, so check your policy. We '
+               'can make sure everything is included in your claim.</p>'),
+              ('Do you cover villages around Dorking and Leatherhead?',
+               '<p>Yes. We cover every town and village across Mole Valley and Epsom and Ewell, and our Southern '
+               'office covers the whole of the South of England.</p>')]},
+    {'key': 'london.html',
+     'in_surrey': False,
+     'route': 'loss-assessors-london/',
+     'place': 'London',
+     'short': 'London',
+     'title': 'Loss Assessors in London | Independent Claims Consultants',
+     'desc': 'Independent loss assessors helping London homeowners, flat owners, landlords and businesses with '
+             'fire, flood and escape of water claims. No win, no fee.',
+     'h1': 'Loss assessors <span>in London</span>',
+     'lead': 'Our Southern office in Cobham helps homeowners, flat owners, landlords and businesses right across '
+             'London with property insurance claims.',
+     'image': ('london-thames', 'Tower Bridge and the River Thames in London from above'),
+     'intro': ['When fire, flood or a major leak damages your property, we take the stress out of the claim. We '
+               'prepare, present and negotiate it for you, working with your insurer so you receive everything '
+               "you're entitled to.",
+               'Our Southern office in Cobham is close to south-west London, and our loss assessors work right '
+               'across the capital.',
+               'London claims bring their own challenges, from leaks between flats and shared buildings '
+               'insurance to basements and busy commercial premises. We know how to deal with all of them.'],
+     'areas': ['Kingston upon Thames',
+               'Richmond',
+               'Wimbledon',
+               'Putney',
+               'Wandsworth',
+               'Sutton',
+               'Surbiton',
+               'Twickenham',
+               'Fulham',
+               'Chelsea',
+               'Clapham',
+               'Central London'],
+     'claims': [('droplet',
+                 'Leaks between flats',
+                 'Water from a neighbouring flat can damage several homes. We work out whose policy should pay '
+                 'and claim for all the damage.',
+                 'escape.html'),
+                ('flood',
+                 'Surface water and basement flooding',
+                 'Heavy downpours can overwhelm drains, as they did in parts of London in July 2021. Basements '
+                 'and lower floors are often hit hardest.',
+                 'flood.html'),
+                ('key',
+                 'Landlords and HMOs',
+                 'We handle the claim and the repairs for let properties, and claim for the rent you lose while '
+                 "a property can't be let.",
+                 'landlords.html'),
+                ('briefcase',
+                 'Shops, restaurants and offices',
+                 'Our forensic and consequential loss accountants calculate your business interruption loss '
+                 'while your premises are restored.',
+                 'commercial.html')],
+     'faqs': [('I own a flat. Whose insurance covers the damage?',
+               '<p>In many blocks, the building itself is insured under a policy arranged by the freeholder or '
+               'managing agent, while your own contents policy covers your belongings. It depends on your lease. '
+               'We can work out which policies apply and claim under all of them.</p>'),
+              ('Do you cover all of London?',
+               '<p>Yes. Our Southern office in Cobham is close to south-west London, and we work with clients '
+               'right across the capital.</p>')]},
+    {'key': 'sussex.html',
+     'in_surrey': False,
+     'route': 'loss-assessors-sussex/',
+     'place': 'Sussex',
+     'short': 'Sussex',
+     'title': 'Loss Assessors in Sussex | Independent Claims Consultants',
+     'desc': 'Independent loss assessors helping homeowners, landlords and businesses in Brighton, Worthing, '
+             'Crawley, Chichester and across Sussex. No win, no fee.',
+     'h1': 'Loss assessors <span>in Sussex</span>',
+     'lead': 'We help homeowners, landlords and businesses across East and West Sussex with fire, flood, storm '
+             'and escape of water claims.',
+     'image': ('brighton-pier', 'Brighton Palace Pier on a sunny day'),
+     'intro': ['Dealing with damage to your property is hard enough. We manage your insurance claim from start '
+               'to finish, preparing and presenting it in full and working with your insurer, so you can focus '
+               'on getting back to normal.',
+               'Our Southern office in Cobham covers the whole of the South of England, so your loss assessor '
+               "will come to you to inspect the damage, meet your insurer's loss adjuster at the property and "
+               'keep an eye on the repairs.',
+               'From seafront flats and Regency terraces to country homes and town-centre businesses, Sussex has '
+               'every kind of property. Each brings its own challenges, and we make sure nothing is missed from '
+               'your claim.'],
+     'areas': ['Brighton and Hove',
+               'Worthing',
+               'Crawley',
+               'Horsham',
+               'Chichester',
+               'Bognor Regis',
+               'Eastbourne',
+               'Hastings',
+               'Lewes',
+               'Haywards Heath',
+               'Burgess Hill',
+               'East Grinstead'],
+     'claims': [('storm',
+                 'Coastal storms',
+                 'Strong winds and driving rain off the Channel can damage roofs, windows and seafront '
+                 'properties. We arrange emergency works and claim for all the damage.',
+                 'storm.html'),
+                ('flood',
+                 'River flooding',
+                 'Towns on Sussex rivers have flooded before, including Lewes and Uckfield in October 2000. We '
+                 'manage flood claims from drying out to final settlement.',
+                 'flood.html'),
+                ('key',
+                 'Flats, lets and shared houses',
+                 'Leaks between flats and damage to let properties are common claims. We work out whose policy '
+                 'should pay, and claim for lost rent too.',
+                 'landlords.html'),
+                ('fire',
+                 'Fire and smoke',
+                 'From kitchen fires to serious house fires, we arrange emergency help and make sure smoke and '
+                 'soot damage is fully claimed for.',
+                 'fire.html')],
+     'faqs': [('Do you cover all of Sussex?',
+               '<p>Yes. Our Southern office covers East and West Sussex, along with the rest of the South of '
+               'England. Your loss assessor will visit your property.</p>'),
+              ('Storm damage has let water into my home. What should I do?',
+               '<p>Make the property safe, stop more water getting in if you can, and take photos of all the '
+               'damage. Report it to your insurer straight away. We can arrange emergency repairs and make sure '
+               'the water damage inside is included in your claim.</p>')]},
+    {'key': 'kent.html',
+     'in_surrey': False,
+     'route': 'loss-assessors-kent/',
+     'place': 'Kent',
+     'short': 'Kent',
+     'title': 'Loss Assessors in Kent | Independent Claims Consultants',
+     'desc': 'Independent loss assessors helping homeowners, landlords and businesses in Maidstone, Canterbury, '
+             'Tunbridge Wells, Sevenoaks and across Kent. No win, no fee.',
+     'h1': 'Loss assessors <span>in Kent</span>',
+     'lead': 'We help homeowners, landlords and businesses across Kent with fire, flood, storm, subsidence and '
+             'escape of water claims.',
+     'image': ('storm-rain', 'Heavy rain running down a window during a storm'),
+     'intro': ['As your loss assessor, we handle every part of your claim for you, from the first visit to the '
+               'final settlement. We make sure nothing is missed, so you receive your full entitlement.',
+               'Our Southern office in Cobham covers the whole of the South of England, so your loss assessor '
+               "will come to you to inspect the damage, meet your insurer's loss adjuster at the property and "
+               'keep an eye on the repairs.',
+               "Kent's mix of historic towns, coastal communities, rural villages and busy commercial areas "
+               'means we see every kind of claim, from flooded homes to damaged warehouses.'],
+     'areas': ['Maidstone',
+               'Canterbury',
+               'Tunbridge Wells',
+               'Tonbridge',
+               'Sevenoaks',
+               'Ashford',
+               'Dartford',
+               'Gravesend',
+               'Medway towns',
+               'Folkestone',
+               'Dover',
+               'Thanet'],
+     'claims': [('flood',
+                 'River flooding',
+                 'The River Medway and its tributaries have flooded homes and businesses, including in Yalding '
+                 'over Christmas 2013. We manage flood claims from drying out to final settlement.',
+                 'flood.html'),
+                ('subsidence',
+                 'Subsidence',
+                 'Clay soils shrink in dry summers and swell in wet winters, which can cause cracking. We '
+                 'investigate the cause and manage the claim through to repair.',
+                 'subsidence.html'),
+                ('storm',
+                 'Storm damage',
+                 'Exposed coastal and rural properties can take the brunt of winter storms. We arrange emergency '
+                 'works and claim for all the damage.',
+                 'storm.html'),
+                ('building',
+                 'Commercial premises',
+                 'For warehouses, shops and offices, we handle the building, stock and business interruption '
+                 'parts of your claim together.',
+                 'commercial.html')],
+     'faqs': [('Do you cover all of Kent?',
+               '<p>Yes. Our Southern office covers the whole of Kent, along with the rest of the South of '
+               'England. Your loss assessor will visit your property.</p>'),
+              ("I've noticed cracks in my walls. Could it be subsidence?",
+               '<p>It could be, especially on clay soils after a dry summer, but cracks have many causes. Note '
+               'when you first saw them and take photos, then contact your insurer. <a '
+               'href="subsidence.html">Read more about subsidence claims</a>.</p>')]},
+    {'key': 'hampshire.html',
+     'in_surrey': False,
+     'route': 'loss-assessors-hampshire/',
+     'place': 'Hampshire',
+     'short': 'Hampshire',
+     'title': 'Loss Assessors in Hampshire | Independent Claims Consultants',
+     'desc': 'Independent loss assessors helping homeowners, landlords and businesses in Southampton, '
+             'Portsmouth, Winchester, Basingstoke and across Hampshire. No win, no fee.',
+     'h1': 'Loss assessors <span>in Hampshire</span>',
+     'lead': 'We help homeowners, landlords and businesses across Hampshire with fire, flood, storm and escape '
+             'of water claims.',
+     'image': ('portsmouth-tower', 'The Spinnaker Tower in Portsmouth against a blue sky'),
+     'intro': ['After a fire, flood or escape of water, we make the claims process as smooth as possible. We '
+               "prepare and negotiate your claim and keep everything moving, so you don't have to.",
+               'Our Southern office in Cobham covers the whole of the South of England, so your loss assessor '
+               "will come to you to inspect the damage, meet your insurer's loss adjuster at the property and "
+               'keep an eye on the repairs.',
+               'From city flats in Southampton and Portsmouth to period homes in Winchester and thatched '
+               'cottages in the villages, we make sure your claim reflects the true cost of putting your '
+               'property right.'],
+     'areas': ['Southampton',
+               'Portsmouth',
+               'Winchester',
+               'Basingstoke',
+               'Andover',
+               'Eastleigh',
+               'Fareham',
+               'Havant',
+               'Farnborough',
+               'Aldershot',
+               'Petersfield',
+               'Lymington'],
+     'claims': [('flood',
+                 'Groundwater and river flooding',
+                 'In very wet winters, rising groundwater and chalk streams can flood homes, sometimes for '
+                 'weeks, as happened in parts of Hampshire in 2013–14.',
+                 'flood.html'),
+                ('fire',
+                 'Fire, including thatched homes',
+                 'Fires in older and thatched properties need specialist trades and materials. We make sure your '
+                 'claim covers like-for-like repairs.',
+                 'fire.html'),
+                ('storm',
+                 'Coastal storms',
+                 'Properties along the coast can be hit hard by wind and driving rain. We arrange emergency '
+                 'works and claim for all the damage.',
+                 'storm.html'),
+                ('key',
+                 'Landlords and shared houses',
+                 'We handle claims for let properties, including student lets, and claim for the rent you lose '
+                 "while a property can't be let.",
+                 'landlords.html')],
+     'faqs': [('Do you cover all of Hampshire?',
+               '<p>Yes. Our Southern office covers the whole of Hampshire and the Isle of Wight, along with the '
+               'rest of the South of England. Your loss assessor will visit your property.</p>'),
+              ('My home has a thatched roof. Can you help after a fire?',
+               '<p>Yes. Thatched and older properties need specialist thatchers and traditional materials, which '
+               'can cost more and take longer. We make sure your claim reflects that, and arrange alternative '
+               "accommodation if you can't live at home.</p>")]},
+    {'key': 'essex.html',
+     'in_surrey': False,
+     'route': 'loss-assessors-essex/',
+     'place': 'Essex',
+     'short': 'Essex',
+     'title': 'Loss Assessors in Essex | Independent Claims Consultants',
+     'desc': 'Independent loss assessors helping homeowners, landlords and businesses in Chelmsford, Colchester, '
+             'Southend, Basildon and across Essex. No win, no fee.',
+     'h1': 'Loss assessors <span>in Essex</span>',
+     'lead': 'We help homeowners, landlords and businesses across Essex with fire, flood, subsidence, storm and '
+             'escape of water claims.',
+     'image': ('homes-terrace', 'A row of Victorian terraced houses'),
+     'intro': ['When fire, flood or a major leak damages your property, we take the stress out of the claim. We '
+               'prepare, present and negotiate it for you, working with your insurer so you receive everything '
+               "you're entitled to.",
+               'Our Southern office in Cobham covers the whole of the South of England, so your loss assessor '
+               "will come to you to inspect the damage, meet your insurer's loss adjuster at the property and "
+               'keep an eye on the repairs.',
+               "Whether it's a family home, a let property or a business, we make sure every part of the loss is "
+               'identified and included in your claim.'],
+     'areas': ['Chelmsford',
+               'Colchester',
+               'Southend-on-Sea',
+               'Basildon',
+               'Brentwood',
+               'Billericay',
+               'Harlow',
+               'Braintree',
+               'Witham',
+               'Maldon',
+               'Saffron Walden',
+               'Clacton-on-Sea'],
+     'claims': [('subsidence',
+                 'Subsidence',
+                 'Much of Essex sits on clay, which shrinks in dry summers and can cause cracking. We '
+                 'investigate the cause and manage the claim through to repair.',
+                 'subsidence.html'),
+                ('flood',
+                 'Coastal and surface water flooding',
+                 'Low-lying coastal areas and heavy downpours can both flood homes and businesses. We manage '
+                 'flood claims from drying out to final settlement.',
+                 'flood.html'),
+                ('droplet',
+                 'Escape of water',
+                 'Burst pipes and hidden leaks are among the most common claims. We make sure all the damage is '
+                 'found and claimed for.',
+                 'escape.html'),
+                ('briefcase',
+                 'Business interruption',
+                 'Our forensic and consequential loss accountants calculate your lost income while your premises '
+                 'are restored.',
+                 'bi.html')],
+     'faqs': [('Do you cover all of Essex?',
+               '<p>Yes. Our Southern office covers the whole of Essex, along with the rest of the South of '
+               'England. Your loss assessor will visit your property.</p>'),
+              ('My insurer says my cracks are not subsidence. Can you help?',
+               '<p>Yes. Insurers sometimes put cracking down to settlement, shrinkage or wear and tear. We can '
+               "look at the evidence, arrange the right investigations and challenge the decision where it's "
+               'wrong.</p>')]},
+    {'key': 'berkshire.html',
+     'in_surrey': False,
+     'route': 'loss-assessors-berkshire/',
+     'place': 'Berkshire',
+     'short': 'Berkshire',
+     'title': 'Loss Assessors in Berkshire | Independent Claims Consultants',
+     'desc': 'Independent loss assessors helping homeowners, landlords and businesses in Reading, Windsor, '
+             'Maidenhead, Bracknell, Newbury and across Berkshire. No win, no fee.',
+     'h1': 'Loss assessors <span>in Berkshire</span>',
+     'lead': 'We help homeowners, landlords and businesses across Berkshire and the Thames Valley with fire, '
+             'flood and escape of water claims.',
+     'image': ('windsor-street', 'A street in Windsor with the castle walls above'),
+     'intro': ['Dealing with damage to your property is hard enough. We manage your insurance claim from start '
+               'to finish, preparing and presenting it in full and working with your insurer, so you can focus '
+               'on getting back to normal.',
+               'Our Southern office in Cobham covers the whole of the South of England, so your loss assessor '
+               "will come to you to inspect the damage, meet your insurer's loss adjuster at the property and "
+               'keep an eye on the repairs.',
+               'Berkshire is close to our office in Cobham. From riverside homes to business parks, we know the '
+               'claims the area brings.'],
+     'areas': ['Reading',
+               'Windsor',
+               'Maidenhead',
+               'Slough',
+               'Bracknell',
+               'Wokingham',
+               'Newbury',
+               'Thatcham',
+               'Ascot',
+               'Sandhurst',
+               'Datchet',
+               'Hungerford'],
+     'claims': [('flood',
+                 'Thames flooding',
+                 'Riverside towns and villages such as Datchet and Wraysbury flooded in early 2014. We manage '
+                 'flood claims from drying out to final settlement.',
+                 'flood.html'),
+                ('building',
+                 'Offices and business parks',
+                 'For offices, warehouses and shops, we handle the building, contents and business interruption '
+                 'parts of your claim together.',
+                 'commercial.html'),
+                ('droplet',
+                 'Escape of water',
+                 'Burst pipes and leaks from bathrooms and appliances are among the most common claims. We make '
+                 'sure all the damage is found and included.',
+                 'escape.html'),
+                ('fire',
+                 'Fire and smoke',
+                 'We arrange emergency help and alternative accommodation, and make sure smoke and soot damage '
+                 'is fully claimed for.',
+                 'fire.html')],
+     'faqs': [('Do you cover all of Berkshire?',
+               '<p>Yes. Our Southern office covers the whole of Berkshire, along with the rest of the South of '
+               'England. Your loss assessor will visit your property.</p>'),
+              ('Can you help my business after a flood?',
+               '<p>Yes. We handle the damage to your premises, stock and equipment, and our forensic and '
+               'consequential loss accountants calculate your business interruption loss.</p>')]},
     {'key': 'oxfordshire.html',
      'in_surrey': False,
      'route': 'loss-assessors-oxfordshire/',
@@ -319,9 +593,8 @@ TOWNS = [
      'lead': 'We help homeowners, landlords and businesses across Oxfordshire with fire, flood and escape of '
              'water claims.',
      'image': ('homes-terrace', 'Victorian terraced houses on a street in Oxford'),
-     'intro': ['When your property is damaged, your insurer appoints a loss adjuster to look after its '
-               'interests. We look after yours, preparing and negotiating your claim so you receive everything '
-               "you're entitled to.",
+     'intro': ['As your loss assessor, we handle every part of your claim for you, from the first visit to the '
+               'final settlement. We make sure nothing is missed, so you receive your full entitlement.',
                'Our Southern office in Cobham covers the whole of the South of England, so your loss assessor '
                "will come to you to inspect the damage, meet your insurer's loss adjuster at the property and "
                'keep an eye on the repairs.',
@@ -378,9 +651,8 @@ TOWNS = [
      'lead': 'We help homeowners, landlords and businesses across Buckinghamshire and Milton Keynes with fire, '
              'flood, storm and escape of water claims.',
      'image': ('policy-woman', 'A smiling female adviser holding a policy document'),
-     'intro': ['After a fire, flood or major leak, your insurer appoints a loss adjuster to act on its behalf. '
-               "We act on yours. We prepare and negotiate your claim and deal with your insurer, so you don't "
-               'have to.',
+     'intro': ['After a fire, flood or escape of water, we make the claims process as smooth as possible. We '
+               "prepare and negotiate your claim and keep everything moving, so you don't have to.",
                'Our Southern office in Cobham covers the whole of the South of England, so your loss assessor '
                "will come to you to inspect the damage, meet your insurer's loss adjuster at the property and "
                'keep an eye on the repairs.',
@@ -435,9 +707,9 @@ TOWNS = [
      'lead': 'We help homeowners, landlords and businesses across Hertfordshire with fire, flood, subsidence and '
              'escape of water claims.',
      'image': ('st-albans', 'St Albans Cathedral at sunset'),
-     'intro': ['When something goes wrong at your property, your insurer appoints a loss adjuster to protect its '
-               'interests. We protect yours, preparing and negotiating your claim so you receive your full '
-               'entitlement.',
+     'intro': ['When fire, flood or a major leak damages your property, we take the stress out of the claim. We '
+               'prepare, present and negotiate it for you, working with your insurer so you receive everything '
+               "you're entitled to.",
                'Our Southern office in Cobham covers the whole of the South of England, so your loss assessor '
                "will come to you to inspect the damage, meet your insurer's loss adjuster at the property and "
                'keep an eye on the repairs.',
@@ -494,9 +766,9 @@ TOWNS = [
      'lead': 'We help homeowners, landlords and businesses across Wiltshire with fire, flood, storm and escape '
              'of water claims.',
      'image': ('salisbury-cathedral', 'Salisbury Cathedral and its spire'),
-     'intro': ['After your property is damaged, your insurer appoints a loss adjuster to act for it. We act for '
-               'you. We prepare, present and negotiate your claim, and deal with your insurer from start to '
-               'finish.',
+     'intro': ['Dealing with damage to your property is hard enough. We manage your insurance claim from start '
+               'to finish, preparing and presenting it in full and working with your insurer, so you can focus '
+               'on getting back to normal.',
                'Our Southern office in Cobham covers the whole of the South of England, so your loss assessor '
                "will come to you to inspect the damage, meet your insurer's loss adjuster at the property and "
                'keep an eye on the repairs.',
@@ -553,9 +825,8 @@ TOWNS = [
      'lead': 'We help homeowners, holiday-let owners, landlords and businesses across Dorset with fire, flood, '
              'storm and escape of water claims.',
      'image': ('durdle-door', 'Durdle Door, the limestone arch on the Dorset coast'),
-     'intro': ['When your property is damaged, your insurer appoints a loss adjuster to look after its '
-               'interests. As your loss assessor, we look after yours, preparing and negotiating your claim so '
-               'you get your full entitlement.',
+     'intro': ['As your loss assessor, we handle every part of your claim for you, from the first visit to the '
+               'final settlement. We make sure nothing is missed, so you receive your full entitlement.',
                'Our Southern office in Cobham covers the whole of the South of England, so your loss assessor '
                "will come to you to inspect the damage, meet your insurer's loss adjuster at the property and "
                'keep an eye on the repairs.',
@@ -612,8 +883,8 @@ TOWNS = [
      'lead': 'We help homeowners, holiday-let owners, landlords and businesses across Devon and Cornwall with '
              'storm, flood, fire and escape of water claims.',
      'image': ('st-ives', 'Boats in St Ives harbour, Cornwall, at low tide'),
-     'intro': ['After a storm, flood or fire, your insurer appoints a loss adjuster to act on its behalf. We act '
-               "on yours. We prepare and negotiate your claim and deal with your insurer, so you don't have to.",
+     'intro': ['After a fire, flood or escape of water, we make the claims process as smooth as possible. We '
+               "prepare and negotiate your claim and keep everything moving, so you don't have to.",
                'Our Southern office in Cobham covers the whole of the South of England, so your loss assessor '
                "will come to you to inspect the damage, meet your insurer's loss adjuster at the property and "
                'keep an eye on the repairs.',
