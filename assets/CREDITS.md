@@ -30,6 +30,9 @@ All photos are from Pexels and the video is from Mixkit. Both licences allow fre
 | `img/st-ives-*` | https://www.pexels.com/photo/st-ives-harbor-cornwall-england-uk-14281755/ |
 | `img/salisbury-cathedral-*` | https://www.pexels.com/photo/facade-of-salisbury-cathedral-14336577/ |
 | `img/st-albans-*` | https://www.pexels.com/photo/st-albans-cathedral-cathedral-and-abbey-church-of-st-alban-6678844/ |
+| `img/impact-car-*` | https://www.pexels.com/photo/crashed-car-into-lamp-post-on-london-street-38339706/ |
+| `img/subsidence-crack-*` | https://www.pexels.com/photo/surface-of-aged-white-wall-with-crack-7794439/ |
+| `img/storm-tree-*` | https://www.pexels.com/photo/a-car-crushed-by-a-broken-tree-5351108/ |
 | `img/storm-rain-*` (still frame) | https://mixkit.co/free-stock-video/window-on-a-rainy-day-2846/ |
 | `video/hero-firefighters.*`, `img/hero-poster-*` | https://mixkit.co/free-stock-video/firefighters-on-the-street-shooting-water-with-their-hoses-5296/ |
 

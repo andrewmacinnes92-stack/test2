@@ -107,8 +107,7 @@ TOWNS = [
                  'landlords.html'),
                 ('briefcase',
                  'Town centre businesses',
-                 'For shops, restaurants and offices, our forensic and consequential loss accountants calculate '
-                 'your business interruption loss.',
+                 'For shops, restaurants and offices, we calculate and claim your business interruption loss.',
                  'bi.html')],
      'faqs': [('Do you cover Guildford and the villages around it?',
                '<p>Yes. Our Southern office in Cobham covers Guildford and its villages, the rest of Surrey and '
@@ -277,8 +276,7 @@ TOWNS = [
                  'landlords.html'),
                 ('briefcase',
                  'Shops, restaurants and offices',
-                 'Our forensic and consequential loss accountants calculate your business interruption loss '
-                 'while your premises are restored.',
+                 'We calculate and claim your business interruption loss while your premises are restored.',
                  'commercial.html')],
      'faqs': [('I own a flat. Whose insurance covers the damage?',
                '<p>In many blocks, the building itself is insured under a policy arranged by the freeholder or '
@@ -513,8 +511,7 @@ TOWNS = [
                  'escape.html'),
                 ('briefcase',
                  'Business interruption',
-                 'Our forensic and consequential loss accountants calculate your lost income while your premises '
-                 'are restored.',
+                 'We calculate and claim your lost income while your premises are restored.',
                  'bi.html')],
      'faqs': [('Do you cover all of Essex?',
                '<p>Yes. Our Southern office covers the whole of Essex, along with the rest of the South of '
@@ -579,8 +576,8 @@ TOWNS = [
                '<p>Yes. Our Southern office covers the whole of Berkshire, along with the rest of the South of '
                'England. Your loss assessor will visit your property.</p>'),
               ('Can you help my business after a flood?',
-               '<p>Yes. We handle the damage to your premises, stock and equipment, and our forensic and '
-               'consequential loss accountants calculate your business interruption loss.</p>')]},
+               '<p>Yes. We handle the damage to your premises, stock and equipment, and we calculate and claim '
+               'your business interruption loss.</p>')]},
     {'key': 'oxfordshire.html',
      'in_surrey': False,
      'route': 'loss-assessors-oxfordshire/',
@@ -687,8 +684,7 @@ TOWNS = [
                  'storm.html'),
                 ('briefcase',
                  'Business interruption',
-                 'Our forensic and consequential loss accountants calculate your lost income while your premises '
-                 'are restored.',
+                 'We calculate and claim your lost income while your premises are restored.',
                  'bi.html')],
      'faqs': [('Do you cover all of Buckinghamshire?',
                '<p>Yes. Our Southern office covers the whole of Buckinghamshire, along with the rest of the '
