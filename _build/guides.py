@@ -77,7 +77,7 @@ COST = {
         ("Emergency help", "Securing the property, organising emergency works and arranging alternative accommodation where needed."),
         ("A full assessment", "Identifying the full extent of the damage to your buildings and contents, including what's easy to miss."),
         ("Preparing and negotiating", "Presenting your whole claim and dealing with your insurer and its loss adjuster for you."),
-        ("Specialist support", "Legal specialists and forensic and consequential loss accountants where a claim needs them."),
+        ("Specialist support", "Legal and other specialists where a claim needs them."),
         ("Overseeing the repairs", "Helping you appoint surveyors and contractors, and supervising the work to completion."),
     ],
     "steps_head": "Questions to ask any loss assessor",

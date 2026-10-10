@@ -332,7 +332,7 @@ def header(active):
     return f"""  <a class="skip" href="#main">Skip to content</a>
   <aside class="topbar" aria-label="Contact details">
     <div class="container topbar-inner">
-      <span><a href="surrey.html">Southern office: Cobham, Surrey</a><span class="sep">·</span>FCA Reg No 308042<span class="sep">·</span>Members of the IPLA</span>
+      <span><a href="about.html#offices">Head office: Hale, Cheshire</a><span class="sep">·</span>Operating throughout the UK<span class="sep">·</span>FCA Reg No 308042<span class="sep">·</span>Members of the IPLA</span>
       <span><a href="{TEL}">Call {PHONE}</a><span class="sep">·</span>Mon to Fri, 9am to 5pm</span>
     </div>
   </aside>
@@ -399,8 +399,9 @@ FOOTER = f"""  <footer class="site-footer">
           <ul>
             <li><a href="{TEL}">{PHONE}</a></li>
             <li><a href="mailto:{EMAIL}">{EMAIL}</a></li>
-            <li><span><strong>Southern office:</strong> {SOUTH_OFFICE}</span></li>
             <li><span><strong>Head office:</strong> {HEAD_OFFICE}</span></li>
+            <li><span><strong>Southern office:</strong> {SOUTH_OFFICE}</span></li>
+            <li><span>Operating throughout the UK</span></li>
             <li><span>Monday to Friday, 9am to 5pm</span></li>
           </ul>
         </div>
@@ -584,7 +585,7 @@ def home():
     audiences = [
         ("home", "Homeowners", "We get you back into your home as quickly as possible, arranging emergency help and somewhere to stay while it's put right.",
          ["Buildings and contents claims", "Alternative accommodation", "Drying, repairs and reinstatement"], "home-claims.html", "Homeowner claims"),
-        ("building", "Businesses", "We protect your cash flow and get you trading again, with forensic accountants calculating your business interruption loss.",
+        ("building", "Businesses", "We protect your cash flow and get you trading again, including a full claim for your business interruption loss.",
          ["Commercial fire and flood", "Business interruption", "Stock and machinery"], "commercial.html", "Business claims"),
         ("key", "Landlords", "We deal with the insurer and the repairs, and claim for the rent you lose while the property can't be let.",
          ["Loss of rent", "Multi-tenancy properties", "Reinstatement and repairs"], "landlords.html", "Landlord claims"),
@@ -613,7 +614,7 @@ def home():
         ("user", "A dedicated loss assessor", "One expert runs your claim from start to finish, so you always know who to talk to."),
         ("shield", "Working only for you", "We have no ties to your insurer. Your interests are the only ones we represent."),
         ("pound", "No win, no fee", "Your first consultation is free, and we don't get paid until you do."),
-        ("calc", "Specialist support", "Our legal specialists and forensic and consequential loss accountants strengthen complex claims."),
+        ("calc", "Specialist support", "We bring in legal and other specialists where a complex claim needs them."),
         ("award", "A century of family expertise", "The Castleton family helped establish the Institute of Public Loss Assessors."),
         ("heart", "Personal service", "Customer care and personal service have been the hallmark of our firm for three decades."),
     ]
@@ -669,7 +670,7 @@ def home():
       </div>
       <div class="container hero-grid">
         <div class="hero-copy">
-          <p class="pill"><span class="dot" aria-hidden="true"></span>Independent loss assessors for over 30 years</p>
+          <p class="pill"><span class="dot" aria-hidden="true"></span>Operating throughout the UK for over 30 years</p>
           <h1>Fire or flood damage? <span>Expert help with your insurance claim.</span></h1>
           <p class="lead">We help homeowners, landlords and businesses recover from fire, flood and other damage. We manage your claim from start to finish, so you can focus on getting back to normal while we make sure you receive everything you're entitled to.</p>
           <div class="hero-actions">
@@ -869,27 +870,17 @@ def home():
         "email": EMAIL,
         "address": {
             "@type": "PostalAddress",
-            "addressLocality": "Cobham",
-            "addressRegion": "Surrey",
+            "streetAddress": "Arco House, 86 Woburn Drive",
+            "addressLocality": "Hale, Altrincham",
+            "addressRegion": "Cheshire",
+            "postalCode": "WA15 8NE",
             "addressCountry": "GB",
-        },
-        "parentOrganization": {
-            "@type": "Organization",
-            "name": "Independent Claims Consultants (head office)",
-            "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Arco House, 86 Woburn Drive",
-                "addressLocality": "Hale, Altrincham",
-                "addressRegion": "Cheshire",
-                "postalCode": "WA15 8NE",
-                "addressCountry": "GB",
-            },
         },
         "openingHours": "Mo-Fr 09:00-17:00",
         "areaServed": "GB",
     }
-    page("index.html", "Loss Assessors Surrey &amp; the South | Independent Claims Consultants",
-         "Independent loss assessors in Cobham, Surrey. Over 30 years helping homeowners, landlords and businesses with fire and flood insurance claims. No win, no fee.",
+    page("index.html", "Loss Assessors Throughout the UK | Independent Claims Consultants",
+         "Independent loss assessors operating throughout the UK. Over 30 years helping homeowners, landlords and businesses with fire and flood insurance claims. No win, no fee.",
          main, css, schema)
 
 
@@ -911,7 +902,7 @@ def claims():
     ]
     business = [
         ("fire", "Commercial fire and flood", "Complete claims management for damaged premises."),
-        ("trend", "Business interruption", "Forensic and consequential loss accountants calculate your lost income."),
+        ("trend", "Business interruption", "We calculate and claim your lost income."),
         ("box", "Stock and machinery", "We make sure damaged stock and equipment are fully valued."),
         ("check", "Ready for liability", "Everything in place for the moment your insurer accepts liability."),
         ("briefcase", "Back to trading", "We work to get you operational again as quickly as possible."),
@@ -968,7 +959,7 @@ def claims():
         ("impact", "impact", "Impact damage",
          "Whether a vehicle has hit your property or something has fallen onto it, we deal with the insurer and make sure the repairs are fully covered."),
         ("business-interruption", "trend", "Business interruption",
-         "Business interruption claims are rarely simple, and the way insurers present them can make them more complex. Our forensic and consequential loss accountants accurately calculate your loss, protecting your business while the building is restored."),
+         "Business interruption claims are rarely simple, and the way insurers present them can make them more complex. We calculate your loss accurately, protecting your business while the building is restored."),
     ]
     type_pages = {"fire": "fire.html", "flood": "flood.html", "escape-of-water": "escape.html", "business-interruption": "bi.html", "storm": "storm.html", "theft": "theft.html", "subsidence": "subsidence.html", "impact": "impact.html"}
     types_html = '\n'.join(f"""          <article class="card type-card" id="{a}">
@@ -1068,8 +1059,8 @@ def about():
             {f'<p class="office">{svg("pin")}{o}</p>' if o else ''}
             <p>{q}</p>
           </article>""" for i, n, r, o, q in team)
-    offices = [("Southern office", SOUTH_OFFICE),
-               ("Head office", HEAD_OFFICE)]
+    offices = [("Head office", HEAD_OFFICE),
+               ("Southern office", SOUTH_OFFICE)]
     offices_html = '\n'.join(f"""          <article class="card">
             {ic("pin")}
             <h3 style="margin-top: 18px;">{t}</h3>
@@ -1111,7 +1102,7 @@ def about():
         <div class="section-head">
           <span class="eyebrow">Our team</span>
           <h2>Your dedicated loss assessors</h2>
-          <p>Every client has their own loss assessor, backed by our technicians, legal specialists and forensic and consequential loss accountants.</p>
+          <p>Every client has their own loss assessor, backed by our technicians and specialist advisers where a claim needs them.</p>
         </div>
         <div class="grid-3 team-grid">
 {team_html}
@@ -1854,7 +1845,7 @@ def contact():
             <ul class="contact-list">
               <li>{ic("phone")}<a href="{TEL}"><strong>{PHONE}</strong><span>Monday to Friday, 9am to 5pm</span></a></li>
               <li>{ic("mail")}<a href="mailto:{EMAIL}"><strong>{EMAIL}</strong><span>Email us any time</span></a></li>
-              <li>{ic("pin")}<div><strong>Cobham, Surrey</strong><span>Southern office</span></div></li>
+              <li>{ic("pin")}<div><strong>Arco House, 86 Woburn Drive</strong><span>Hale, Altrincham, Cheshire WA15 8NE (head office)</span></div></li>
             </ul>
           </div>
           <div class="side-card">
@@ -1868,8 +1859,8 @@ def contact():
           <div class="side-card">
             <h3>Our offices</h3>
             <ul class="contact-list">
+              <li>{ic("pin")}<div><strong>Hale, Cheshire</strong><span>Head office</span></div></li>
               <li>{ic("pin")}<div><strong>Cobham, Surrey</strong><span>Southern office</span></div></li>
-              <li>{ic("pin")}<div><strong>Hale, Manchester</strong><span>Head office</span></div></li>
             </ul>
           </div>
         </aside>
@@ -2081,9 +2072,9 @@ def south_team_html():
 
 def south_office_card():
     return f"""<aside class="side-card">
-          <h3>Our Southern office</h3>
+          <h3>Contact us</h3>
           <ul class="contact-list">
-            <li>{ic("pin")}<div><strong>Cobham, Surrey</strong><span>Southern office</span></div></li>
+            <li>{ic("pin")}<div><strong>Head office: Hale, Cheshire</strong><span>Southern office: Cobham, Surrey</span></div></li>
             <li>{ic("phone")}<a href="{TEL}"><strong>{PHONE}</strong><span>Monday to Friday, 9am to 5pm</span></a></li>
             <li>{ic("mail")}<a href="mailto:{EMAIL}"><strong>{EMAIL}</strong><span>Email us any time</span></a></li>
           </ul>
@@ -2098,7 +2089,7 @@ def surrey():
         ("droplet", "Escape of water", "Burst pipes and leaks are among the most common home insurance claims, and older properties can hide damage under floors and behind walls. We make sure all of it is found and claimed for.", "escape.html"),
         ("fire", "Fire and smoke", "From kitchen fires to serious house fires, we guide you through every decision and make sure smoke and soot damage is fully included in your claim.", "fire.html"),
         ("storm", "Storm damage", "High winds and falling trees can damage roofs, walls and contents. We arrange emergency works and present a complete claim for the damage.", "storm.html"),
-        ("briefcase", "Business interruption", "For Surrey businesses, our forensic and consequential loss accountants calculate your lost income while your premises are restored.", "bi.html"),
+        ("briefcase", "Business interruption", "For Surrey businesses, we calculate and claim your lost income while your premises are restored.", "bi.html"),
         ("key", "Landlord claims", "If a let property is damaged, we handle the claim and the reinstatement, and claim for the rent you lose while it can't be let.", "landlords.html"),
     ]
     claims_html = '\n'.join(f"""          <article class="card">
@@ -2139,9 +2130,9 @@ def surrey():
           </div>
         </div>
         <aside class="side-card">
-          <h3>Our Southern office</h3>
+          <h3>Contact us</h3>
           <ul class="contact-list">
-            <li>{ic("pin")}<div><strong>Cobham, Surrey</strong><span>Southern office</span></div></li>
+            <li>{ic("pin")}<div><strong>Head office: Hale, Cheshire</strong><span>Southern office: Cobham, Surrey</span></div></li>
             <li>{ic("phone")}<a href="{TEL}"><strong>{PHONE}</strong><span>Monday to Friday, 9am to 5pm</span></a></li>
             <li>{ic("mail")}<a href="mailto:{EMAIL}"><strong>{EMAIL}</strong><span>Email us any time</span></a></li>
           </ul>
@@ -2224,7 +2215,10 @@ def surrey():
             },
             "openingHours": "Mo-Fr 09:00-17:00",
             "areaServed": [{"@type": "AdministrativeArea", "name": a} for a in SOUTH_REGIONS] + [{"@type": "Country", "name": "United Kingdom"}],
-            "parentOrganization": {"@type": "Organization", "name": "Independent Claims Consultants", "url": SITE + "/"},
+            "parentOrganization": {"@type": "Organization", "name": "Independent Claims Consultants", "url": SITE + "/",
+                                   "address": {"@type": "PostalAddress", "streetAddress": "Arco House, 86 Woburn Drive",
+                                               "addressLocality": "Hale, Altrincham", "addressRegion": "Cheshire",
+                                               "postalCode": "WA15 8NE", "addressCountry": "GB"}},
         },
         {
             "@context": "https://schema.org",
@@ -2354,11 +2348,13 @@ def town_page(t):
             "areaServed": [{"@type": "Place", "name": a} for a in t["areas"]],
             "provider": {
                 "@type": "ProfessionalService",
-                "name": "Independent Claims Consultants – Southern Office",
-                "url": SITE + "/" + ROUTES["surrey.html"],
+                "name": "Independent Claims Consultants",
+                "url": SITE + "/",
                 "telephone": "+44 161 904 7800",
-                "address": {"@type": "PostalAddress", "addressLocality": "Cobham", "addressRegion": "Surrey",
-                            "addressCountry": "GB"},
+                "address": {"@type": "PostalAddress", "streetAddress": "Arco House, 86 Woburn Drive",
+                            "addressLocality": "Hale, Altrincham", "addressRegion": "Cheshire",
+                            "postalCode": "WA15 8NE", "addressCountry": "GB"},
+                "areaServed": {"@type": "Country", "name": "United Kingdom"},
             },
         },
         {
@@ -2403,7 +2399,7 @@ def manchester():
         ("droplet", "Escape of water", "Burst pipes and leaks are among the most common home insurance claims, and older terraced and Victorian properties can hide damage under floors and behind walls.", "escape.html"),
         ("fire", "Fire and smoke", "From kitchen fires to serious house fires, we guide you through every decision and make sure smoke and soot damage is fully included in your claim.", "fire.html"),
         ("storm", "Storm damage", "High winds and heavy rain can damage roofs, chimneys and walls. We arrange emergency works and challenge unfair wear and tear decisions.", "storm.html"),
-        ("briefcase", "Business interruption", "For businesses across the region, our forensic and consequential loss accountants calculate lost income while your premises are restored.", "bi.html"),
+        ("briefcase", "Business interruption", "For businesses across the region, we calculate and claim your lost income while your premises are restored.", "bi.html"),
         ("key", "Landlord claims", "If a let property is damaged, we handle the claim and the reinstatement, and claim for the rent you lose while it can't be let.", "landlords.html"),
     ]
     claims_html = '\n'.join(f"""          <article class="card">
@@ -2549,7 +2545,10 @@ def manchester():
             "openingHours": "Mo-Fr 09:00-17:00",
             "areaServed": [{"@type": "AdministrativeArea", "name": "Greater Manchester"},
                            {"@type": "AdministrativeArea", "name": "Cheshire"}],
-            "parentOrganization": {"@type": "Organization", "name": "Independent Claims Consultants", "url": SITE + "/"},
+            "parentOrganization": {"@type": "Organization", "name": "Independent Claims Consultants", "url": SITE + "/",
+                                   "address": {"@type": "PostalAddress", "streetAddress": "Arco House, 86 Woburn Drive",
+                                               "addressLocality": "Hale, Altrincham", "addressRegion": "Cheshire",
+                                               "postalCode": "WA15 8NE", "addressCountry": "GB"}},
         },
         {
             "@context": "https://schema.org",
