@@ -271,14 +271,15 @@ def page_hero(pill, title, lead, extra="", image=None):
           <p class="lead">{lead}</p>
         </div>"""
     if image:
-        name, alt = image
+        name, alt, *credit = image
+        caption = f'<figcaption class="img-credit">{credit[0]}</figcaption>' if credit else ''
         below = f'\n        <div class="page-hero-extra">{extra}\n        </div>' if extra else ''
         return f"""
     <section class="hero page-hero">
       <div class="container page-hero-grid">
         <div>{copy}
         </div>
-        <figure class="page-hero-img">{img(name, alt, eager=True)}</figure>{below}
+        <figure class="page-hero-img">{img(name, alt, eager=True)}{caption}</figure>{below}
       </div>
     </section>"""
     copy += extra
