@@ -1,6 +1,6 @@
 # Image and video sources
 
-All photos are from Pexels and the video is from Mixkit. Both licences allow free commercial use without attribution. This list records where each file came from.
+Photos are from Pexels unless noted, and the video is from Mixkit. Both licences allow free commercial use without attribution. The storm damage photo is from Geograph under CC BY-SA 2.0, which requires the credit shown on the page. This list records where each file came from.
 
 | File(s) | Source |
 | --- | --- |
@@ -31,7 +31,7 @@ All photos are from Pexels and the video is from Mixkit. Both licences allow fre
 | `img/salisbury-cathedral-*` | https://www.pexels.com/photo/facade-of-salisbury-cathedral-14336577/ |
 | `img/st-albans-*` | https://www.pexels.com/photo/st-albans-cathedral-cathedral-and-abbey-church-of-st-alban-6678844/ |
 | `img/subsidence-crack-*` | https://www.pexels.com/photo/surface-of-aged-white-wall-with-crack-7794439/ |
-| `img/storm-houses-*` | https://www.pexels.com/photo/dramatic-view-of-village-houses-damaged-by-thunderstorm-4170461/ |
+| `img/storm-chimney-*` | https://www.geograph.org.uk/photo/2760644 (photo © M J Richardson, licensed CC BY-SA 2.0; resized and cropped versions shared under the same licence; credited on the page) |
 | `img/storm-rain-*` (still frame) | https://mixkit.co/free-stock-video/window-on-a-rainy-day-2846/ |
 | `video/hero-firefighters.*`, `img/hero-poster-*` | https://mixkit.co/free-stock-video/firefighters-on-the-street-shooting-water-with-their-hoses-5296/ |
 
