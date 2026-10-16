@@ -364,7 +364,7 @@ FOOTER = f"""  <footer class="site-footer">
           <a href="index.html" class="logo" aria-label="Independent Claims Consultants home">
             {LOGO}
           </a>
-          <p>Independent loss assessors helping homeowners, landlords and businesses with their insurance claims for over 30 years.</p>
+          <p>Independent loss assessors helping homeowners, landlords and businesses with their insurance claims for over 40 years.</p>
           <ul class="badges">
             <li>FCA regulated</li>
             <li>IPLA members</li>
@@ -571,7 +571,7 @@ def home():
             <p class="small">Free and with no obligation. It takes about a minute.</p>
           </form>"""
 
-    trust = [("clock", "Over 30 years", "managing insurance claims"),
+    trust = [("clock", "Over 40 years", "managing insurance claims"),
              ("award", "IPLA members", "Institute of Public Loss Assessors"),
              ("shieldcheck", "FCA regulated", "Reg No 308042"),
              ("pin", "Southern office", "Cobham, Surrey")]
@@ -617,7 +617,7 @@ def home():
         ("pound", "No win, no fee", "Your first consultation is free, and we don't get paid until you do."),
         ("calc", "Specialist support", "We bring in legal and other specialists where a complex claim needs them."),
         ("award", "A century of family expertise", "The Castleton family helped establish the Institute of Public Loss Assessors."),
-        ("heart", "Personal service", "Customer care and personal service have been the hallmark of our firm for three decades."),
+        ("heart", "Personal service", "Customer care and personal service have been the hallmark of our firm for four decades."),
     ]
     reasons_html = '\n'.join(f"""          <article class="card">
             {ic(i, "card-icon")}
@@ -671,7 +671,7 @@ def home():
       </div>
       <div class="container hero-grid">
         <div class="hero-copy">
-          <p class="pill"><span class="dot" aria-hidden="true"></span>Operating throughout the UK for over 30 years</p>
+          <p class="pill"><span class="dot" aria-hidden="true"></span>Operating throughout the UK for over 40 years</p>
           <h1>Fire or flood damage? <span>Expert help with your insurance claim.</span></h1>
           <p class="lead">We help homeowners, landlords and businesses recover from fire, flood and other damage. We manage your claim from start to finish, so you can focus on getting back to normal while we make sure you receive everything you're entitled to.</p>
           <div class="hero-actions">
@@ -763,7 +763,7 @@ def home():
         <span class="eyebrow">By the numbers</span>
         <h2>Decades of experience, working only for you</h2>
         <ul>
-          <li><span class="stat-num"><span data-count="30">30</span><span class="unit">+</span></span><span class="t">years managing insurance claims</span></li>
+          <li><span class="stat-num"><span data-count="40">40</span><span class="unit">+</span></span><span class="t">years managing insurance claims</span></li>
           <li><span class="stat-num"><span data-count="100">100</span><span class="unit">+</span></span><span class="t">years of family history in loss assessment</span></li>
           <li><span class="stat-num"><span data-count="2">2</span></span><span class="t">UK offices: Cobham, Surrey and Hale, Cheshire</span></li>
           <li><span class="stat-num"><span class="unit">£</span>0</span><span class="t">to get started: free first consultation, no win, no fee</span></li>
@@ -881,7 +881,7 @@ def home():
         "areaServed": "GB",
     }
     page("index.html", "Loss Assessors Throughout the UK | Independent Claims Consultants",
-         "Independent loss assessors operating throughout the UK. Over 30 years helping homeowners, landlords and businesses with fire and flood insurance claims. No win, no fee.",
+         "Independent loss assessors operating throughout the UK. Over 40 years helping homeowners, landlords and businesses with fire and flood insurance claims. No win, no fee.",
          main, css, schema)
 
 
@@ -1048,10 +1048,10 @@ def about():
          "One of our dedicated loss assessors, managing claims for homeowners, landlords and businesses from first visit to final settlement."),
         ("NH", "Nigel Hennerley", "Loss Assessor", "Head office, Hale",
          "\"You will have peace of mind knowing your loss assessor will guide you through the entire claims process.\""),
-        ("RY", "Ralph Yarwood-Smith", "Technician", None,
-         "One of our technicians, supporting our loss assessors on claims."),
-        ("MP", "Mark Pepper", "Technician", None,
-         "One of our technicians, supporting our loss assessors on claims."),
+        ("AG", "Adrian Gilluly", "Loss Assessor", None,
+         "One of our dedicated loss assessors, managing claims for homeowners, landlords and businesses from first visit to final settlement."),
+        ("IB", "Ian Balcombe", "Loss Assessor", None,
+         "One of our dedicated loss assessors, managing claims for homeowners, landlords and businesses from first visit to final settlement."),
     ]
     team_html = '\n'.join(f"""          <article class="card member">
             <span class="avatar" aria-hidden="true">{i}</span>
@@ -1069,7 +1069,7 @@ def about():
           </article>""" for t, a in offices)
 
     main = page_hero(
-        "About us", "On your side for <span>over 30 years.</span>",
+        "About us", "On your side for <span>over 40 years.</span>",
         "Independent Claims Consultants helps homeowners, landlords and businesses across the UK recover from fire, flood and other disasters, and get everything they're entitled to.",
         creds, image=("adviser-woman", "A female adviser going through paperwork with clients at a table"))
     main += f"""
@@ -1083,13 +1083,13 @@ def about():
           </div>
           <div class="prose">
             <p>It's over 100 years since the Castleton family first entered the complex and specialised world of loss assessment. It was at the family's instigation that the Institute of Public Loss Assessors was established, and Nic Castleton's grandfather was chosen as its president.</p>
-            <p>Nic founded Independent Claims Consultants three decades ago. Since then, the firm has helped individuals and businesses recover from a wide range of disasters, with every client assigned a dedicated loss assessor.</p>
+            <p>Nic founded Independent Claims Consultants four decades ago. Since then, the firm has helped individuals and businesses recover from a wide range of disasters, with every client assigned a dedicated loss assessor.</p>
             <p>Today we bring that experience to every claim we manage, working with insurers and their loss adjusters to get our clients the best possible settlement.</p>
           </div>
         </div>
 
         <figure class="quote">
-          <blockquote>Since establishing Independent Claims Consultants three decades ago, I have never lost sight of the long running tradition of customer care and personal service which is the hallmark of my family's long history in loss assessment.</blockquote>
+          <blockquote>Since establishing Independent Claims Consultants four decades ago, I have never lost sight of the long running tradition of customer care and personal service which is the hallmark of my family's long history in loss assessment.</blockquote>
           <figcaption>
             <span class="avatar" aria-hidden="true">NC</span>
             <div><strong>Nic Castleton</strong><span>Managing Director</span></div>
@@ -1146,7 +1146,7 @@ def about():
     </section>
 {cta()}"""
     page("about.html", "About Our Loss Assessors | Independent Claims Consultants",
-         "Independent Claims Consultants: family-run UK loss assessors with over 30 years' experience, members of the Institute of Public Loss Assessors and regulated by the FCA.",
+         "Independent Claims Consultants: family-run UK loss assessors with over 40 years' experience, members of the Institute of Public Loss Assessors and regulated by the FCA.",
          main, crumb="About us")
 
 
@@ -2127,7 +2127,7 @@ def surrey():
           <div class="prose">
             <p>When a fire, flood or escape of water damages your property, our loss assessors take the stress out of the claim. We prepare, present and negotiate it for you, working with your insurer so you receive everything you're entitled to.</p>
             <p>Being based in Cobham means your loss assessor is close at hand to inspect the damage, meet your insurer's loss adjuster at the property and keep an eye on the repairs as they progress.</p>
-            <p>Our Southern office is part of Independent Claims Consultants, which has managed insurance claims for more than 30 years, with our head office in Hale, Cheshire.</p>
+            <p>Our Southern office is part of Independent Claims Consultants, which has managed insurance claims for more than 40 years, with our head office in Hale, Cheshire.</p>
           </div>
         </div>
         <aside class="side-card">
@@ -2440,7 +2440,7 @@ def manchester():
           </div>
           <div class="prose">
             <p>When a fire, flood or escape of water damages your property, our loss assessors take the stress out of the claim. We prepare, present and negotiate it for you, working with your insurer so you receive everything you're entitled to.</p>
-            <p>Independent Claims Consultants has managed insurance claims for more than 30 years, and our head office is in Hale, near Altrincham. Being close by means your loss assessor can inspect the damage, meet your insurer's loss adjuster at the property and keep an eye on the repairs.</p>
+            <p>Independent Claims Consultants has managed insurance claims for more than 40 years, and our head office is in Hale, near Altrincham. Being close by means your loss assessor can inspect the damage, meet your insurer's loss adjuster at the property and keep an eye on the repairs.</p>
             <p>Our team is led by Managing Director Nic Castleton, whose family has worked in loss assessment for over 100 years and helped establish the Institute of Public Loss Assessors.</p>
           </div>
         </div>

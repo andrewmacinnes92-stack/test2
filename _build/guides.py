@@ -41,7 +41,7 @@ REJECTED = {
     ],
     "help_head": "How we can help",
     "help": [
-        "We've been challenging insurers' decisions for over 30 years. We'll review the decision, the policy and the loss adjuster's findings, and tell you honestly whether we think it can be overturned.",
+        "We've been challenging insurers' decisions for over 40 years. We'll review the decision, the policy and the loss adjuster's findings, and tell you honestly whether we think it can be overturned.",
         "If it can, we'll build the case and negotiate with your insurer for you. Your first consultation is free and we work on a no win, no fee basis.",
     ],
     "faqs": [
