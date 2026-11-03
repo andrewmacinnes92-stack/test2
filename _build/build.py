@@ -38,6 +38,7 @@ SITE = "https://independentclaimsconsultants.com"
 # Source name (used in links throughout this file) -> folder the page is published in.
 ROUTES = {
     "index.html": "",
+    "privacy.html": "privacy/",
     "claims.html": "claims/",
     "about.html": "about/",
     "advice.html": "advice/",
@@ -65,6 +66,12 @@ REDIRECTS = {
 }
 
 SITEMAP = []
+
+# Analytics. Leave a value empty to switch that tool off.
+# Cloudflare Web Analytics: cookieless, so it runs for every visitor.
+CF_ANALYTICS_TOKEN = "c9022652702644598ee70184da11febb"
+# Google Analytics 4 (G-XXXXXXXXXX): uses cookies, so it only loads after the visitor accepts the cookie banner.
+GA_MEASUREMENT_ID = "G-QHVFREW85L"
 
 ICONS = {
     "fire": '<path d="M12 2c1 3 4 5 4 9a4 4 0 0 1-8 0c0-2 1-3 1-3s-3 1-3 5a6 6 0 0 0 12 0c0-6-6-8-6-11z"/>',
@@ -393,6 +400,7 @@ FOOTER = f"""  <footer class="site-footer">
             <li><a href="advice.html">Advice centre</a></li>
             <li><a href="faq.html">FAQs</a></li>
             <li><a href="contact.html">Start your claim</a></li>
+            <li><a href="privacy.html">Privacy and cookies</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -408,7 +416,7 @@ FOOTER = f"""  <footer class="site-footer">
         </div>
       </div>
       <div class="footer-bottom">
-        <p class="copyright">&copy; <span id="year">2026</span> Independent Claims Consultants. Members of the Institute of Public Loss Assessors.</p>
+        <p class="copyright">&copy; <span id="year">2026</span> Independent Claims Consultants. Members of the Institute of Public Loss Assessors. <a href="privacy.html">Privacy and cookies</a> <button type="button" class="link-btn" data-cookie-settings hidden>Cookie settings</button></p>
         <p class="legal">Independent Claims Consultants is the trading name of Insurance Claims Centre UK Limited, a company registered in England No. 3932119. Regulated by the Financial Conduct Authority, FCA Reg No 308042. VAT Reg No. 519 8648 01. Registered office: Arco House, 86 Woburn Drive, Hale, Near Altrincham, Cheshire WA15 8NE.</p>
       </div>
     </div>
@@ -474,6 +482,59 @@ def breadcrumbs(filename, label, parent=None):
         ],
     }
     return crumbs, data
+
+
+def analytics_html():
+    """Cloudflare beacon (cookieless) and, if configured, Google Analytics behind a consent banner."""
+    out = ""
+    if CF_ANALYTICS_TOKEN:
+        out += ("\n  <script defer src=\"https://static.cloudflareinsights.com/beacon.min.js\" "
+                f"data-cf-beacon='{{\"token\": \"{CF_ANALYTICS_TOKEN}\"}}'></script>")
+    if GA_MEASUREMENT_ID:
+        out += f"""
+  <div class="consent" id="consent" role="dialog" aria-live="polite" aria-label="Cookie choices" hidden>
+    <p>We'd like to use Google Analytics cookies to understand how visitors use our website, so we can improve it. These are only set if you accept. <a href="privacy.html#cookies">Read more</a></p>
+    <div class="consent-actions">
+      <button type="button" class="btn btn-ghost" data-consent="denied">Reject</button>
+      <button type="button" class="btn btn-primary" data-consent="granted">Accept</button>
+    </div>
+  </div>
+  <script>
+  (function () {{
+    var ID = '{GA_MEASUREMENT_ID}', KEY = 'icc-analytics-consent';
+    var box = document.getElementById('consent');
+    var get = function () {{ try {{ return localStorage.getItem(KEY); }} catch (e) {{ return null; }} }};
+    var set = function (v) {{ try {{ localStorage.setItem(KEY, v); }} catch (e) {{}} }};
+    var loaded = false;
+    var load = function () {{
+      if (loaded) return; loaded = true;
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () {{ dataLayer.push(arguments); }};
+      gtag('js', new Date());
+      gtag('config', ID, {{ anonymize_ip: true }});
+      var s = document.createElement('script');
+      s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + ID;
+      document.head.appendChild(s);
+    }};
+    var choice = get();
+    if (choice === 'granted') load();
+    else if (choice !== 'denied') box.hidden = false;
+    box.addEventListener('click', function (e) {{
+      var b = e.target.closest('[data-consent]');
+      if (!b) return;
+      var v = b.getAttribute('data-consent');
+      var was = get();
+      set(v); box.hidden = true;
+      if (v === 'granted') load();
+      else if (was === 'granted') location.reload();
+    }});
+    document.querySelectorAll('[data-cookie-settings]').forEach(function (b) {{
+      b.hidden = false;
+      b.addEventListener('click', function () {{ box.hidden = false; box.querySelector('[data-consent="granted"]').focus(); }});
+    }});
+  }})();
+  </script>"""
+    return out
 
 
 def page(filename, title, description, main, page_css="", schema=None, callbar=True, crumb=None,
@@ -542,7 +603,7 @@ def page(filename, title, description, main, page_css="", schema=None, callbar=T
 
   <script>
 {js}
-  </script>
+  </script>{analytics_html()}
 </body>
 </html>
 """
@@ -2568,6 +2629,42 @@ def manchester():
 
 # ---------------------------------------------------------------- 404, redirects, sitemap, robots
 
+def privacy():
+    analytics = []
+    analytics.append("<p><strong>Cloudflare Web Analytics.</strong> We count visits, the pages viewed, the website that referred you, and your general location and device type. It doesn't use cookies, doesn't store anything on your device and doesn't track you across other websites.</p>")
+    analytics.append("<p><strong>Google Analytics.</strong> If you click Accept on our cookie banner, Google Analytics sets cookies to tell us how visitors use the site, such as which pages are popular. If you click Reject, or don't choose, these cookies aren't set. You can change your choice at any time using the Cookie settings link at the bottom of every page.</p>")
+    main = page_hero("Privacy", "Privacy and <span>cookies</span>",
+                     "How we use the information you give us, and the cookies on this website.")
+    main += f"""
+
+    <section class="section" style="padding-top: 0;">
+      <div class="container">
+        <div class="prose" style="max-width: 760px;">
+          <h2>Who we are</h2>
+          <p>Independent Claims Consultants is the trading name of Insurance Claims Centre UK Limited, a company registered in England No. 3932119, Arco House, 86 Woburn Drive, Hale, Altrincham, Cheshire WA15 8NE. We're responsible for the personal information you give us through this website. Contact us about privacy at <a href="mailto:{EMAIL}">{EMAIL}</a> or on {PHONE}.</p>
+
+          <h2>What we collect and why</h2>
+          <p>When you send an enquiry through our claim form, email or phone us, we collect the details you give us, such as your name, phone number, email address, postcode and information about your claim. We use them to respond to your enquiry and, if you appoint us, to manage your claim.</p>
+          <p>Our claim form is delivered to our team by email using FormSubmit (formsubmit.co), which passes your details on to us.</p>
+          <p>We keep your information only for as long as we need it for your enquiry or claim, and for any period we must keep records by law or under our regulatory obligations. We don't sell your information, and we don't use it for marketing without your permission.</p>
+
+          <h2 id="cookies">Website analytics and cookies</h2>
+          <p>We use analytics to understand how people find and use our website, so we can improve it:</p>
+          {"".join(analytics)}
+          <p>Our website also loads its fonts from Google Fonts, which means your browser connects to Google's servers. Our hosting provider keeps standard server logs, such as IP addresses and the pages requested, for security and to keep the site running.</p>
+          <p><button type="button" class="btn btn-ghost" data-cookie-settings hidden>Change cookie settings</button></p>
+
+          <h2>Your rights</h2>
+          <p>You can ask for a copy of the personal information we hold about you, and ask us to correct it, delete it or stop using it. To do this, contact us using the details above.</p>
+          <p>If you're unhappy with how we've handled your information, please tell us first. You can also complain to the Information Commissioner's Office at <a href="https://ico.org.uk/">ico.org.uk</a>.</p>
+        </div>
+      </div>
+    </section>"""
+    page("privacy.html", "Privacy and Cookies | Independent Claims Consultants",
+         "How Independent Claims Consultants uses the information you give us, and the analytics and cookies used on this website.",
+         main, crumb="Privacy and cookies")
+
+
 def not_found():
     main = page_hero(
         "Page not found", "Sorry, we can't find <span>that page</span>",
@@ -2694,6 +2791,7 @@ if __name__ == "__main__":
     manchester()
     for s in SERVICE_PAGES:
         service_page(s)
+    privacy()
     not_found()
     redirect_stubs()
     sitemap_and_robots()
