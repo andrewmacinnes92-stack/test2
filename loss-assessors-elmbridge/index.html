@@ -1891,5 +1891,48 @@
       item.addEventListener('keydown', (e) => { if (e.key === 'Escape') { set(false); btn.focus(); } });
     });
   </script>
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "c9022652702644598ee70184da11febb"}'></script>
+  <div class="consent" id="consent" role="dialog" aria-live="polite" aria-label="Cookie choices" hidden>
+    <p>We'd like to use Google Analytics cookies to understand how visitors use our website, so we can improve it. These are only set if you accept. <a href="../privacy/#cookies">Read more</a></p>
+    <div class="consent-actions">
+      <button type="button" class="btn btn-ghost" data-consent="denied">Reject</button>
+      <button type="button" class="btn btn-primary" data-consent="granted">Accept</button>
+    </div>
+  </div>
+  <script>
+  (function () {
+    var ID = 'G-QHVFREW85L', KEY = 'icc-analytics-consent';
+    var box = document.getElementById('consent');
+    var get = function () { try { return localStorage.getItem(KEY); } catch (e) { return null; } };
+    var set = function (v) { try { localStorage.setItem(KEY, v); } catch (e) {} };
+    var loaded = false;
+    var load = function () {
+      if (loaded) return; loaded = true;
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { dataLayer.push(arguments); };
+      gtag('js', new Date());
+      gtag('config', ID, { anonymize_ip: true });
+      var s = document.createElement('script');
+      s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + ID;
+      document.head.appendChild(s);
+    };
+    var choice = get();
+    if (choice === 'granted') load();
+    else if (choice !== 'denied') box.hidden = false;
+    box.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-consent]');
+      if (!b) return;
+      var v = b.getAttribute('data-consent');
+      var was = get();
+      set(v); box.hidden = true;
+      if (v === 'granted') load();
+      else if (was === 'granted') location.reload();
+    });
+    document.querySelectorAll('[data-cookie-settings]').forEach(function (b) {
+      b.hidden = false;
+      b.addEventListener('click', function () { box.hidden = false; box.querySelector('[data-consent="granted"]').focus(); });
+    });
+  })();
+  </script>
 </body>
 </html>

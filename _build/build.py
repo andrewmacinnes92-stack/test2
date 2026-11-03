@@ -69,9 +69,9 @@ SITEMAP = []
 
 # Analytics. Leave a value empty to switch that tool off.
 # Cloudflare Web Analytics: cookieless, so it runs for every visitor.
-CF_ANALYTICS_TOKEN = ""
+CF_ANALYTICS_TOKEN = "c9022652702644598ee70184da11febb"
 # Google Analytics 4 (G-XXXXXXXXXX): uses cookies, so it only loads after the visitor accepts the cookie banner.
-GA_MEASUREMENT_ID = ""
+GA_MEASUREMENT_ID = "G-QHVFREW85L"
 
 ICONS = {
     "fire": '<path d="M12 2c1 3 4 5 4 9a4 4 0 0 1-8 0c0-2 1-3 1-3s-3 1-3 5a6 6 0 0 0 12 0c0-6-6-8-6-11z"/>',
